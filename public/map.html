@@ -37,8 +37,15 @@
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
     }).addTo(map);
-    var marker = L.marker([48.580196, -2.141750]).addTo(map);
-    marker.bindPopup("<a href='https://baiedescaps.com/fr/'>Baie des Caps- Boutique</a><p>Habillement � base de laine</p>.");
+    var producers = [
+        [48.580196, -2.141750, "<a href='https://baiedescaps.com/fr/'>Baie des Caps- Boutique</a><p>Habillement à base de laine</p>."],
+        [48.40478281457391, -2.1992656807854223, "<a href='https://www.lafermekabocha.bzh/'>La ferme Kabocha</a><p>Maraîcher</p>."]
+    ];
+    for (const producer of producers) {
+        console.log(producer);
+        marker = L.marker([producer[0],producer[1]]).addTo(map);
+        marker.bindPopup(producer[2]);
+    }
   </script>
 </body>
 

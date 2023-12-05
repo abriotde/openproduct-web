@@ -1,0 +1,6 @@
+
+# Demarage
+
+services : iptables, ufw, 
+Check interfaces : $ ss -ltpn
+Pour l'interface : config/env/dev.jl : changer l'IP 

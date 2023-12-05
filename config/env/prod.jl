@@ -1,10 +1,10 @@
 using Genie, Logging
 
 Genie.Configuration.config!(
-  server_port                     = 80,
+  server_port                     = 8080,
   server_host                     = "0.0.0.0",
-  log_level                       = Logging.Error,
-  log_to_file                     = false,
+  log_level                       = Logging.Info,
+  log_to_file                     = true,
   server_handle_static_files      = true, # for best performance set up Nginx or Apache web proxies and set this to false
   path_build                      = "build",
   format_julia_builds             = false,
