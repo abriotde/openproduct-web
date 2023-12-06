@@ -37,14 +37,23 @@
         maxZoom: 19,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
     }).addTo(map);
+	/*
+		Categories : 
+		* AM : Alimentaire - Maraichers
+		* HL : Habillement - Laine
+	*/
     var producers = [
-        [48.580196, -2.141750, "<a href='https://baiedescaps.com/fr/'>Baie des Caps- Boutique</a><p>Habillement à base de laine</p>."],
-        [48.40478281457391, -2.1992656807854223, "<a href='https://www.lafermekabocha.bzh/'>La ferme Kabocha</a><p>Maraîcher</p>."]
+        [48.580196, -2.141750, "<a href='https://baiedescaps.com/fr/'>Baie des Caps- Boutique</a><p>Habillement à base de laine</p>.", "Baie_des_Caps", "HL"],
+        [48.404782, -2.199265, "<a href='https://www.lafermekabocha.bzh/'>La ferme Kabocha</a><p>Maraîcher</p>.", "La_ferme_Kabocha", "AM"]
     ];
     for (const producer of producers) {
         console.log(producer);
         marker = L.marker([producer[0],producer[1]]).addTo(map);
-        marker.bindPopup(producer[2]);
+		var text = producer[2];
+		if (producer[3]) {
+			text += "<a href='/wiki/index.php?title="+producer[3]+"'>+ d'infos</a>";
+		}
+        marker.bindPopup(text);
     }
   </script>
 </body>
