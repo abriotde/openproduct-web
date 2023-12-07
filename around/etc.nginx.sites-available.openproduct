@@ -7,14 +7,16 @@ server {
   index         welcome;
 
   # pass PHP scripts on Nginx to FastCGI (PHP-FPM) server
-  location ~ ^/wiki # \.php$ 
-	  {
+  location ~ ^/wiki/.*\.php$ {
     include snippets/fastcgi-php.conf;
 
     # Nginx php-fpm sock config:
     fastcgi_pass unix:/run/php/php-fpm.sock;
     # Nginx php-cgi config :
     # Nginx PHP fastcgi_pass 127.0.0.1:9000;
+  }
+  location ~ ^/wiki {
+	  # index   index.php
   }
 
   # deny access to Apache .htaccess on Nginx with PHP,

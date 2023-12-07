@@ -1,0 +1,18 @@
+Site:
+* 1 Site Julia as "service" Ubuntu
+* 2 Wiki : Créer infobox sur la droite
+* 1 Map : Récupérer la position pour centrer la carte si possible.
+* 3 Site/Wiki mutualiser les informations des producteurs : coordonées/Nom, catégorie...
+* HTTPS
+* 1 https://fr.ulule.com/openproduct/
+
+
+Sécurité:
+* login/pwd BDD Wiki + site, restreindre les droits, 
+  - créer un login lecture avec droits restreints != login admin
+  - Mdp plus sécure
+  - login distinct restreint pour le site.
+* Firewall & Cie
+* Log
+* Droits des fichiers sites/wiki
+

@@ -38,8 +38,8 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL paths to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogos = [
-	'1x' => "$wgResourceBasePath/resources/assets/logoOpenProduct.svg",
-	'icon' => "$wgResourceBasePath/resources/assets/logoOpenProduct.svg",
+	'1x' => "$wgResourceBasePath/resources/assets/logoOpenProduct-128.png",
+	'icon' => "$wgResourceBasePath/resources/assets/logoOpenProduct-128.png",
 ];
 
 ## UPO means: this is also a user preference option
@@ -144,7 +144,9 @@ wfLoadExtension( 'CiteThisPage' );
 wfLoadExtension( 'Linter' );
 wfLoadExtension( 'VisualEditor' );
 wfLoadExtension( 'WikiEditor' );
-
+wfLoadExtension( 'Scribunto' );
+$wgScribuntoDefaultEngine = 'luastandalone';
+wfLoadExtension( 'TemplateStyles' );
 
 # End of automatically generated settings.
 # Add more configuration options below.
