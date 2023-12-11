@@ -4,7 +4,7 @@ server {
 
   server_name   openproduct.freeboxos.fr;
   root          /var/www/openproduct;
-  index         welcome;
+  index         index.html;
 
   # pass PHP scripts on Nginx to FastCGI (PHP-FPM) server
   location ~ ^/wiki/.*\.php$ {
@@ -15,9 +15,9 @@ server {
     # Nginx php-cgi config :
     # Nginx PHP fastcgi_pass 127.0.0.1:9000;
   }
-  location ~ ^/wiki {
+  # location ~ ^/wiki {
 	  # index   index.php
-  }
+  # }
 
   # deny access to Apache .htaccess on Nginx with PHP,
   # if Apache and Nginx document roots concur
@@ -26,7 +26,7 @@ server {
   }
 
   location / {
-      proxy_pass http://localhost:8080/;
+	  # proxy_pass http://localhost:8080/;
   }
 
 }
