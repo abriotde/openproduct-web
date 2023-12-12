@@ -1,16 +1,163 @@
 var map;
+var areas;
+const MAP_MIN_ZOOM = 10;
+const MAP_MAX_ZOOM = 19;
+const MAP_DEFAULT_ZOOM = 12;
+
+var loadedAreas = []; // List of producers loaded on map.
+var areasToCheck = null; // List of neighbouring area not loaded.
+var DEBUG = true;
+
+function isInArea(area, point) {
+	return area.min[0]<point.lat && area.max[0]>point.lat
+			&& area.min[1]<point.lng && area.max[1]>point.lng;
+}
+
+/**
+ * Find the area corresponding to map center and return the id.
+ */
+function getMainArea() {
+	var center = map.getCenter();
+	// Foreach areas  // Find the first where the center is in
+	for (const [id, area] of Object.entries(areas)) {
+		if (isInArea(area, center)) {
+			return id;
+		}
+	}
+	console.log("Error : fail getMainArea()");
+	return 0;
+}
+function refreshAreasToCheck() {
+	if(DEBUG) console.log("refreshAreasToCheck()");
+	// Avoid duplicates : find unique neigbourhood for all loaded areas.
+	var neighbours = [];
+	for(const area of loadedAreas) {
+		if (neighbours.length==0) {
+			neighbours = areas[area].nbhd;
+		} else {
+			neighbours2 = areas[area].nbhd;
+			var i1=0, i2=0, len1=neighbours.len, len2=neighbours2.len;
+			var v1 = neighbours[i1];
+			var v2 = neighbours2[i2];
+			var prev = 0;
+			var modeCopy = false;
+			var neighbours1 = [];
+			// As neighbouring are sorted, we avoid to alocate unnecesary space : i.e. do not copy if nothing to add on neighbours.
+			while (i1<len1 && i2<len2) {
+				if (v1==v2) { // Go to next
+					i1++; i2++; prev = v1;
+					v1 = neighbours[i1];
+					v2 = neighbours2[i2];
+					if (modeCopy) {
+						neighbours1.push(v1);
+					}
+				} else if((v1>v2)) { // Need to insert v2 in middle => modeCopy
+					if (!modeCopy) {
+						for(i=0;i<i1;i++) neighbours1.push(neighbours[i]);
+						modeCopy = true;
+					}
+					neighbours1.push(v2);
+					i2++; 
+					v2 = neighbours2[i2];
+				} else if((v2>v1)) { // Need to increment i1;
+					i1++;
+					v1 = neighbours[i1];
+					if (modeCopy) {
+						neighbours1.push(v1);
+					}
+				}
+			}
+			if (modeCopy) {
+				neighbours = neighbours1;
+			}
+			while (i2<len2) {
+				neighbours.push(neighbours2[i2]);
+			}
+		}
+	}
+	if(DEBUG) console.log("Neighbours:",neighbours);
+
+	// Remove neigbours ever loaded.
+	areasToCheck = neighbours.filter(x => !loadedAreas.includes(x));
+	if(DEBUG) console.log("AreasToCheck:",areasToCheck);
+}
+/**
+ * check if one if a corner of the map (or the center) is not in a loaded area, and so load them
+ */
+function checkNeighbouring() {
+	if(DEBUG) console.log("checkNeighbouring()");
+	if (areasToCheck == null) { // Neighbouring has change only if we have loaded more producers
+		refreshAreasToCheck();
+	}
+
+	// Check strategic points.
+	var toLoad = [];
+	var center = map.getCenter();
+	var bounds = map.getBounds();
+	var northWest = bounds.getNorthWest(),
+		northEast = bounds.getNorthEast(),
+		southWest = bounds.getSouthWest(),
+		southEast = bounds.getSouthEast();
+	for (areaId of areasToCheck) {
+		var area = areas[areaId];
+		if(isInArea(area, center)) { // Should be unnecessary [48.533839, 1.526993]
+			console.log("checkNeighbouring() : center in ",areaId,area);
+			toLoad.push(areaId);
+		}else if(isInArea(area, northWest)) { // There is maybe a better way than test 4 points.
+			console.log("checkNeighbouring() : northWest in ",areaId,area);
+			toLoad.push(areaId);
+		}else if(isInArea(area, northEast)) {
+			console.log("checkNeighbouring() : northEast in ",areaId,area);
+			toLoad.push(areaId);
+		}else if(isInArea(area, southWest)) {
+			console.log("checkNeighbouring() : southWest in ",areaId,area);
+			toLoad.push(areaId);
+		}else if(isInArea(area, southEast)) {
+			console.log("checkNeighbouring() : southEast in ",areaId,area);
+			toLoad.push(areaId);
+		}
+	}
+
+	// Load needed areas
+	console.log("checkNeighbouring() : need to load : ",toLoad, " for bouds : ",bounds)
+	getAllProducers(toLoad);
+}
 function initMap (latitude, longitude) {
-    map = L.map('map').setView([48.430738, -2.214463], 10);
+	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
+    map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
+    map.on('moveend zoomend', function() {
+       	console.log("Map move detected : ", map.getCenter());
+		checkNeighbouring();
+    });
+    // Get areas locations (to manage witch producers's area to GET)
+	const request = new XMLHttpRequest();
+	request.responseType = "json";
+	request.onload = function() {
+		areas = request.response;
+		areaNumber = getMainArea();
+		if (areaNumber>0) {
+			getAllProducers([areaNumber]);
+		}
+	}
+	request.open("GET", "departements.json");
+	request.send();
+	// Get background layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
+        maxZoom: MAP_MAX_ZOOM,
+        minZoom: MAP_MIN_ZOOM,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
     }).addTo(map);
-	getProducers(22);
 	mapInitialized = true;
 }
 var noFilter = function (producer) {return true;}
 var filterChar = "a";
-var charFilter = function (producer) {return producer[4][0]==filterChar;}
+var charFilter = function (producer) {
+	if(producer && producer[4]!=null) {
+		return producer[4][0]==filterChar;
+	} else {
+		return false;
+	}
+}
 var myfilter = noFilter;
 var markers = {};
 var producers = [];
@@ -58,15 +205,26 @@ function filterProducers(filter) {
     }
     displayProducers(producers);
 }
-function getProducers(area) {
-	const request = new XMLHttpRequest();
-	request.responseType = "json";
-	request.onload = function() {
-		producers = request.response;
-		displayProducers(producers);
+function getAllProducers(areas) {
+	if(DEBUG) console.log("getAllProducers(",areas,")");
+	var nbAreasToLoad = areas.length;
+	for(area of areas) {
+		if(DEBUG) console.log("getProducers(",area,")");
+		const request = new XMLHttpRequest();
+		request.responseType = "json";
+		request.onload = function() {
+			producers = request.response;
+			displayProducers(producers);
+			loadedAreas.push(area);
+			areasToCheck = null;
+			nbAreasToLoad -= 1;
+			if(nbAreasToLoad==0) {
+				checkNeighbouring();
+			}
+		}
+		request.open("GET", "producers_"+area+".json");
+		request.send();
 	}
-	request.open("GET", "/producers_"+area+".json");
-	request.send();
 }
 
 // Gestion de la position : centrage de la carte
