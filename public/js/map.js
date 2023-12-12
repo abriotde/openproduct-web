@@ -5,6 +5,7 @@ const MAP_MAX_ZOOM = 19;
 const MAP_DEFAULT_ZOOM = 12;
 
 var loadedAreas = []; // List of producers loaded on map.
+var loadingAreas = []; // List of producers wich load is running on map.
 var areasToCheck = null; // List of neighbouring area not loaded.
 var DEBUG = true;
 
@@ -21,22 +22,24 @@ function getMainArea() {
 	// Foreach areas  // Find the first where the center is in
 	for (const [id, area] of Object.entries(areas)) {
 		if (isInArea(area, center)) {
-			return id;
+			return parseInt(id);
 		}
 	}
 	console.log("Error : fail getMainArea()");
 	return 0;
 }
 function refreshAreasToCheck() {
-	if(DEBUG) console.log("refreshAreasToCheck()");
+	if(DEBUG) console.log("refreshAreasToCheck() for ",loadedAreas);
 	// Avoid duplicates : find unique neigbourhood for all loaded areas.
 	var neighbours = [];
 	for(const area of loadedAreas) {
 		if (neighbours.length==0) {
 			neighbours = areas[area].nbhd;
+			// if(DEBUG) console.log("refreshAreasToCheck() for ",area,neighbours);
 		} else {
 			neighbours2 = areas[area].nbhd;
-			var i1=0, i2=0, len1=neighbours.len, len2=neighbours2.len;
+			// if(DEBUG) console.log("refreshAreasToCheck() for2 ",area,neighbours2);
+			var i1=0, i2=0, len1=neighbours.length, len2=neighbours2.length;
 			var v1 = neighbours[i1];
 			var v2 = neighbours2[i2];
 			var prev = 0;
@@ -44,34 +47,41 @@ function refreshAreasToCheck() {
 			var neighbours1 = [];
 			// As neighbouring are sorted, we avoid to alocate unnecesary space : i.e. do not copy if nothing to add on neighbours.
 			while (i1<len1 && i2<len2) {
+				// if(DEBUG) console.log("refreshAreasToCheck() ",v1,v2);
 				if (v1==v2) { // Go to next
+					if (modeCopy) {
+						// if(DEBUG) console.log("refreshAreasToCheck() modeCopy/pushV1 ",v1);
+						neighbours1.push(v1);
+					}
 					i1++; i2++; prev = v1;
 					v1 = neighbours[i1];
 					v2 = neighbours2[i2];
-					if (modeCopy) {
-						neighbours1.push(v1);
-					}
 				} else if((v1>v2)) { // Need to insert v2 in middle => modeCopy
 					if (!modeCopy) {
+						// if(DEBUG) console.log("refreshAreasToCheck() modeCopy ");
 						for(i=0;i<i1;i++) neighbours1.push(neighbours[i]);
 						modeCopy = true;
 					}
+					// if(DEBUG) console.log("refreshAreasToCheck() pushV2 ", v2);
 					neighbours1.push(v2);
 					i2++; 
 					v2 = neighbours2[i2];
 				} else if((v2>v1)) { // Need to increment i1;
-					i1++;
-					v1 = neighbours[i1];
+					// if(DEBUG) console.log("refreshAreasToCheck() ++ ",v1);
 					if (modeCopy) {
+						// if(DEBUG) console.log("refreshAreasToCheck() modeCopy/pushV1/1 ",v1);
 						neighbours1.push(v1);
 					}
+					i1++;
+					v1 = neighbours[i1];
 				}
 			}
 			if (modeCopy) {
 				neighbours = neighbours1;
 			}
 			while (i2<len2) {
-				neighbours.push(neighbours2[i2]);
+				// if(DEBUG) console.log("refreshAreasToCheck() fill ",i2,"/",len2," for ",neighbours2);
+				neighbours.push(neighbours2[i2++]);
 			}
 		}
 	}
@@ -79,7 +89,7 @@ function refreshAreasToCheck() {
 
 	// Remove neigbours ever loaded.
 	areasToCheck = neighbours.filter(x => !loadedAreas.includes(x));
-	if(DEBUG) console.log("AreasToCheck:",areasToCheck);
+	if(DEBUG) console.log("AreasToCheck:",areasToCheck, "; loadedAreas=",loadedAreas);
 }
 /**
  * check if one if a corner of the map (or the center) is not in a loaded area, and so load them
@@ -101,26 +111,38 @@ function checkNeighbouring() {
 	for (areaId of areasToCheck) {
 		var area = areas[areaId];
 		if(isInArea(area, center)) { // Should be unnecessary [48.533839, 1.526993]
-			console.log("checkNeighbouring() : center in ",areaId,area);
+			// console.log("checkNeighbouring() : center in ",areaId,area);
 			toLoad.push(areaId);
 		}else if(isInArea(area, northWest)) { // There is maybe a better way than test 4 points.
-			console.log("checkNeighbouring() : northWest in ",areaId,area);
+			// console.log("checkNeighbouring() : northWest in ",areaId,area);
 			toLoad.push(areaId);
 		}else if(isInArea(area, northEast)) {
-			console.log("checkNeighbouring() : northEast in ",areaId,area);
+			// console.log("checkNeighbouring() : northEast in ",areaId,area);
 			toLoad.push(areaId);
 		}else if(isInArea(area, southWest)) {
-			console.log("checkNeighbouring() : southWest in ",areaId,area);
+			// console.log("checkNeighbouring() : southWest in ",areaId,area);
 			toLoad.push(areaId);
 		}else if(isInArea(area, southEast)) {
-			console.log("checkNeighbouring() : southEast in ",areaId,area);
+			// console.log("checkNeighbouring() : southEast in ",areaId,area);
 			toLoad.push(areaId);
 		}
 	}
 
 	// Load needed areas
-	console.log("checkNeighbouring() : need to load : ",toLoad, " for bouds : ",bounds)
-	getAllProducers(toLoad);
+	if (toLoad.length>0) {
+		console.log("checkNeighbouring() : need to load : ",toLoad, " from ", areasToCheck, 
+		"; loadedAreas=",loadedAreas)
+		getAllProducers(toLoad);
+	}
+}
+function initProducers() {
+	loadedAreas = [];
+	loadingAreas = [];
+	areasToCheck = null;
+	areaNumber = getMainArea();
+	if (areaNumber>0) {
+		getAllProducers([areaNumber]);
+	}
 }
 function initMap (latitude, longitude) {
 	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
@@ -134,10 +156,7 @@ function initMap (latitude, longitude) {
 	request.responseType = "json";
 	request.onload = function() {
 		areas = request.response;
-		areaNumber = getMainArea();
-		if (areaNumber>0) {
-			getAllProducers([areaNumber]);
-		}
+		initProducers();
 	}
 	request.open("GET", "departements.json");
 	request.send();
@@ -207,23 +226,29 @@ function filterProducers(filter) {
 }
 function getAllProducers(areas) {
 	if(DEBUG) console.log("getAllProducers(",areas,")");
-	var nbAreasToLoad = areas.length;
+	if (loadedAreas.length + areas.length + loadingAreas.length>10) {
+		// TODO : Re-Init all
+	}
 	for(area of areas) {
-		if(DEBUG) console.log("getProducers(",area,")");
-		const request = new XMLHttpRequest();
-		request.responseType = "json";
-		request.onload = function() {
-			producers = request.response;
-			displayProducers(producers);
-			loadedAreas.push(area);
-			areasToCheck = null;
-			nbAreasToLoad -= 1;
-			if(nbAreasToLoad==0) {
-				checkNeighbouring();
+		if ((!loadingAreas.includes(area)) && (!loadedAreas.includes(area))) {
+			if(DEBUG) console.log("getProducers(",area,")");
+			loadingAreas.push(area);
+			const request = new XMLHttpRequest();
+			request.responseType = "json";
+			request.onload = function() {
+				producers = request.response;
+				displayProducers(producers);
+				loadingAreas = loadingAreas.filter(a => a!=area);
+				loadedAreas.push(area);
+				areasToCheck = null;
+				if(DEBUG) console.log("loadedAreas = ",loadedAreas);
+				if (loadingAreas.length==0) {
+					checkNeighbouring();
+				}
 			}
+			request.open("GET", "producers_"+area+".json");
+			request.send();
 		}
-		request.open("GET", "producers_"+area+".json");
-		request.send();
 	}
 }
 

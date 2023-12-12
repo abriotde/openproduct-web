@@ -19,8 +19,8 @@ end
 departements = Dict{Int64, Area}()
 
 
-# Get neighbouring
-neighbouringFile = "../../openproduct-docs/sources/voisinagesDepartementsFrançais.csv";
+# Get neighbouring : TODO : a better way to find neighbouring (API or algo with carto) but it doesn't change often so OK for ... a long time
+neighbouringFile = "../../openproduct-docs/sources/voisinagesDepartementsFrancais.csv";
 csv_reader = CSV.File(neighbouringFile, delim=';', comment="#")
 for row in csv_reader
 	# println(row)

@@ -1,6 +1,6 @@
 Site:
 * 1 Map : Récupérer la position pour centrer la carte si possible TOTEST.
-* 2 Map : Gerer le chargement des datas par departements
+* 1 Map : Choisir un departement en cas de non GPS
 * 3 Site/Wiki mutualiser les informations des producteurs : coordonées/Nom, catégorie...
 * HTTPS
 * 1 https://fr.ulule.com/openproduct/
