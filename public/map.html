@@ -20,16 +20,20 @@
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".side-menu">
-  <div class="container-fluid">
-      Filtrer par catégorie <select onchange="javascript:filterProducers(this.value);">
-          <option value="">Aucun</option>
+  <div>
+  	<div id="geoMsg"></div>
+      <label>Catégories :</label>
+      <select onchange="javascript:filterProducers(this.value);">
+          <option value="">Toutes</option>
           <option value="H">Habillement</option>
           <option value="A">Allimentaire</option>
           <option value="P">Plantes (Fleurs, arbres)</option>
           <option value="O">Outils (couteaux)</option>
       </select>
-  </div>
-  <div class="container-fluid" id="geolocation">
+      
+      <label>Adresse :</label>
+      <input type="text" id="geoSearch"/>
+      <img src="img/openproduct/search.jpg" onclick="javascript:search()" width="25" height="25" id="geoSearchImg">
   </div> 
   <div class="container-fluid">
     <div class="row hero-header" id="map">

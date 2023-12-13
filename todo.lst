@@ -1,13 +1,9 @@
 Site:
-* 1 Map : Récupérer la position pour centrer la carte si possible TOTEST.
-* 1 Map : Choisir un departement en cas de non GPS
-* 3 Site/Wiki mutualiser les informations des producteurs : coordonées/Nom, catégorie...
-* HTTPS
-* 1 https://fr.ulule.com/openproduct/
-* 2 page donateurs
+* 2 creation assoiation + page donateurs https://fr.ulule.com/openproduct
 * Android application : https://www.youtube.com/watch?v=s4EFdLL68ko
 * - 1 Site Julia as "service" Ubuntu 
 * 2 Wiki : Créer infobox sur la droite
+* 3 Site/Wiki mutualiser les informations des producteurs : coordonées/Nom, catégorie...
 
 Sécurité:
 * login/pwd BDD Wiki + site, restreindre les droits, 

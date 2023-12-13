@@ -144,6 +144,10 @@ function initProducers() {
 		getAllProducers([areaNumber]);
 	}
 }
+function centerMap (latitude, longitude) {
+    map.setView([latitude, longitude], MAP_DEFAULT_ZOOM);
+    initProducers();
+}
 function initMap (latitude, longitude) {
 	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
     map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
@@ -265,6 +269,8 @@ function updatePos()
         }, 5000);
     }
 }
+// https://apicarto.ign.fr/api/codes-postaux/communes/44110
+// 
 function geoNotOk(error)
 {
 	// console.log("geoNotOk(",error,")")
@@ -285,8 +291,8 @@ function geoNotOk(error)
 				break;
 		}
 	}
-	geolocation = document.getElementById("geolocation")
-	geolocation.innerHTML = "Erreur de géolocation "+errMsg+". Activez la géolocalisation sur le navigateur pour centrer automatiquement la carte sur votre position.";
+	geolocation = document.getElementById("geoMsg");
+	geolocation.innerHTML = errMsg+". Activez la géolocalisation sur le navigateur pour centrer automatiquement la carte sur votre position.";
 	setTimeout(function() {
 		updatePos();
 	}, failUpdatePosTimeOut);
@@ -308,6 +314,28 @@ if (navigator.geolocation) {
 } else {
 	geoNotOk();
 	initMap(48.430738, -2.214463);
+}
+function search()
+{
+	search = document.getElementById("geoSearch").value;
+	console.log(search);
+	search = encodeURI(search);
+	if(search!="") {
+		url = "https://api-adresse.data.gouv.fr/search/?q="+search;
+		const request = new XMLHttpRequest();
+		request.responseType = "json";
+		request.onload = function() {
+			var vals = request.response;
+			vals = vals.features;
+			if (vals.length>0) {
+				vals = vals[0].geometry.coordinates;
+				console.log(vals);
+				centerMap (vals[1], vals[0]);
+			}
+		}
+		request.open("GET", url);
+		request.send();
+	}
 }
 
 
