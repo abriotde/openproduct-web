@@ -1,3 +1,7 @@
+# 
+public/docs/*
+public/data/openproduct-app.apk
+
 # App
 build/*
 cache/*

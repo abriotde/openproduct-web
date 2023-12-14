@@ -162,7 +162,7 @@ function initMap (latitude, longitude) {
 		areas = request.response;
 		initProducers();
 	}
-	request.open("GET", "departements.json");
+	request.open("GET", "data/departements.json");
 	request.send();
 	// Get background layer
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -250,7 +250,7 @@ function getAllProducers(areas) {
 					checkNeighbouring();
 				}
 			}
-			request.open("GET", "producers_"+area+".json");
+			request.open("GET", "data/producers_"+area+".json");
 			request.send();
 		}
 	}

@@ -17,9 +17,11 @@ cp around/etc.nginx.sites-available.openproduct /etc/nginx/sites-available/openp
 ln -s /etc/nginx/sites-available/openproduct /etc/nginx/sites-enable/openproduct
 systemctl start nginx
 systemctl enable nginx
-
-
 systemctl start mariadb
 systemctl enable mariadb
 
+# APK
+cd ../openproduct-app-android
+./gradlew build
+cp ./app/release/app-release.apk ../openproduct-web/public/data/openproduct-app.apk
 
