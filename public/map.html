@@ -22,8 +22,8 @@
 <body id="page-top" data-spy="scroll" data-target=".side-menu">
   <div>
   	<div id="geoMsg"></div>
-      <label>Catégories :</label>
-      <select onchange="javascript:filterProducers(this.value);">
+      <label for="categoryFilter">Catégories :</label>
+      <select id="categoryFilter" onchange="javascript:filterProducers(this.value);">
           <option value="">Toutes</option>
           <option value="H">Habillement</option>
           <option value="A">Allimentaire</option>
@@ -31,10 +31,10 @@
           <option value="O">Outils (couteaux)</option>
       </select>
       
-      <label>Adresse :</label>
-      <input type="text" id="geoSearch"/>
+      <label for="geoSearch">Adresse :</label>
+      <input name="geoSearch" type="text" id="geoSearch"/>
       <img src="img/openproduct/search.jpg" onclick="javascript:search()" width="25" height="25" id="geoSearchImg">
-  </div> 
+  </div>
   <div class="container-fluid">
     <div class="row hero-header" id="map">
     </div>

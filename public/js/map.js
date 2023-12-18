@@ -130,7 +130,7 @@ function checkNeighbouring() {
 
 	// Load needed areas
 	if (toLoad.length>0) {
-		console.log("checkNeighbouring() : need to load : ",toLoad, " from ", areasToCheck, 
+		if(DEBUG) console.log("checkNeighbouring() : need to load : ",toLoad, " from ", areasToCheck, 
 		"; loadedAreas=",loadedAreas)
 		getAllProducers(toLoad);
 	}
@@ -152,7 +152,7 @@ function initMap (latitude, longitude) {
 	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
     map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
     map.on('moveend zoomend', function() {
-       	console.log("Map move detected : ", map.getCenter());
+       	// console.log("Map move detected : ", map.getCenter());
 		checkNeighbouring();
     });
     // Get areas locations (to manage witch producers's area to GET)
@@ -175,8 +175,8 @@ function initMap (latitude, longitude) {
 var noFilter = function (producer) {return true;}
 var filterChar = "a";
 var charFilter = function (producer) {
-	if(producer && producer[4]!=null) {
-		return producer[4][0]==filterChar;
+	if(producer && producer.cat!=null) {
+		return producer.cat==filterChar;
 	} else {
 		return false;
 	}
@@ -184,42 +184,84 @@ var charFilter = function (producer) {
 var myfilter = noFilter;
 var markers = {};
 var producers = [];
+/**
+	Format phone number to be display
+*/
+function formatTel(tel) {
+	len = tel.length;
+	i = 0;
+	output = "";
+	sep = "";
+	while (i+2<=len) {
+		output += sep+tel[i]+tel[i+1];
+		sep = " ";
+		i += 2;
+	}
+	// console.log("formatTel("+tel+") : ",output);
+	return output;
+}
 function newMarker(producer) {
-    var marker = L.marker([producer[0],producer[1]]);
-    var text = producer[2];
-    if (producer[3]) {
-        text += "<a href='/wiki/index.php?title="+producer[3]+"' target='wiki'>+ d'infos</a>";
+	// console.log(producer);
+    var marker = L.marker([producer.lat,producer.lng]);
+    var text = "<h3>"+producer.name+"</h3>";
+    if (producer.web) {
+		text = "<a href='"+producer.web+"'>"+text+"</a>"
+	}
+	text += "<p>"+producer.txt+"</p>";
+    if (producer.wiki) {
+        text += "<a href='/wiki/index.php?title="+producer.wiki+"' target='wiki'>+ d'infos</a><br>";
     }
+    if (producer.email) {
+    	text += "EMail:<a href='mailto:"+producer.email+"'>"+producer.email+"</a><br>"
+    }
+    if (producer.tel) {
+    	text += "Tel:<a href='tel:"+producer.tel+"'>"+formatTel(producer.tel)+"</a><br>"
+    }
+    if (producer.addr) {
+    	text += "Addresse:<a href='geo:"+producer.lat+","+producer.lng+"'>"+producer.addr
+    	if (producer.postCode) {
+    		text += " - "+producer.postCode;
+			if (producer.city) {
+				text += " "+producer.city;
+			}
+    	}
+    	text += "</a><br>";
+	}
     marker.bindPopup(text);
     return marker;
 }
 function displayProducers(producers) {
     for (const producer of producers) {
-        // console.log(producer);
-        var key = "m"+producer[0]+"_"+producer[1];
+        console.log(producer);
+        var key = "m"+producer.lat+"_"+producer.lng;
         var markerManager = markers[key];
         if (myfilter(producer)) {
-            // console.log("display");
             if (markerManager!==undefined) {
+            	console.log("display");
                 if(!markerManager[0]) {
                     markerManager[0] = true;
                     markerManager[1].addTo(map);
                 }
             } else {
+            	console.log("create");
                 var marker = newMarker(producer);
                 marker.addTo(map);
                 markers[key] = [true, marker];
             }
         } else {
-            // console.log("hide");
+            console.log("hide");
             if (markerManager!==undefined && markerManager[0]==true) {
+            	console.log("removeLayer : ",markerManager);
                 map.removeLayer(markerManager[1]);
                 markerManager[0] = false;
+            } else {
+            	console.log("no marker to hide : ",markerManager);
             }
         }
     }
 }
 function filterProducers(filter) {
+	if (DEBUG) console.log("filterProducers(",filter,")");
     if (filter=="") {
         myfilter = noFilter;
     } else {
