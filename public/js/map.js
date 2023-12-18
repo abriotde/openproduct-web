@@ -138,6 +138,14 @@ function checkNeighbouring() {
 function initProducers() {
 	loadedAreas = [];
 	loadingAreas = [];
+	
+	// Remove all previous markers
+	for (key in markers) {
+		console.log("Remove marker")
+		map.removeLayer(markers[key]);
+	}
+	markers = {};
+	
 	areasToCheck = null;
 	areaNumber = getMainArea();
 	if (areaNumber>0) {
@@ -232,30 +240,30 @@ function newMarker(producer) {
 }
 function displayProducers(producers) {
     for (const producer of producers) {
-        console.log(producer);
+        // console.log(producer);
         var key = "m"+producer.lat+"_"+producer.lng;
         var markerManager = markers[key];
         if (myfilter(producer)) {
             if (markerManager!==undefined) {
-            	console.log("display");
+            	// console.log("display");
                 if(!markerManager[0]) {
                     markerManager[0] = true;
                     markerManager[1].addTo(map);
                 }
             } else {
-            	console.log("create");
+            	// console.log("create");
                 var marker = newMarker(producer);
                 marker.addTo(map);
                 markers[key] = [true, marker];
             }
         } else {
-            console.log("hide");
+            // console.log("hide");
             if (markerManager!==undefined && markerManager[0]==true) {
-            	console.log("removeLayer : ",markerManager);
+            	// console.log("removeLayer : ",markerManager);
                 map.removeLayer(markerManager[1]);
                 markerManager[0] = false;
             } else {
-            	console.log("no marker to hide : ",markerManager);
+            	// console.log("no marker to hide : ",markerManager);
             }
         }
     }
@@ -287,7 +295,6 @@ function getAllProducers(areas) {
 				loadingAreas = loadingAreas.filter(a => a!=area);
 				loadedAreas.push(area);
 				areasToCheck = null;
-				if(DEBUG) console.log("loadedAreas = ",loadedAreas);
 				if (loadingAreas.length==0) {
 					checkNeighbouring();
 				}
@@ -357,7 +364,7 @@ if (navigator.geolocation) {
 	geoNotOk();
 	initMap(48.430738, -2.214463);
 }
-function search()
+function geoSearch()
 {
 	search = document.getElementById("geoSearch").value;
 	console.log(search);
