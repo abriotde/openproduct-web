@@ -145,6 +145,7 @@ function initProducers() {
 		map.removeLayer(markers[key]);
 	}
 	markers = {};
+	producers = [];
 	
 	areasToCheck = null;
 	areaNumber = getMainArea();
@@ -290,7 +291,7 @@ function getAllProducers(areas) {
 			const request = new XMLHttpRequest();
 			request.responseType = "json";
 			request.onload = function() {
-				producers = request.response;
+				producers = producers.concat(request.response);
 				displayProducers(producers);
 				loadingAreas = loadingAreas.filter(a => a!=area);
 				loadedAreas.push(area);
