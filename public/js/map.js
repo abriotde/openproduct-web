@@ -33,7 +33,9 @@ function refreshAreasToCheck() {
 	// Avoid duplicates : find unique neigbourhood for all loaded areas.
 	var neighbours = [];
 	for(const area of loadedAreas) {
-		if (neighbours.length==0) {
+		if (areas[area]==undefined) {
+			console.log("Error : areas[",area,"]==undefined");
+		} else if (neighbours.length==0) {
 			neighbours = areas[area].nbhd;
 			// if(DEBUG) console.log("refreshAreasToCheck() for ",area,neighbours);
 		} else {
@@ -241,31 +243,35 @@ function newMarker(producer) {
 }
 function displayProducers(producers) {
     for (const producer of producers) {
-        var key = "m"+producer.lat+"_"+producer.lng;
-        var markerManager = markers[key];
-        if (myfilter(producer)) {
-            if (markerManager!==undefined) {
-            	// console.log("display");
-                if(!markerManager[0]) {
-                    markerManager[0] = true;
-                    markerManager[1].addTo(map);
-                }
-            } else {
-            	// console.log("create");
-                var marker = newMarker(producer);
-                marker.addTo(map);
-                markers[key] = [true, marker];
-            }
-        } else {
-            // console.log("hide");
-            if (markerManager!==undefined && markerManager[0]==true) {
-            	// console.log("removeLayer : ",markerManager);
-                map.removeLayer(markerManager[1]);
-                markerManager[0] = false;
-            } else {
-            	// console.log("no marker to hide : ",markerManager);
-            }
-        }
+    	if (producer!=undefined) {
+		    var key = "m"+producer.lat+"_"+producer.lng;
+		    var markerManager = markers[key];
+		    if (myfilter(producer)) {
+		        if (markerManager!==undefined) {
+		        	// console.log("display");
+		            if(!markerManager[0]) {
+		                markerManager[0] = true;
+		                markerManager[1].addTo(map);
+		            }
+		        } else {
+		        	// console.log("create");
+		            var marker = newMarker(producer);
+		            marker.addTo(map);
+		            markers[key] = [true, marker];
+		        }
+		    } else {
+		        // console.log("hide");
+		        if (markerManager!==undefined && markerManager[0]==true) {
+		        	// console.log("removeLayer : ",markerManager);
+		            map.removeLayer(markerManager[1]);
+		            markerManager[0] = false;
+		        } else {
+		        	// console.log("no marker to hide : ",markerManager);
+		        }
+		    }
+		} else {
+			console.log("Error : displayProducers() : producer==undefined.");
+		}
     }
 }
 function filterProducers(filter) {
@@ -293,15 +299,21 @@ function getAllProducers(areas) {
 				producers = producers.concat(request.response.producers);
 				displayProducers(producers);
 				area = request.response.id
-				loadingAreas = loadingAreas.filter(a => a!=area);
-				loadedAreas.push(area);
-				if(DEBUG) console.log("loadedAreas.push(",area,")");
-				areasToCheck = null;
-				if (loadingAreas.length==0) {
-					checkNeighbouring();
+				if (area!=undefined) {
+					loadingAreas = loadingAreas.filter(a => a!=area);
+					loadedAreas.push(area);
+					if(DEBUG) console.log("loadedAreas.push(",area,")");
+					areasToCheck = null;
+					if (loadingAreas.length==0) {
+						checkNeighbouring();
+					}
+				} else {
+					console.log("Error : area==undefined")
 				}
 			}
 			request.open("GET", "data/producers_"+area+".json");
+			// request.setRequestHeader('Cache-Control', 'max-age=86400');
+			request.setRequestHeader('Cache-Control', 'max-age=100');
 			request.send();
 		}
 	}
@@ -373,8 +385,6 @@ function geoSearch()
 	if(search!="") {
 		url = "https://api-adresse.data.gouv.fr/search/?q="+search;
 		const request = new XMLHttpRequest();
-		// request.setRequestHeader('Cache-Control', 'max-age=86400');
-		request.setRequestHeader('Cache-Control', 'max-age=100');
 		request.responseType = "json";
 		request.onload = function() {
 			var vals = request.response;
