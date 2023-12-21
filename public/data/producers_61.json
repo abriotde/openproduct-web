@@ -1,4 +1,4 @@
-[
+{"id":61,"producers":[
 {"lat":48.822491,"lng":-0.408407,"name":"la buttinière","web":"","txt":"Production de légumes et petits fruits Bio à Série Fontaine","wiki":null,"tel":"0636557716","postCode":61100,"city":"Athis-Val de Rouvre","addr":" 16, route de la Gervaisière 61100 Ségrie-Fontaine ","cat":"A","email":"labuttiniere@gmail.com"}
 ,{"lat":48.827549,"lng":-0.443015,"name":"thierry heroux","web":"","txt":"Cultivateur de fruits et légumes dans la ville de La Lande St-Siméon.","wiki":null,"tel":"0971228826","postCode":61100,"city":"La Lande-Saint-Siméon","addr":" La Nolière ","cat":"A","email":""}
 ,{"lat":48.288792,"lng":0.579379,"name":"ei bertrand happe","web":"","txt":"Mangeons local c'est l'idéal.\n\nProducteur de légume et de fruits rouges en agriculture raisonnée.\nVente direct : Jeudi et vendredi : 15h à 17h.","wiki":null,"tel":"0675579581","postCode":61130,"city":"Saint-Germain-de-la-Coudre","addr":" 9 la beauchardière ","cat":"A","email":"bertrand.happe@hotmail.com"}
@@ -13,4 +13,4 @@
 ,{"lat":48.677365,"lng":0.114361,"name":"gaec l'oasis du désert","web":"","txt":"Production de légumes Agriculture Biologique en Maraîchage Sol Vivant","wiki":null,"tel":"0627156108","postCode":61570,"city":"Le Château-d'Almenêches","addr":" Le Désert ","cat":"A","email":"legumesdudesert@gmail.com"}
 ,{"lat":48.646366,"lng":-0.707939,"name":"tanguy et adèle laurent","web":"","txt":"Producteurs d'arbres fruitiers, céréales transformées et produits laitiers.","wiki":null,"tel":"0233370399","postCode":61700,"city":"Lonlay-l'Abbaye","addr":" La Touche 61700 Domfront ","cat":"A","email":""}
 ,{"lat":48.67082,"lng":-0.736975,"name":"le potager des gourmets","web":"","txt":"Le Potager des Gourmets produits des fruits et légumes.","wiki":null,"tel":"0233386401","postCode":61700,"city":"Lonlay-l'Abbaye","addr":" Lieu-dit la Colliardère ","cat":"A","email":""}
-]
+]}

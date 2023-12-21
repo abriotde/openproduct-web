@@ -1,4 +1,4 @@
-[
+{"id":82,"producers":[
 {"lat":43.975681,"lng":1.35707,"name":"pépinière micheletto","web":"https://pepiniere-micheletto.fr","txt":"Pépinière située au sud de Montauban propose à la vente arbustes d'ornement et de haie, arbres, fleurs vivaces et arbres fruitiers.\n\nUn service de création et d'entretien de jardin est également proposé.\n\nUtilisation minime de produit pour un plus grand respect de l'environnement.","wiki":null,"tel":"0648933146","postCode":82000,"city":"Montauban","addr":" 2130 Route de Corbarieu","cat":"A","email":""}
 ,{"lat":44.016501,"lng":1.348211,"name":"ibbeo cosmétiques","web":"http://www.ibbeo-cosmetiques.fr","txt":"Créateurs de produits cosmétiques bio, il nous a paru essentiel de privilégier des ingrédients d’origine végétale et naturelle du Sud-Ouest de la France.","wiki":null,"tel":"0563649034","postCode":82000,"city":"Montauban","addr":" 49 rue du Général Sarrail 8","cat":"A","email":"contact@ibbeo-cosmetiques.fr"}
 ,{"lat":44.236989,"lng":1.225011,"name":"la ferme de laval-haut","web":"https://app.cagette.net/lafermedelavalhaut","txt":"Certifié Bio et Nature et Progrès. vente de farines moulues sur meules de pierre, huiles pressées à froid, jus et confitures produits avec nos fruits récoltés à maturité.","wiki":null,"tel":"0698841326","postCode":82110,"city":"Cazes-Mondenard","addr":" Laval Haut","cat":"A","email":"laval.haut@free.fr"}
@@ -16,4 +16,4 @@
 ,{"lat":43.95633,"lng":1.467952,"name":"fabienne gomez","web":"","txt":"Éleveuse de bovins et porcins, elle propose viandes et charcuteries mais aussi légumineuses et céréales.","wiki":null,"tel":"0563636214","postCode":82370,"city":"Saint-Nauphary","addr":" 1586 chemin de Truffie","cat":"A","email":""}
 ,{"lat":43.97247,"lng":1.455268,"name":"josé folch","web":"","txt":"L'exploitation agricole de propose fruits et légumes et plants à repiquer.","wiki":null,"tel":"0563678554","postCode":82370,"city":"Saint-Nauphary","addr":" 3151 route St-Etienne de Tulmon La Peyruque","cat":"A","email":""}
 ,{"lat":43.927835,"lng":1.034273,"name":"kulesiak","web":"","txt":"producteur éleveur d' agneau bio et traiteur cuisine avec les produits de la ferme uniquement","wiki":null,"tel":"0672899538","postCode":82500,"city":"Sérignac","addr":" les brulades","cat":"A","email":""}
-]
+]}

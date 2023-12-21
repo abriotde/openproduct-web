@@ -1,4 +1,4 @@
-[
+{"id":7,"producers":[
 {"lat":44.770315,"lng":4.623081,"name":"laurent bonnier et miloslawa wyborska-bonnier","web":"http://www.le-baumas.fr/","txt":"Production biologique de légumes en terrasses, de miel, de châtaignes et produits dérivés.","wiki":null,"tel":"0475644298","postCode":7000,"city":"Lyas","addr":" Le Baumas ","cat":"A","email":"contact@le-baumas.fr"}
 ,{"lat":44.735313,"lng":4.620896,"name":"sébastien vandevyver","web":"","txt":"L'exploitation agricole de Coux a pour activités l'apiculture, l'horticulture maraîchère et la production de produits dérivés.","wiki":null,"tel":"0475647530","postCode":7000,"city":"Coux","addr":" Le Village La Calade du Pont ","cat":"A","email":""}
 ,{"lat":44.587619,"lng":4.129257,"name":"les faysses de coucoulude","web":"https://www.facebook.com/lesfaysses","txt":"Vente de légumes, Maraicher producteur en agriculture biologique et transformation de nos divers produits","wiki":null,"tel":"","postCode":7110,"city":"Valgorge","addr":" Maison de pays Le Village 07110 VALGORGE ","cat":"A","email":"lesfayssesdecoucoulude@outlook.fr"}
@@ -19,4 +19,4 @@
 ,{"lat":44.910611,"lng":4.719025,"name":"manou des champs","web":"","txt":"Manou des Champs fabrique des produits laitiers issue du lait de chèvre.","wiki":null,"tel":"0475583937","postCode":7440,"city":"Boffres","addr":" Meillères 0","cat":"A","email":"manou-des-champs@wanadoo.fr"}
 ,{"lat":44.830587,"lng":4.174822,"name":"alix","web":"http://les confitures du gerbier de jonc","txt":"produit de la ferme:fromage vache et chèvre frais et affinés et confitures aux fruits et fleurs faite maison.","wiki":null,"tel":"0631719949","postCode":7510,"city":"Sainte-Eulalie","addr":" foisse ","cat":"A","email":"virgini.alix@gmail.com"}
 ,{"lat":44.604288,"lng":4.527038,"name":"cyril et julie morel","web":"","txt":"L'exploitation agricole de Saint-Jean-le-Centenier a pour activités l'aviculture et l’horticulture maraîchère.","wiki":null,"tel":"0471740696","postCode":7580,"city":"Saint-Jean-le-Centenier","addr":" La Beaume ","cat":"A","email":""}
-]
+]}

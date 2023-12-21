@@ -1,4 +1,4 @@
-[
+{"id":46,"producers":[
 {"lat":44.486374,"lng":1.394059,"name":"légumes martre","web":"","txt":"Le champ et les serres sont situés devant le magasin pour garantir une transparence absolu.\nTout les légumes sont récoltés le jour même . que des variétés anciennes.vente oeufs de poules en liberté nourrit au céréales et légumes. A partir d'avril vente de plants, beaucoup de variétés.","wiki":null,"tel":"0672684822","postCode":46090,"city":"Pradines","addr":" Chemin de pissobi aux serres","cat":"A","email":"danielsoudant@yahoo.com"}
 ,{"lat":44.456846,"lng":1.525234,"name":"david miquel","web":"","txt":"L'exploitation agricole d'Arcambal est spécialisé dans la culture de fruits et légumes.","wiki":null,"tel":"0565232485","postCode":46090,"city":"Arcambal","addr":" Galessie Haut","cat":"A","email":""}
 ,{"lat":44.742858,"lng":1.983197,"name":"jean-marie lacaze","web":"","txt":"Cultivateur de fruits et céréales (blé, seigle, sarrasin), il propose aussi de la viandes et de la farine de châtaigne.","wiki":null,"tel":"0565409207","postCode":46120,"city":"Labathude","addr":" Moulin de Nadal","cat":"A","email":""}
@@ -15,4 +15,4 @@
 ,{"lat":44.9671,"lng":1.576554,"name":"brasserie de la cère","web":"http://www.lesbieresdejulien.fr/","txt":"La Brasserie de la Cère propose une gamme de bières artisanales.","wiki":null,"tel":"0565381550","postCode":46600,"city":"Martel","addr":" Layrac","cat":"A","email":""}
 ,{"lat":44.332961,"lng":1.278913,"name":"patricia poizat","web":"","txt":"Productrice spécialisée dans la fabrication de céréales et l'horticulture maraîchère.","wiki":null,"tel":"0565217054","postCode":46800,"city":"Lendou-en-Quercy","addr":" Escayrac 46800 Lascabanes ","cat":"A","email":""}
 ,{"lat":44.398768,"lng":1.18172,"name":"philippe hébert et odile marot","web":"","txt":"Producteurs de fruits et légumes, ils confectionnent également des produits dérivés (conserves, sauces,...)","wiki":null,"tel":"0565369300","postCode":46800,"city":"Porte-du-Quercy","addr":" La Combe de Joffre Bovila 46800 Fargues ","cat":"A","email":""}
-]
+]}

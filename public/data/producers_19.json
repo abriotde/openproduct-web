@@ -1,4 +1,4 @@
-[
+{"id":19,"producers":[
 {"lat":44.997155,"lng":1.799679,"name":"djemel et laurence kasmi","web":"","txt":"L'exploitation agricole de Sioniac cultive des fruits et légumes et confectionne des produits dérivés.","wiki":null,"tel":"0555911180","postCode":19120,"city":"Sioniac","addr":" Carbonnet","cat":"A","email":""}
 ,{"lat":45.425432,"lng":1.301911,"name":"scea la vagabonde","web":"","txt":"Pisciculture la vagabonde,\nÉlevage et vente de : truite arc en ciel, truite fario, omble de fontaine.\nPèche à la truite (demi journée ou pêche rapide au kg)","wiki":null,"tel":"055573383","postCode":19230,"city":"Ségur-le-Château","addr":" le champ cordonnier","cat":"A","email":"pisciculturelavagabonde@gmail.com"}
 ,{"lat":45.440566,"lng":1.309172,"name":"laboratoire paysanne","web":"http://www.cosmetiques-au-lait-danesse.com/","txt":"Le Laboratoire Paysanne propose des produits laitiers et cosmétiques biologiques issue du lait d’ânesse et fabriqué selon la méthode de saponification à froid.","wiki":null,"tel":"0555972918","postCode":19230,"city":"Ségur-le-Château","addr":" La Combes","cat":"A","email":"paysane@cosmetiques-au-lait-danesse.com"}
@@ -9,4 +9,4 @@
 ,{"lat":45.438359,"lng":1.835285,"name":"jean maison","web":"http://www.comptoirdherboristerie.com/","txt":"Producteur spécialisé dans l'aviculture, l'horticulture maraîchère et ses produits dérivés.","wiki":null,"tel":"0555212607","postCode":19390,"city":"Saint-Augustin","addr":" Bourg","cat":"A","email":""}
 ,{"lat":45.029412,"lng":2.095449,"name":"douceurs de la xaintrie","web":"http://www.douceursdelaxaintrie.fr/","txt":"La ferme Douceurs de la Xaintrie cultive des fruits et légumes qu'elle transforment en produits dérivés (gelées, sirops,...).","wiki":null,"tel":"0555289141","postCode":19430,"city":"Goulles","addr":" Lacamp","cat":"A","email":""}
 ,{"lat":45.15814,"lng":1.28607,"name":"les délices du gaulois","web":"","txt":"Élevage de porc en plein air \nVente direct à la ferme \nProduits sans colorant ni conservateur\nVisite de la ferme","wiki":null,"tel":"0627674514","postCode":19520,"city":"Cublac","addr":" La rivière rt de loubignac 19520 ","cat":"A","email":"lesdelicesdugaulois@gmail.com"}
-]
+]}

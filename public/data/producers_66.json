@@ -1,4 +1,4 @@
-[
+{"id":66,"producers":[
 {"lat":42.681756,"lng":2.741362,"name":"les fonts","web":"http://www.olivesbiolesfonts.fr/","txt":"Producteurs d'huile d'olive bio de terroir et de produits de soins du corps bio de qualité.","wiki":null,"tel":"0468928205","postCode":66170,"city":"Saint-Féliu-d'Avall","addr":" 18 avenue du Canigou","cat":"A","email":"lesfonts66@club-internet.fr"}
 ,{"lat":42.601743,"lng":2.97656,"name":"mas illiberis","web":"","txt":"PRODUCTEUR\n ABRICOTS ROUGE DU ROUSSILLON\nFIGUES ET CERISES ...\nCONFITURES\nNECTAR\nVINAIGRE A LA PULPE DE FRUITS","wiki":null,"tel":"0468222361","postCode":66200,"city":"Elne","addr":" ROUTE DE LATOUR BAS ELNE","cat":"A","email":"lopez.rem@sfr.fr"}
 ,{"lat":42.81035,"lng":2.502917,"name":"manuel jorel","web":"http://www.domainejorel.fr/","txt":"L'exploitation viticole du Domaine Jorel est spécialisé dans la fabrication de vins rouges et vins blancs (doux et sec).","wiki":null,"tel":"0468531331","postCode":66220,"city":"Saint-Paul-de-Fenouillet","addr":" 28 rue François Harago ","cat":"A","email":""}
@@ -19,4 +19,4 @@
 ,{"lat":42.535622,"lng":2.957182,"name":"elevage de porc plein air xadi","web":"http://xadi66.com","txt":"Eleveur de porc en plein air, sans antibiotiques, alilentation française sans ogm et aucun pesticide utilisé sur l'exploitation. Vente de viandes et Charcuteries Fermières, transformées de façon ancestrale sans additifs .","wiki":null,"tel":"","postCode":66690,"city":"Sorède","addr":" Elevage de porc Xadi 66690 Palau-del-Vidre ","cat":"A","email":"xadiporcpleinair@gmail.com"}
 ,{"lat":42.561015,"lng":2.360099,"name":"yanis regnery","web":"","txt":"Maraîcher horticulteur, il confectionne avec ses récoltes divers boissons.","wiki":null,"tel":"0468960488","postCode":66820,"city":"Fuilla","addr":" Le Sacou Cami de Serdinya","cat":"A","email":""}
 ,{"lat":42.560297,"lng":2.363378,"name":"dominique houzeau","web":"","txt":"Apiculteur, il confectionne également des vins et spiritueux.","wiki":null,"tel":"0468052074","postCode":66820,"city":"Fuilla","addr":" 11 ancien chemin de Villefranche","cat":"A","email":""}
-]
+]}

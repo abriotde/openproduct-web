@@ -7,7 +7,7 @@ const MAP_DEFAULT_ZOOM = 12;
 var loadedAreas = []; // List of producers loaded on map.
 var loadingAreas = []; // List of producers wich load is running on map.
 var areasToCheck = null; // List of neighbouring area not loaded.
-var DEBUG = true;
+var DEBUG = false;
 
 function isInArea(area, point) {
 	return area.min[0]<point.lat && area.max[0]>point.lat
@@ -95,7 +95,7 @@ function refreshAreasToCheck() {
  * check if one if a corner of the map (or the center) is not in a loaded area, and so load them
  */
 function checkNeighbouring() {
-	if(DEBUG) console.log("checkNeighbouring()");
+	// if(DEBUG) console.log("checkNeighbouring()");
 	if (areasToCheck == null) { // Neighbouring has change only if we have loaded more producers
 		refreshAreasToCheck();
 	}
@@ -141,7 +141,7 @@ function initProducers() {
 	
 	// Remove all previous markers
 	for (key in markers) {
-		console.log("Remove marker")
+		// console.log("Remove marker")
 		map.removeLayer(markers[key]);
 	}
 	markers = {};
@@ -241,7 +241,6 @@ function newMarker(producer) {
 }
 function displayProducers(producers) {
     for (const producer of producers) {
-        // console.log(producer);
         var key = "m"+producer.lat+"_"+producer.lng;
         var markerManager = markers[key];
         if (myfilter(producer)) {
@@ -291,10 +290,12 @@ function getAllProducers(areas) {
 			const request = new XMLHttpRequest();
 			request.responseType = "json";
 			request.onload = function() {
-				producers = producers.concat(request.response);
+				producers = producers.concat(request.response.producers);
 				displayProducers(producers);
+				area = request.response.id
 				loadingAreas = loadingAreas.filter(a => a!=area);
 				loadedAreas.push(area);
+				if(DEBUG) console.log("loadedAreas.push(",area,")");
 				areasToCheck = null;
 				if (loadingAreas.length==0) {
 					checkNeighbouring();
@@ -368,18 +369,18 @@ if (navigator.geolocation) {
 function geoSearch()
 {
 	search = document.getElementById("geoSearch").value;
-	console.log(search);
 	search = encodeURI(search);
 	if(search!="") {
 		url = "https://api-adresse.data.gouv.fr/search/?q="+search;
 		const request = new XMLHttpRequest();
+		// request.setRequestHeader('Cache-Control', 'max-age=86400');
+		request.setRequestHeader('Cache-Control', 'max-age=100');
 		request.responseType = "json";
 		request.onload = function() {
 			var vals = request.response;
 			vals = vals.features;
 			if (vals.length>0) {
 				vals = vals[0].geometry.coordinates;
-				console.log(vals);
 				centerMap (vals[1], vals[0]);
 			}
 		}

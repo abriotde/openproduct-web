@@ -1,4 +1,4 @@
-[
+{"id":11,"producers":[
 {"lat":43.233273,"lng":3.05756,"name":"polhypro","web":"","txt":"Production de confitures et compotes de prune, de mûres, cynorhodon.\nElles sont agrémentées de fenouil, sauge, estragon ou encore menthe pour leur apporter les bienfaits subtilités parfumées de ces plantes. \n\nNos productions ont la mention Nature & Progrès et bio.","wiki":null,"tel":"0628320039","postCode":11110,"city":"Coursan","addr":" 7 rue du 14 juillet","cat":"A","email":"satoyama@dennet.eu"}
 ,{"lat":42.815862,"lng":2.062107,"name":"juliette watson","web":"","txt":"L'exploitation agricole de Rodome est spécialisée dans la fabrication de boissons.","wiki":null,"tel":"0468206342","postCode":11140,"city":"Rodome","addr":" Hameau de Caillens","cat":"A","email":""}
 ,{"lat":42.953064,"lng":2.256252,"name":"thomas le jardinier","web":"http://www.thomaslejardinier.com","txt":"Artisan Créateur de produits biologiques, gastronomiques et végétariens (Confits, pâtés, chutneys...).","wiki":null,"tel":"0468203351","postCode":11190,"city":"Couiza","addr":" ZA de Mayrac","cat":"A","email":""}
@@ -18,5 +18,7 @@
 ,{"lat":43.243244,"lng":1.834944,"name":"la ferme du salet","web":"http://www.lafermedusalet.fr","txt":"La Ferme du Salet est spécialisé dans l'aviculture, la culture de légumineuses et la fabrication de compotes et confitures.","wiki":null,"tel":"0468601539","postCode":11420,"city":"Peyrefitte-sur-l'Hers","addr":" Ancien chemin de Peyrefitte à Mayreville ","cat":"A","email":"bonjour@lafermedusalet.fr"}
 ,{"lat":43.14322,"lng":1.871411,"name":"jurgen schuler","web":"","txt":"Producteur de viandes de porc, agneau et charcuteries.","wiki":null,"tel":"0468601683","postCode":11420,"city":"Lafage","addr":" Magalassou","cat":"A","email":"jurgen.schuler@orange.fr"}
 ,{"lat":43.257145,"lng":2.412098,"name":"pains et pots - boulangerie biscuiterie en bio","web":"https://painsetpots.fr","txt":"Nous avons une large gamme de pains, viennoiseries, gâteaux,et aussi des biscuits et desserts en pots.","wiki":null,"tel":"0787835467","postCode":11600,"city":"Villalier","addr":" 2 place du 19 mars 1962","cat":"A","email":""}
+,{"lat":43.271736,"lng":2.457952,"name":"EARL des Pins - Domaine Parazols-Bertrou","web":"","txt":"","wiki":null,"tel":"0468770646","postCode":11600,"city":"Bagnoles","addr":"Domaine de Parazols ","cat":"A","email":""}
+,{"lat":43.291873,"lng":2.44115,"name":"Domaine LES MAILLOLS","web":"","txt":"","wiki":null,"tel":"0468251529","postCode":11600,"city":"Villegly","addr":"4 rue des Maillols ","cat":"A","email":""}
 ,{"lat":43.185713,"lng":2.598794,"name":"le chaudron de l'alaric","web":"","txt":"Confitures de fruits oubliées\nGelées de plantes aromatiques et médicinales\nConfits de fleurs","wiki":null,"tel":"0681678159","postCode":11700,"city":"Douzens","addr":" route du minervois","cat":"A","email":"lechaudrondelalaric@sfr.fr"}
-]
+]}

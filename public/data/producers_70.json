@@ -1,5 +1,5 @@
-[
+{"id":70,"producers":[
 {"lat":47.538079,"lng":6.370255,"name":"le pain de miel d'esprels","web":"","txt":"Je suis apicultrice\nje fais du miel d'acacia , de Fleurs , de Forêt et du Crémeux.\nJ'ai aussi du miel d'acacia en flacon et du pain de miel.","wiki":null,"tel":"0689333220","postCode":70110,"city":"Esprels","addr":" 4 Rue de MONTBREGIL","cat":"A","email":"dany.humbert60@orange.fr"}
 ,{"lat":47.759507,"lng":6.103288,"name":"emile jacoby","web":"","txt":"L'exploitation agricole de Fleurey cultive des fruits.","wiki":null,"tel":"0389618268","postCode":70160,"city":"Faverney","addr":" Route de Vesoul 70160 Fleurey-lès-Faverney ","cat":"A","email":""}
 ,{"lat":47.923537,"lng":6.267491,"name":"la ferme du ruisseau","web":"","txt":"producteurs de fromages fermier:yaourts brassés aux fruits,faisselles,camembert,roichot,tommes nature et aux épices.","wiki":null,"tel":"0384490302","postCode":70800,"city":"Bouligney","addr":" 229 BIS LE RUISSEAU DES ÉCREVISSES ","cat":"A","email":"contact@lafermeduruisseau.com"}
-]
+]}

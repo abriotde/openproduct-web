@@ -1,4 +1,4 @@
-[
+{"id":68,"producers":[
 {"lat":48.054645,"lng":7.364066,"name":"le fact'oeuf","web":"https://www.factoeuf.fr/","txt":"livraison d'oeufs bio à domicile de poules élevées en agroforesterie sur Colmar","wiki":null,"tel":"0638016050","postCode":68000,"city":"Colmar","addr":" 7 KRAEHENBRUCKLE WEG","cat":"A","email":""}
 ,{"lat":48.066389,"lng":7.358509,"name":"chants de la terre","web":"","txt":"Chants de la terre propose des légumes primeurs et de conservation et de plein champs, conserves de cornichons, basilic à l'huile, purée de potimarron, de tomate.","wiki":null,"tel":"0389419063","postCode":68000,"city":"Colmar","addr":" 114 Chemin du Lauchwerb","cat":"A","email":""}
 ,{"lat":48.067215,"lng":7.367383,"name":"thierry koehly","web":"","txt":"Cultivateur de céréales, fruits et légumes à Colmar.","wiki":null,"tel":"0389413055","postCode":68000,"city":"Colmar","addr":" 14 Schneckenackerweg","cat":"A","email":""}
@@ -18,4 +18,4 @@
 ,{"lat":48.060606,"lng":7.30353,"name":"domaine du feldkirch","web":"","txt":"Cultivateur d'arbres fruitiers, il conçoit avec ses récoltes boissons, vins et spiritueux.","wiki":null,"tel":"0389806491","postCode":68920,"city":"Wettolsheim","addr":" 2 rue de la Batteuse","cat":"A","email":""}
 ,{"lat":47.749278,"lng":7.227956,"name":"ferme okoniewski","web":"","txt":"La Ferme Okoniewski produit de la farine (blé, seigle, épeautre), des produits laitiers et des légumes.","wiki":null,"tel":"0389819312","postCode":68950,"city":"Reiningue","addr":" 1 rue de Mulhouse","cat":"A","email":""}
 ,{"lat":47.719034,"lng":7.223135,"name":"jean-paul sirlin","web":"","txt":"Producteur de farines et laits de vaches à Heimsbrunn.","wiki":null,"tel":"0389819157","postCode":68990,"city":"Heimsbrunn","addr":" 1 rue Koenigsacker","cat":"A","email":""}
-]
+]}

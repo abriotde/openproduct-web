@@ -1,4 +1,4 @@
-[
+{"id":29,"producers":[
 {"lat":47.86856,"lng":-4.219342,"name":"la ferme des ptits pimousses","web":"http://www.lafermedesptitspimousses.fr","txt":"La ferme des ptits pimousses est une petite exploitation maraîchère familiale, qui produit une gamme variée de légumes bio toute l'année, dans une démarche agro-écologique.","wiki":null,"tel":"0661799187","postCode":29120,"city":"Pont-l'Abbé","addr":" Le rest","cat":"A","email":"contact@lafermedesptitspimousses.fr"}
 ,{"lat":48.202256,"lng":-4.174585,"name":"patrick quere","web":"","txt":"Cultivateur de fruits et légumes, ils transforment ses pommes en produits dérivés (gelées, jus, compotes). Il vend également de la volaille, de la viande et de la charcuterie.","wiki":null,"tel":"0298860417","postCode":29150,"city":"Dinéault","addr":" Ty Coat","cat":"A","email":"patycoat@gmail.com"}
 ,{"lat":48.240929,"lng":-4.497158,"name":"rolf mamber","web":"","txt":"L'exploitation agricole de Crozon a pour activité l'horticulture maraîchère.","wiki":null,"tel":"0298271196","postCode":29160,"city":"Crozon","addr":" 50 rue Chateaubriand","cat":"A","email":""}
@@ -16,4 +16,4 @@
 ,{"lat":48.399293,"lng":-4.712631,"name":"maryvonne le hir","web":"","txt":"Agricultrice spécialisée dans l'horticulture maraîchère.","wiki":null,"tel":"0298338793","postCode":29810,"city":"Ploumoguer","addr":" Droelloc Nevez","cat":"A","email":""}
 ,{"lat":48.508501,"lng":-4.401109,"name":"henri thépaut","web":"","txt":"Production de légumes à Plabennec. Vente de paniers de légume.","wiki":null,"tel":"0298404516","postCode":29860,"city":"Plabennec","addr":" Kerillo","cat":"A","email":"hthepaut@wanadoo.fr"}
 ,{"lat":47.901458,"lng":-3.918036,"name":"thierry rougé - fruits rouges","web":"http://thierryrouge.fr","txt":"Producteur de fruits rouges et autres produits biologiques à Concarneau (29) : fraises, framboises, groseilles, myrtilles, cassis, kiwis, kiwaïs... Vente sur les marchés locaux : Concarneau, Trégunc, Névez, Moëlan sur mer.","wiki":null,"tel":"0667583192","postCode":29900,"city":"Concarneau","addr":" Lochrist (19 CHEMIN DE KERAMPLEN) - 29900 CONCARNEAU","cat":"A","email":""}
-]
+]}

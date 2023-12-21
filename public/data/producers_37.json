@@ -1,4 +1,4 @@
-[
+{"id":37,"producers":[
 {"lat":47.646881,"lng":0.741298,"name":"la fromagerie de lucie","web":"https://www.lafromageriedelucie@gmail.com","txt":"Productrice de fromage de vache \navec le lait du troupeau, au lait cru\nvariétées de fromages affinées allant de la tomme de touraine ( environ 1kg) à des meules de fromages de 5 à 6kg, comme de la raclette ou le Coeur de Dêmée\n\nproduit à la ferme et affiné en cave de tuffeau (pierre naturelle de notre région de touraine)","wiki":null,"tel":"0645984042","postCode":37110,"city":"Les Hermites","addr":" la piardière ","cat":"A","email":"lafromageriedelucie@gmail.com"}
 ,{"lat":46.957101,"lng":0.359036,"name":"cailleteau stéphanie","web":"","txt":"Installée en 2005 sur une ferme de 30 ha. Je cultive des asperges blanches, vertes et pourpres, des artichauts et du Safran de Touraine en bio depuis 2020","wiki":null,"tel":"0614775140","postCode":37120,"city":"Faye-la-Vineuse","addr":" Beauséjour ","cat":"A","email":""}
 ,{"lat":46.978754,"lng":0.383233,"name":"earl champisiham","web":"","txt":"PRODUCTION ET VENTE DIRECTE DE CHAMPIGNONS:\nPLEUROTE, SHII-TAKE ET CHAMPIGNONS DE PARIS","wiki":null,"tel":"0786925869","postCode":37120,"city":"Razines","addr":" 11 rue des caves","cat":"A","email":""}
@@ -17,4 +17,4 @@
 ,{"lat":47.374107,"lng":0.575344,"name":"pépinière de l'entre-deux rives","web":"https://www.facebook.com/profile.php?id=100090386842802","txt":"Production locale de végétaux d'ornement et fruitiers","wiki":null,"tel":"0768070230","postCode":37510,"city":"Saint-Genouph","addr":" Rue du Bec de l'Isle","cat":"A","email":"pepinieredelentredeuxrives@gmail.com"}
 ,{"lat":47.13758,"lng":0.999616,"name":"saint-paul","web":"","txt":"Producteur de légumes (quinoa, pomme de terre), noix et champignons (pleurote, shiitaké).","wiki":null,"tel":"0247916748","postCode":37600,"city":"Loches","addr":" 73 rue Saint-Jacques","cat":"A","email":"crepins@aliceadsl.fr"}
 ,{"lat":47.114129,"lng":0.639398,"name":"paysans tourangeaux","web":"","txt":"Elevage plein air de porcs blancs de l'ouest. Les animaux naissent et sont élevés sur le domaine, en prairies.","wiki":null,"tel":"0663120877","postCode":37800,"city":"Sainte-Maure-de-Touraine","addr":" Le Plessis","cat":"A","email":"paysanstourangeaux@sfr.fr"}
-]
+]}

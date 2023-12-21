@@ -1,4 +1,4 @@
-[
+{"id":1,"producers":[
 {"lat":46.067873,"lng":4.780661,"name":"savon emoi","web":"","txt":"Savon Emoi produit divers cosmétiques (crèmes, baumes, huiles, savonnerie d'hygiène).","wiki":null,"tel":"0647810086","postCode":1090,"city":"Lurcy","addr":" Impasse du Cailleton ","cat":"A","email":"mariedelurcy@gmail.com"}
 ,{"lat":45.940408,"lng":5.594283,"name":"gaec les chèvres de m.seguin","web":"https://www.facebook.com/leschevresdemseguin/?ref=aymt_homepage_panel","txt":"fromages de chèvres biologiques et desserts de chèvres","wiki":null,"tel":"0682444855","postCode":1110,"city":"Plateau d'Hauteville","addr":" vaux saint sulpice 01110 Cormaranche-en-Bugey ","cat":"A","email":"amandine_berodier@hotmail.fr"}
 ,{"lat":46.071265,"lng":5.303171,"name":"rucher des brotteaux de la rivière d ain","web":"https://www.facebook.com/happyculteur01","txt":"Apiculteur récoltant miels de l Ain en pots de verre. Sarrazin en culture bio Chataignier Tilleul des bords de lAin Acacia Forêt Montagne et  miels d'ailleurs Lavande ou Lavandin des Hautes Alpes en culture bio","wiki":null,"tel":"0681277145","postCode":1160,"city":"Druillat","addr":" 447 route des combes ","cat":"A","email":"happy.culteur01@gmail.com"}
@@ -14,4 +14,4 @@
 ,{"lat":46.119264,"lng":5.499422,"name":"le potager de ceignes","web":"","txt":"Production et commercialisation de légumes de saison","wiki":null,"tel":"0675040955","postCode":1430,"city":"Ceignes","addr":" 162 Rue de la mairie ","cat":"A","email":"le.potager.de.ceignes@gmail.com"}
 ,{"lat":46.040208,"lng":5.444084,"name":"gaec de plan poncieux","web":"http://www.lafermedeponcieux.fr","txt":"Eleveur de brebis, génisses et porcs charcutiers. Vente de caissettes d'agneau, porc ou bœuf.","wiki":null,"tel":"0602672236","postCode":1640,"city":"Boyeux-Saint-Jérôme","addr":" 66 montée de la plantee 0","cat":"A","email":"Bertrand.noiret@gmail.com"}
 ,{"lat":45.827263,"lng":4.965048,"name":"crack cafés","web":"https://www.crack-cafes.fr","txt":"Vente de cafés fraîchement torréfiés de façon artisanale. Cafés en grains ou moulus à la demande. Différentes origines et différents profils aromatiques.","wiki":null,"tel":"0604523341","postCode":1700,"city":"Miribel","addr":" 306 avenue Henri Deschamps ","cat":"A","email":"natacha@crack-cafes.fr"}
-]
+]}

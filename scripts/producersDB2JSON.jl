@@ -13,13 +13,14 @@ cnx = DBInterface.connect(MySQL.Connection, "Localhost", "root", "osiris")
 
 function loadArea(departement::Int64)
 	println("loadArea(",departement,")")
+	departementStr = string(departement)
 	sql = "Select latitude lat, longitude lng, name, website web, COALESCE (shortDescription, `text`) txt, wikiTitle wiki, phoneNumber tel, postCode, city, address addr, categories cat, email
 		from openproduct.producer
-		where postCode="*string(departement)*" or (postCode>="*string(departement)*"000 and postCode<"*string(departement+1)*"000)"
+		where (postCode="*departementStr*" or (postCode>="*departementStr*"000 and postCode<"*string(departement+1)*"000)) and latitude is not null and longitude is not null"
 	producers = DBInterface.execute(cnx,sql)
-	filepath = "../public/data/producers_"*string(departement)*".json"
+	filepath = "../public/data/producers_"*departementStr*".json"
 	file = open(filepath, "w") do file
-		write(file, "[\n")
+		write(file, "{\"id\":"*departementStr*",\"producers\":[\n")
 		sep = ""
 		for producer in producers
 		    print(".")
@@ -27,10 +28,11 @@ function loadArea(departement::Int64)
 		    write(file, line)
 		    sep = ","
 		end
-		write(file, "]")
+		write(file, "]}")
 	end
 	println(" File '"*filepath*"' writed.")
 end
+
 
 if length(ARGS)>0
 	for area in ARGS
@@ -42,6 +44,10 @@ else
 		from openproduct.producer"
 	areasRes = DBInterface.execute(cnx,sql)
 	for area in areasRes
+		if area[1] === missing
+			println("Error : null postCode in openproduct.producer")
+			exit()
+		end
 		push!(areas, area[1])
 	end
 	println(areas)

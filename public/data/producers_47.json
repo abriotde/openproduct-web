@@ -1,4 +1,4 @@
-[
+{"id":47,"producers":[
 {"lat":44.187478,"lng":0.628655,"name":"savonnerie lou karitan","web":"https://loukaritan.fr/","txt":"Savonnerie artisanale de fabrication de savons par saponification à froid et de cosmétiques naturels...","wiki":null,"tel":"0553680568","postCode":47000,"city":"Agen","addr":" 523, rue du Docteur et Madame Delmas","cat":"A","email":"loukaritan@gmail.com"}
 ,{"lat":44.731545,"lng":0.274414,"name":"tingaud vins et villégiature","web":"","txt":"Tingaud Vins et Villégiature confectionne boissons, vins et spiritueux.","wiki":null,"tel":"0688183679","postCode":47120,"city":"Saint-Astier","addr":" Les Guignards","cat":"A","email":""}
 ,{"lat":44.254218,"lng":0.401596,"name":"if champignons d'aquitaine","web":"","txt":"producteurs de champignons pleurotes et shiitake,\ninstallés à Port Sainte Marie depuis mars 2021\nvisite sympathique de l'exploitation et ventes directes à la ferme possible","wiki":null,"tel":"0649706790","postCode":47130,"city":"Port-Sainte-Marie","addr":" domaine du Blazy","cat":"A","email":"tristan.ifchampignons@gmail.com"}
@@ -19,4 +19,4 @@
 ,{"lat":44.266163,"lng":0.863598,"name":"côteaux nature","web":"http://panierbio47.fr/","txt":"Production de légumes certifiée en bio, vente de paniers composés de légumes de saison.","wiki":null,"tel":"0553963659","postCode":47470,"city":"Beauville","addr":" Las Condios","cat":"A","email":"coteaux.nature@yahoo.fr"}
 ,{"lat":44.05487,"lng":0.325431,"name":"les fromages de marie","web":"http://www.lesfromagesdemarie.fr","txt":"Fromages de Chèvre Bio au lait cru.\nEleveur / Fromager Artisant (voire artiste).","wiki":null,"tel":"","postCode":47600,"city":"Moncrabeau","addr":" Le petit couloumé ","cat":"A","email":"lesfromagesdemarie@gmail.com"}
 ,{"lat":44.656091,"lng":0.350246,"name":"domaine clos de l'ange","web":"https://www.closdelange.fr","txt":"Petit domaine situé sur La Sauvetat du dropt. Le vignoble de 4,5 ha de vignes produis des vins en AOC Côtes de Duras. (vin rouge, blanc sec et moelleux ainsi qu'un rosé sec).\nLe magasin du domaine est ouvert du lundi au vendredi de 15H à 18H et le samedi sur RDV.","wiki":null,"tel":"0643427251","postCode":47800,"city":"La Sauvetat-du-Dropt","addr":" 202 route du lac","cat":"A","email":"contact.closdelange@gmail.com"}
-]
+]}
