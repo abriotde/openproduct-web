@@ -187,10 +187,23 @@ var noFilter = function (producer) {return true;}
 var filterChar = "a";
 var charFilter = function (producer) {
 	if(producer && producer.cat!=null) {
-		return producer.cat==filterChar;
+		return producer.cat.charAt(0)==filterChar;
 	} else {
 		return false;
 	}
+}
+var twoCharFilter = function (producer) {
+	if(producer && producer.cat!=null && producer.cat.charAt(0)==filterChar.charAt(0)) {
+		var subfilter = filterChar.charAt(1);
+		for (var i=1; i<producer.cat.length; i++) {
+			 if (producer.cat.charAt(1)==subfilter) {
+				console.log("twoCharFilter(",producer.cat,") (",filterChar,") => true");
+			 	return true;
+			 }
+		}
+	}
+	console.log("twoCharFilter(",producer.cat,") (",filterChar,") => false");
+	return false;
 }
 var myfilter = noFilter;
 var markers = {};
@@ -216,11 +229,19 @@ function newMarker(producer) {
     var marker = L.marker([producer.lat,producer.lng]);
     var text = "<h3>"+producer.name+"</h3>";
     if (producer.web) {
-		text = "<a href='"+producer.web+"'>"+text+"</a>"
+		text = "<a href='"+producer.web+"' target='_blank'>"+text+"</a>"
 	}
 	text += "<p>"+producer.txt+"</p>";
     if (producer.wiki) {
         text += "<a href='/wiki/index.php?title="+producer.wiki+"' target='wiki'>+ d'infos</a><br>";
+    } else {
+    	wikiName = producer.name.toLowerCase().replace(" - ", "-").replace(" ", "_")
+    		.replace(/[éèê]/i, "e")
+    		.replace(/[îï]/i, "i")
+    		.replace(/[öô]/i, "o")
+    		.replace("à", "a")
+    		.replace("ù", "u");
+        text += "<a href='/wiki/index.php?title="+wikiName+"' target='wiki'>+ d'infos</a><br>";
     }
     if (producer.email) {
     	text += "EMail:<a href='mailto:"+producer.email+"'>"+producer.email+"</a><br>"
@@ -280,7 +301,22 @@ function filterProducers(filter) {
         myfilter = noFilter;
     } else {
         filterChar = filter;
-        myfilter = charFilter;
+        if (filter.length==1) {
+	        myfilter = charFilter;
+		    var divsToHide = document.getElementsByClassName("subCategoryFilter"); //divsToHide is an array
+			for(divToHide of divsToHide) {
+				if (divToHide.id == "categoryFilter_"+filter) {
+					divToHide.style.visibility = "visible";
+					divToHide.style.display = "inline";
+				} else {
+					divToHide.style.visibility = "hidden";
+					divToHide.style.display = "none";
+				}
+			}
+        } else if(filter.length==2) {
+        	myfilter = twoCharFilter;
+        }
+
     }
     displayProducers(producers);
 }

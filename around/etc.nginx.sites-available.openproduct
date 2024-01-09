@@ -1,6 +1,4 @@
 server {
-  listen 80;
-  listen [::]:80;
 
   server_name   openproduct.freeboxos.fr;
   root          /var/www/openproduct;
@@ -26,7 +24,30 @@ server {
   }
 
   location / {
+	  expires 1d;
 	  # proxy_pass http://localhost:8080/;
   }
+
+
+    listen [::]:443 ssl ipv6only=on; # managed by Certbot
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/openproduct.freeboxos.fr/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/openproduct.freeboxos.fr/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+server {
+    if ($host = openproduct.freeboxos.fr) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+  listen 80;
+  listen [::]:80;
+
+  server_name   openproduct.freeboxos.fr;
+    return 404; # managed by Certbot
+
 
 }
