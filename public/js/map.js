@@ -250,7 +250,7 @@ function newMarker(producer) {
     	text += "Tel:<a href='tel:"+producer.tel+"'>"+formatTel(producer.tel)+"</a><br>"
     }
     if (producer.addr) {
-    	text += "Addresse:<a href='geo:"+producer.lat+","+producer.lng+"'>"+producer.addr
+    	text += "Adresse:<a href='geo:"+producer.lat+","+producer.lng+"'>"+producer.addr
     	if (producer.postCode) {
     		text += " - "+producer.postCode;
 			if (producer.city) {

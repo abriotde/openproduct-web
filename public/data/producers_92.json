@@ -1,3 +1,5 @@
 {"id":92,"producers":[
-{"lat":48.800897,"lng":2.279389,"name":"Miel Engel","web":"","txt":"","wiki":null,"tel":"0749409196","postCode":92320,"city":"Châtillon","addr":"rue Pierre Brossolette ","cat":"A","email":""}
+{"lat":48.845649,"lng":2.235017,"name":"Verger du Grand Morin","web":"","txt":"Arboriculteur maraîcher","wiki":null,"tel":"","postCode":92100,"city":"Boulogne-Billancourt","addr":"Bernard LEMOINE","cat":"A","email":""}
+,{"lat":48.84369,"lng":2.238867,"name":"L'Estampille","web":"http://www.lestampilleboulogne.com","txt":" Restaurateur de tableaux","wiki":null,"tel":"0146846626","postCode":92100,"city":"Boulogne-Billancourt","addr":"Escudier 25, ","cat":"O","email":"bchantraine@free.fr"}
+,{"lat":48.800897,"lng":2.279389,"name":"Miel Engel","web":"","txt":"Apicultrice","wiki":null,"tel":"0749409196","postCode":92320,"city":"Châtillon","addr":"rue Pierre Brossolette ","cat":"A","email":""}
 ]}
