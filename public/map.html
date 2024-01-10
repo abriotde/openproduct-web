@@ -44,6 +44,31 @@
           <option value="AG">Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)</option>
           <option value="AO">Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)</option>
       </select>
+      <select id="categoryFilter_O" class="subCategoryFilter" style="display:none" onchange="javascript:filterProducers(this.value);">
+          <option value="O">Toutes sous catégorie</option>
+          <option value="OP">Céramique/Potiers/Emailleur</option>
+          <option value="OC">Couteliers/Armuriers</option>
+          <option value="OI">Vittre/vitraux</option>
+          <option value="OF">Métal (Bronzier, Forgerons, Ferronerie)</option>
+          <option value="OL">Luthier/Instruments de musique</option>
+          <option value="OT">Cuir (Tanneur, Taxidermiste, Sellier)</option>
+          <option value="OR">Verre (Verrier)</option>
+          <option value="OO">Bois/Vannerie</option>
+          <option value="OZ">Pierre (Sculpteur, Tailleur)</option>
+          <option value="OB">Bijouterie/Dorure/Horlogerie</option>
+          <option value="OM">Métiers liés à l'architecture, Maison/Véhicules</option>
+          <option value="OE">Autres (Tapis, Cire, Orfèvre...)</option>
+          <option value="OD">Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur)</option>
+      </select>
+      <select id="categoryFilter_H" class="subCategoryFilter" style="display:none" onchange="javascript:filterProducers(this.value);">
+          <option value="H">Toutes sous catégorie</option>
+          <option value="HI">Tisserand industriel</option>
+          <option value="HC">Chappelier</option>
+          <option value="HB">Bottier/Chaussure</option>
+          <option value="HA">Autres accessoire (Canne, Pipe)</option>
+          <option value="HT">Artisants (Costumie, Couture)</option>
+          <option value="HD">Décoration (Dentelle, Broderie)</option>
+      </select>
       
       <label for="geoSearch">Adresse :</label>
       <input name="geoSearch" type="text" id="geoSearch"/>
