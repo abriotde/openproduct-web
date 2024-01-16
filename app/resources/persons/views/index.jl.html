@@ -1,0 +1,12 @@
+
+<h1 class="display-1 text-center">Watch tonight</h1>
+<%
+if ! isempty(persons)
+  for_each(persons) do person
+    partial(joinpath(Genie.config.path_resources, "persons", "views", "_person.jl.html"), person = person)
+  end
+else
+  partial(joinpath(Genie.config.path_resources, "persons", "views", "_no_results.jl.html"))
+end
+%>
+
