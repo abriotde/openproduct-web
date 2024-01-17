@@ -16,3 +16,5 @@ using OpenproductWeb.PersonsController
 
 route("/members", PersonsController.index)
 
+route("/unsubscribe", PersonsController.unsubscribe)
+
