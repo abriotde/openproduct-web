@@ -1,11 +1,12 @@
+<form action="$( Genie.Router.linkto(:save_producers, producer_id=producer.id.value) )" method="POST">
 <div class="container" style="margin-top: 40px;">
-	<h3><a href="$(Genie.Router.linkto(:edit_producers, producer_id=producer.id.value))">
-			<% producer.name %>
-		</a>
-	</h3>
+	<h1>Edit producer</h1>
+	<h3><input name='name' value="$(producer.name)" /></h3>
 <%
 	if !isempty(producer.firstname) || !isempty(producer.lastname)
 		producer.firstname*" "*producer.lastname
+	else
+		""
 	end
 %>
   <div>
@@ -21,4 +22,7 @@
   <div><strong>City: </strong><% producer.city %></div>
   <div><strong>Phone number: </strong><% producer.phoneNumber %></div>
   <div><strong>Email: </strong><% producer.email %></div>
+	<input type="submit" value="Save" />
 </div>
+</div>
+
