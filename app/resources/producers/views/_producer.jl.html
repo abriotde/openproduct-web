@@ -1,0 +1,21 @@
+<div class="container" style="margin-top: 40px;">
+  <h3><% producer.name %></h3>
+<%
+	if !isempty(producer.firstname) || !isempty(producer.lastname)
+		producer.firstname*" "*producer.lastname
+	end
+%>
+  <div>
+    <small class="badge bg-primary"><% producer.latitude %> - <% producer.longitude %></small> |
+    <small class="badge bg-light text-dark"><% producer.categories %></small> |
+    <small class="badge bg-dark"><% producer.noteModeration %></small>
+  </div>
+
+  <h4><% producer.text %></h4>
+
+  <div><strong>Address: </strong><% producer.address %></div>
+  <div><strong>PostCode: </strong><% producer.postCode %></div>
+  <div><strong>City: </strong><% producer.city %></div>
+  <div><strong>Phone number: </strong><% producer.phoneNumber %></div>
+  <div><strong>Email: </strong><% producer.email %></div>
+</div>
