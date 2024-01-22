@@ -25,3 +25,6 @@ cd ../openproduct-app-android
 ./gradlew build
 cp ./app/release/app-release.apk ../openproduct-web/public/data/openproduct-app.apk
 
+# svelte
+ln -s ~/Documents/OpenProduct/openproduct-web-svelte/dist/index.html ~/Documents/OpenProduct/openproduct-web/public/edit_producer.html
+ln -s ~/Documents/OpenProduct/openproduct-web-svelte/dist/assets ~/Documents/OpenProduct/openproduct-web/public/assets
