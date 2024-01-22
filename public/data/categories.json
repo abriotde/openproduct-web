@@ -1,0 +1,42 @@
+[
+	{"val":"H", "text":"Habillement", "subcategories":[
+			{"val":"HI", "text":"Tisserand industriel"},
+			{"val":"HC", "text":"Chappelier"},
+			{"val":"HB", "text":"Bottier/Chaussure"},
+			{"val":"HA", "text":"Autres accessoire (Canne, Pipe"},
+			{"val":"HT", "text":"Artisants (Costumie, Couture"},
+			{"val":"HD", "text":"Décoration (Dentelle, Broderie"}
+		]
+	},
+	{"val":"A", "text":"Allimentaire", "subcategories":[
+			{"val":"AA", "text":"Apiculteurs (Miel)"},
+			{"val":"AV", "text":"Eleveurs (Viande, ou oeufs)"},
+			{"val":"AC", "text":"Céréaliers (Céréales, pain, pomme de terre."},
+			{"val":"AM", "text":"Maraichers"},
+			{"val":"AL", "text":"Fromagers (Ou lait)"},
+			{"val":"AP", "text":"Poisson<"},
+			{"val":"AF", "text":"Fruit (Jus, Confitures)"},
+			{"val":"AB", "text":"Boissons avec ou sans alcool"},
+			{"val":"AG", "text":"Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)"},
+			{"val":"AO", "text":"Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)"}
+		]
+	},
+	{"val":"P", "text":"Produits de beauté/plantes (Fleurs, arbres, savon, parfums"},
+	{"val":"J", "text":"Jeux/Jouets"},
+	{"val":"O", "text":"Outils (Couteaux, Céramiques, Meubles, et autres artistes", "subcategories":[
+			{"val":"OP", "text":"Céramique/Potiers/Emailleur"},
+			{"val":"OC", "text":"Couteliers/Armuriers"},
+			{"val":"OI", "text":"Vittre/vitraux"},
+			{"val":"OF", "text":"Métal (Bronzier, Forgerons, Ferronerie"},
+			{"val":"OL", "text":"Luthier/Instruments de musique"},
+			{"val":"OT", "text":"Cuir (Tanneur, Taxidermiste, Sellier"},
+			{"val":"OR", "text":"Verre (Verrier"},
+			{"val":"OO", "text":"Bois/Vannerie"},
+			{"val":"OZ", "text":"Pierre (Sculpteur, Tailleur"},
+			{"val":"OB", "text":"Bijouterie/Dorure/Horlogerie"},
+			{"val":"OM", "text":"Métiers liés à l'architecture, Maison/Véhicules"},
+			{"val":"OE", "text":"Autres (Tapis, Cire, Orfèvre"},
+			{"val":"OD", "text":"Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur"}
+		]
+	}
+]

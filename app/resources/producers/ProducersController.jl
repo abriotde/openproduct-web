@@ -45,7 +45,16 @@ module ProducersController
 		end
 		Genie.Renderer.Json.json(Dict("ok"=>false, "error"=>"No producer found for producer_id=$id."))
 	end
-
+	function getPhoneNumber(phoneString::String)
+		phoneNumber = ""
+		for c in phoneString
+			if c>='0' && c<='9'
+				phoneNumber *= c
+			end
+		end
+		phoneNumber 
+	end         
+	
 	function save()
 		authenticated!()
 		id = payload(:producer_id, "")
@@ -58,13 +67,17 @@ module ProducersController
 			json = rawpayload()
 			if json==nothing
 				producer.name = payload(:name, "")
-				println("Name:", rawpayload(), ", json:", json)
 			else
-				println("Json:", json)
 				producerVals = json |> JSON.parse
-				println(producerVals)
+				# println(producerVals)
 				retVal = Dict("ok"=>true, "vals"=>producerVals)
 				producer.firstname = producerVals["firstname"]
+				producer.lastname = producerVals["lastname"]
+				producer.address = producerVals["address"]
+				producer.email = producerVals["email"]
+				producer.phoneNumber = getPhoneNumber(producerVals["phoneNumber"])
+				producer.postCode = parse(Int64, producerVals["postCode"])
+				producer.city = producerVals["city"]
 				println(producer)
 				SearchLight.save(producer)
 				return Genie.Renderer.Json.json(retVal)
