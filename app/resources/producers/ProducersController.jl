@@ -76,8 +76,13 @@ module ProducersController
 				producer.address = producerVals["address"]
 				producer.email = producerVals["email"]
 				producer.phoneNumber = getPhoneNumber(producerVals["phoneNumber"])
-				producer.postCode = parse(Int64, producerVals["postCode"])
+				if typeof(producerVals["postCode"])==Int64
+					producer.postCode = producerVals["postCode"]
+				end
 				producer.city = producerVals["city"]
+				producer.text = producerVals["text"]
+				producer.shortDescription = producerVals["shortDescription"]
+				producer.openingHours = producerVals["openingHours"]
 				println(producer)
 				SearchLight.save(producer)
 				return Genie.Renderer.Json.json(retVal)

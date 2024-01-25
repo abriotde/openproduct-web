@@ -417,22 +417,5 @@ if (navigator.geolocation) {
 function geoSearch()
 {
 	search = document.getElementById("geoSearch").value;
-	search = encodeURI(search);
-	if(search!="") {
-		url = "https://api-adresse.data.gouv.fr/search/?q="+search;
-		const request = new XMLHttpRequest();
-		request.responseType = "json";
-		request.onload = function() {
-			var vals = request.response;
-			vals = vals.features;
-			if (vals.length>0) {
-				vals = vals[0].geometry.coordinates;
-				centerMap (vals[1], vals[0]);
-			}
-		}
-		request.open("GET", url);
-		request.send();
-	}
+	getCoordinateFromAddress(address, centerMap);
 }
-
-
