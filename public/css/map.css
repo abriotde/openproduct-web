@@ -1,7 +1,6 @@
 #map {
     min-height: 250px;
     height: 85vh;
-    width: 95vh;
 }
 #geoSearchImg {
 	cursor: pointer;
