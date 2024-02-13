@@ -417,5 +417,5 @@ if (navigator.geolocation) {
 function geoSearch()
 {
 	search = document.getElementById("geoSearch").value;
-	getCoordinateFromAddress(address, centerMap);
+	getCoordinateFromAddress(search, centerMap);
 }

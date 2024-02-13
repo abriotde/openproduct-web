@@ -1,19 +1,4 @@
 <?php
-require_once dirname( __FILE__ ) . '/includes/PHPVersionCheck.php';
-require __DIR__ . '/includes/WebStart.php';
-
-use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\Database;
-use Wikimedia\Rdbms\DatabaseMysqlBase;
-use Wikimedia\Rdbms\DBQueryDisconnectedError;
-use Wikimedia\Rdbms\DBQueryError;
-use Wikimedia\Rdbms\DBQueryTimeoutError;
-use Wikimedia\Rdbms\DBSessionStateError;
-use Wikimedia\Rdbms\DBTransactionStateError;
-use Wikimedia\Rdbms\DBUnexpectedError;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\TransactionManager;
-
 // echo "We are unsubscribe you.<br>\n";
 
 if (!(isset($_GET['mail']) && isset($_GET['token']))) {
@@ -35,7 +20,7 @@ $sql = 'UPDATE openproduct.producer
 		AND tokenAccess="'.$token.'"';
 try {
 	// echo "SQL:$sql;<br>\n";
-	$res = $cnx->query($sql, __METHOD__);
+	$res = $cnx->query($sql);
 	if ($res===false) {
 		exitError("QueryError");
 	}
@@ -47,25 +32,20 @@ try {
 }
 
 function exitError($msg) {
+	global $mail, $token;
 	echo "ERROR $msg.";
 	exit();
 }
 function newConnection() {
-	$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-	$dbFactory = MediaWikiServices::getInstance()->getDatabaseFactory();
-	/** @var DatabaseMysqlBase $conn */
-	$conn = $dbFactory->create(
-		'mysql',    
-		array_merge(
-			$lb->getServerInfo( 0 ),
-			[
-				'dbname' => null,
-				'schema' => null,
-				'tablePrefix' => '',
-			]
-		)
-	);
-			
+	$cfgfile = 'db/connection.yml';
+	$cfg = yaml_parse_file($cfgfile);
+	$mycfg = $cfg['prod'];
+	$conn = new mysqli($mycfg['host'], $mycfg['username'], $mycfg['password'], $mycfg['database']);
+	// Check connection
+	if ($conn -> connect_errno) {
+	  echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
+	  exit();
+	}
 	return $conn;
 }
 

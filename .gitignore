@@ -51,3 +51,6 @@ db/*.sqlite
 
 # environment variables file
 .env
+
+private/*
+
