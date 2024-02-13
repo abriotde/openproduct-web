@@ -52,5 +52,7 @@ db/*.sqlite
 # environment variables file
 .env
 
+# secret files
 private/*
+db/connection.yml
 
