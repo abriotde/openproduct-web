@@ -1,10 +1,10 @@
 #!/bin/bash
 
-RSYNC_CMD='rsync -vh '
+RSYNC_CMD='rsync -avhz '
 REMOTE_HOST='kaja9241@openproduct.fr'
 
 $RSYNC_CMD ../private/LocalSettings.php $REMOTE_HOST:~/public_html/wiki/LocalSettings.php
-$RSYNC_CMD ../public/ --files-from=backup_file.lst $REMOTE_HOST:~/public_html/
+$RSYNC_CMD ../public/ --files-from=./backup_file.lst $REMOTE_HOST:~/public_html/
 # particular files
 $RSYNC_CMD var.www.openproduct.wiki.unsubscribe.php $REMOTE_HOST:~/public_html/unsubscribe.php
 $RSYNC_CMD ../db/connection.yml $REMOTE_HOST:~/public_html/db/connection.yml
