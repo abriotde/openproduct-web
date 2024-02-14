@@ -3,7 +3,6 @@ cgi-bin
 confidentialityRules.html
 css
 data
-db
 docs
 documents.html
 error-404.html
@@ -12,7 +11,6 @@ error-xxx.html
 favicon-16x16.png
 favicon-32x32.png
 favicon.ico
-files.lst
 fonts
 img
 index.html
