@@ -2,25 +2,25 @@
 
 import JSON
 
-OUTPATH="../openproduct-web/public/docs"
-SRCPATH="../openproduct-docs"
+OUTPATH="../../openproduct-web/public/docs"
+SRCPATH="../../openproduct-docs"
 
-documentsList = read("public/data/documents.json", String) |> JSON.parse
+documentsList = read("../public/data/documents.json", String) |> JSON.parse
 
-cd(SRCPATH)
 if !isdir(OUTPATH)
 	mkdir(OUTPATH)
 end
 
+# cd(SRCPATH)
 for document in documentsList
 	filetype = document["type"]
-	filename = "../openproduct-docs/"*document["doc"]*"."filetype
+	filename = SRCPATH*"/"*document["doc"]*"."*filetype
 	fileid = document["id"]
 	println(filename)
 	# cmd = `soffice --headless --convert-to htm:HTML --outdir $OUTPATH -outputfile $fileid $filename`
 	cmd = `soffice --headless --convert-to htm:HTML --outdir $OUTPATH $filename`
 	open(cmd)
-	cp(filename, OUTPATH*"/"*fileid*"."*filetype)
+	cp(filename, OUTPATH*"/"*fileid*"."*filetype, force=true)
 	println(cmd)
 end
 
