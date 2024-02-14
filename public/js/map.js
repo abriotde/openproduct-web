@@ -231,6 +231,9 @@ function newMarker(producer) {
     if (producer.web) {
 		text = "<a href='"+producer.web+"' target='_blank'>"+text+"</a>"
 	}
+	if (producer.suspect==1) {
+		text += "<span style='color:red'>⚠ Ce producteur semble ne plus exister. Contactez-nous si vous avez des informations.</span>"
+	}
 	text += "<p>"+producer.txt+"</p>";
     if (producer.wiki) {
         text += "<a href='/wiki/index.php?title="+producer.wiki+"' target='wiki'>+ d'infos</a><br>";

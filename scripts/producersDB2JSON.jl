@@ -14,9 +14,11 @@ cnx = DBInterface.connect(MySQL.Connection, "Localhost", "root", "osiris")
 function loadArea(departement::Int64)
 	println("loadArea(",departement,")")
 	departementStr = string(departement)
-	sql = "Select latitude lat, longitude lng, name, website web, COALESCE (shortDescription, `text`) txt, wikiTitle wiki, phoneNumber tel, postCode, city, address addr, categories cat, email
+	sql = "Select latitude lat, longitude lng, name, website web, COALESCE (shortDescription, `text`) txt, wikiTitle wiki, phoneNumber tel, postCode, city, address addr, categories cat, if(sendEmail is NULL or sendEmail!='wrongEmail',email,'') as email, if(status in ('actif'), false, true) as suspect
 		from openproduct.producer
-		where (postCode="*departementStr*" or (postCode>="*departementStr*"000 and postCode<"*string(departement+1)*"000)) and latitude is not null and longitude is not null"
+		where (postCode="*departementStr*" or (postCode>="*departementStr*"000 and postCode<"*string(departement+1)*"000))
+			AND latitude is not null AND longitude is not null
+			AND status in ('actif','unknown')"
 	producers = DBInterface.execute(cnx,sql)
 	filepath = "../public/data/producers_"*departementStr*".json"
 	file = open(filepath, "w") do file

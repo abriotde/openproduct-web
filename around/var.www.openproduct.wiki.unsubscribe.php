@@ -12,8 +12,9 @@ if (!preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $mail)) {
 if (!preg_match('/^[a-zA-Z-0-9]{64}$/', $token)) {
 	exitError("Wrong token ($token)");
 }
+
 $cnx = newConnection();
-$sql = 'UPDATE producer
+$sql = 'UPDATE openproduct.producer
 	SET sendEmail="Never"
 	WHERE email="'.$mail.'"
 		AND tokenAccess="'.$token.'"';
@@ -21,7 +22,7 @@ try {
 	// echo "SQL:$sql;<br>\n";
 	$res = $cnx->query($sql);
 	if ($res===false) {
-		exitError("QueryError : ".$cnx->error);
+		exitError("QueryError");
 	}
 	// $obj = $res->fetchObject();
 
