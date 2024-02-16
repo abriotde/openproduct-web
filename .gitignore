@@ -52,7 +52,10 @@ db/*.sqlite
 # environment variables file
 .env
 
+# data files
+public/data/flyer.pdf
+public/data/flyer_4A6.pdf
+
 # secret files
 private/*
 db/connection.yml
-
