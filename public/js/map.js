@@ -7,7 +7,8 @@ const MAP_DEFAULT_ZOOM = 12;
 var loadedAreas = []; // List of producers loaded on map.
 var loadingAreas = []; // List of producers wich load is running on map.
 var areasToCheck = null; // List of neighbouring area not loaded.
-var DEBUG = false;
+const DEBUG = false;
+const LOCALSTORAGE_MAPCENTER_KEY = "mapCenter";
 
 function isInArea(area, point) {
 	return area.min[0]<point.lat && area.max[0]>point.lat
@@ -20,9 +21,27 @@ function isInArea(area, point) {
 function getMainArea() {
 	var center = map.getCenter();
 	// Foreach areas  // Find the first where the center is in
-	for (const [id, area] of Object.entries(areas)) {
+	for (const [areaId, area] of Object.entries(areas)) {
 		if (isInArea(area, center)) {
-			return parseInt(id);
+			return parseInt(areaId);
+		}
+	}
+	console.log("Warning : fail getMainArea() with center");
+	// Can't attach to an area the center, try to attach a corner (We should be close to the border)
+	var bounds = map.getBounds();
+	var northWest = bounds.getNorthWest(),
+		northEast = bounds.getNorthEast(),
+		southWest = bounds.getSouthWest(),
+		southEast = bounds.getSouthEast();
+	for (const [areaId, area] of Object.entries(areas)) {
+		if(isInArea(area, northWest)) {
+			return parseInt(areaId);
+		}else if(isInArea(area, northEast)) {
+			return parseInt(areaId);
+		}else if(isInArea(area, southWest)) {
+			return parseInt(areaId);
+		}else if(isInArea(area, southEast)) {
+			return parseInt(areaId);
 		}
 	}
 	console.log("Error : fail getMainArea()");
@@ -97,7 +116,7 @@ function refreshAreasToCheck() {
  * check if one if a corner of the map (or the center) is not in a loaded area, and so load them
  */
 function checkNeighbouring() {
-	// if(DEBUG) console.log("checkNeighbouring()");
+	if(DEBUG) console.log("checkNeighbouring()");
 	if (areasToCheck == null) { // Neighbouring has change only if we have loaded more producers
 		refreshAreasToCheck();
 	}
@@ -140,7 +159,7 @@ function checkNeighbouring() {
 function initProducers() {
 	loadedAreas = [];
 	loadingAreas = [];
-	
+
 	// Remove all previous markers
 	for (key in markers) {
 		// console.log("Remove marker")
@@ -148,23 +167,32 @@ function initProducers() {
 	}
 	markers = {};
 	producers = [];
-	
+
 	areasToCheck = null;
 	areaNumber = getMainArea();
 	if (areaNumber>0) {
 		getAllProducers([areaNumber]);
 	}
 }
+function storePosition() {
+	const center = map.getCenter();
+	if(DEBUG) console.log("storePosition(",center,")");
+	const pos = [center.lat, center.lng];
+	window.localStorage.setItem(LOCALSTORAGE_MAPCENTER_KEY, JSON.stringify(pos));
+}
 function centerMap (latitude, longitude) {
-    map.setView([latitude, longitude], MAP_DEFAULT_ZOOM);
-    initProducers();
+	const pos = [latitude, longitude];
+	map.setView(pos, MAP_DEFAULT_ZOOM);
+	window.localStorage.setItem(LOCALSTORAGE_MAPCENTER_KEY, JSON.stringify(pos));
+	initProducers();
 }
 function initMap (latitude, longitude) {
 	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
     map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
     map.on('moveend zoomend', function() {
-       	// console.log("Map move detected : ", map.getCenter());
+		// console.log("Map move detected : ", map.getCenter());
 		checkNeighbouring();
+		storePosition();
     });
     // Get areas locations (to manage witch producers's area to GET)
 	const request = new XMLHttpRequest();
@@ -360,22 +388,26 @@ function getAllProducers(areas) {
 
 // Gestion de la position : centrage de la carte
 var mapInitialized = false;
-var failUpdatePosTimeOut = 2500;
+var failUpdatePosTimeOut = 2000;
+/**
+	Infinite loop to try to get location, if GPS has been activated but take time to get position.
+*/
 function updatePos()
 {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(geoOk,geoNotOk);
     } else {
+		failUpdatePosTimeOut *= 1.5;
         setTimeout(function() {
             updatePos();
-        }, 5000);
+        }, failUpdatePosTimeOut);
     }
 }
 // https://apicarto.ign.fr/api/codes-postaux/communes/44110
 // 
 function geoNotOk(error)
 {
-	// console.log("geoNotOk(",error,")")
+	if(DEBUG) console.log("geoNotOk(",error,")")
 	var errMsg = "";
 	if (error) {
 		switch(error.code) 
@@ -396,26 +428,34 @@ function geoNotOk(error)
 	geolocation = document.getElementById("geoMsg");
 	geolocation.innerHTML = errMsg+". Activez la géolocalisation sur le navigateur pour centrer automatiquement la carte sur votre position.";
 	setTimeout(function() {
-		updatePos();
-	}, failUpdatePosTimeOut);
-	failUpdatePosTimeOut *= 2;
+			updatePos();
+		}, failUpdatePosTimeOut
+	);
 	if (!mapInitialized) {
-		initMap(48.430738, -2.214463);
+		var position = window.localStorage.getItem(LOCALSTORAGE_MAPCENTER_KEY);
+		console.log("localStorage(LOCALSTORAGE_MAPCENTER_KEY) => ",position);
+		if (position === null) {
+			position = [48.430738, -2.214463]
+		} else  {
+			position = JSON.parse(position);
+		}
+		initMap(position[0], position[1]);
 	}
 }
 function geoOk(position)
 {
-	// console.log("geoOk(",position,")")
+	if(DEBUG) console.log("geoOk(",position,")");
+	geolocation = document.getElementById("geoMsg");
+	geolocation.innerHTML = "";
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     initMap(latitude, longitude);
 }
 if (navigator.geolocation) {
-	// console.log("Try get position");
-	navigator.geolocation.getCurrentPosition(geoOk,geoNotOk,{timeout:10000});
+	if(DEBUG) console.log("Try get position");
+	navigator.geolocation.getCurrentPosition(geoOk,geoNotOk,{timeout:1000});
 } else {
 	geoNotOk();
-	initMap(48.430738, -2.214463);
 }
 function geoSearch()
 {

@@ -1,6 +1,6 @@
 {"id":92,"producers":[
-{"lat":48.845649,"lng":2.235017,"name":"Verger du Grand Morin","web":"","txt":"Arboriculteur maraîcher","wiki":null,"tel":"","postCode":92100,"city":"Boulogne-Billancourt","addr":"Bernard LEMOINE","cat":"A","email":"","suspect":0}
-,{"lat":48.84369,"lng":2.238867,"name":"L'Estampille","web":"http://www.lestampilleboulogne.com","txt":" Restaurateur de tableaux","wiki":null,"tel":"0146846626","postCode":92100,"city":"Boulogne-Billancourt","addr":"Escudier 25, ","cat":"OD","email":"bchantraine@free.fr","suspect":0}
-,{"lat":48.800897,"lng":2.279389,"name":"Miel Engel","web":"","txt":"Apicultrice","wiki":null,"tel":"0749409196","postCode":92320,"city":"Châtillon","addr":"rue Pierre Brossolette ","cat":"A","email":"","suspect":0}
-,{"lat":48.809152,"lng":2.291238,"name":"Le Tram’ paysan","web":"https://www.letrampaysan.org","txt":"Produits : Rayon bio","wiki":null,"tel":"0450488107","postCode":92320,"city":"Châtillon","addr":"5 Avenue du M. de L. de Tassigny Centre Commercial Pierre Blanche 01200 Châtillon-en-Michaille","cat":"AG","email":"","suspect":0}
+{"lat":48.845649,"lng":2.235017,"name":"Verger du Grand Morin","txt":"Arboriculteur maraîcher","wiki":null,"postCode":92100,"city":"Boulogne-Billancourt","addr":"Bernard LEMOINE","cat":"A","tel":"","email":"","web":"","suspect":0}
+,{"lat":48.84369,"lng":2.238867,"name":"L'Estampille","txt":" Restaurateur de tableaux","wiki":null,"postCode":92100,"city":"Boulogne-Billancourt","addr":"Escudier 25, ","cat":"OD","tel":"0146846626","email":"bchantraine@free.fr","web":"","suspect":1}
+,{"lat":48.800897,"lng":2.279389,"name":"Miel Engel","txt":"Apicultrice","wiki":null,"postCode":92320,"city":"Châtillon","addr":"rue Pierre Brossolette ","cat":"A","tel":"0749409196","email":"","web":"","suspect":0}
+,{"lat":48.809152,"lng":2.291238,"name":"Le Tram’ paysan","txt":"Produits : Rayon bio","wiki":null,"postCode":92320,"city":"Châtillon","addr":"5 Avenue du M. de L. de Tassigny Centre Commercial Pierre Blanche 01200 Châtillon-en-Michaille","cat":"AG","tel":"0450488107","email":"","web":"https://www.letrampaysan.org","suspect":0}
 ]}

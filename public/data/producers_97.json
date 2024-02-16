@@ -1,4 +1,4 @@
 {"id":97,"producers":[
-{"lat":14.616668,"lng":-60.998496,"name":"La Croix de Launay","web":"","txt":"Eleveur","wiki":null,"tel":"","postCode":97232,"city":"Le Lamentin","addr":"Ludovic LE MEE","cat":"AV","email":"","suspect":0}
-,{"lat":4.86361,"lng":-52.278504,"name":"Jean-Emmanuel Lanux restauration de meubles","web":"http://conservation-restauration-lanux.com","txt":" Restaurateur de meubles","wiki":null,"tel":"0631207103","postCode":97354,"city":"Remire-Montjoly","addr":"Parc d'activités Economiques Pépinière d'entreprises Espelida, 64450 Miossens-lanusse","cat":"OO","email":"lanux.jean.emmanuel@gmail.com","suspect":0}
+{"lat":14.616668,"lng":-60.998496,"name":"La Croix de Launay","txt":"Eleveur","wiki":null,"postCode":97232,"city":"Le Lamentin","addr":"Ludovic LE MEE","cat":"AV","tel":"","email":"","web":"","suspect":0}
+,{"lat":4.86361,"lng":-52.278504,"name":"Jean-Emmanuel Lanux restauration de meubles","txt":" Restaurateur de meubles","wiki":null,"postCode":97354,"city":"Remire-Montjoly","addr":"Parc d'activités Economiques Pépinière d'entreprises Espelida, 64450 Miossens-lanusse","cat":"OO","tel":"0631207103","email":"lanux.jean.emmanuel@gmail.com","web":"http://conservation-restauration-lanux.com","suspect":0}
 ]}

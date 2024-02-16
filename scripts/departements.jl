@@ -50,6 +50,7 @@ end
 cnx = DBInterface.connect(MySQL.Connection, "Localhost", "root", "osiris")
 sql = "select min(latitude), max(latitude), min(longitude), max(longitude), if(postCode>200, floor(postCode/1000), postCode) as area
 from openproduct.producer
+where status in ('unknown','actif')
 group by area"
 rows = DBInterface.execute(cnx,sql)
 for row in rows
@@ -70,7 +71,7 @@ DBInterface.close!(cnx)
 println(departements)
 
 # Write output
-filepath = "../public/departements.json"
+filepath = "../public/data/departements.json"
 file = open(filepath, "w") do file
     write(file, JSON.json(departements))
 end

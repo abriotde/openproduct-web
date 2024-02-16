@@ -1,6 +1,8 @@
 #!/bin/bash
 
-DB_BACKUP_PATH="../../openproduct-db/db/data"
+source config.sh
+
+echo "Local en backup"
 
 # cp /var/www/openproduct/wiki/LocalSettings.php var.www.openproduct.wiki.LocalSettings.php
 # cp /var/www/openproduct/wiki/unsubscribe.php ../around/var.www.openproduct.wiki.unsubscribe.php
