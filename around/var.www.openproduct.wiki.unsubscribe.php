@@ -14,7 +14,7 @@ if (!preg_match('/^[a-zA-Z-0-9]{64}$/', $token)) {
 }
 
 $cnx = newConnection();
-$sql = 'UPDATE openproduct.producer
+$sql = 'UPDATE producer
 	SET sendEmail="Never"
 	WHERE email="'.$mail.'"
 		AND tokenAccess="'.$token.'"';

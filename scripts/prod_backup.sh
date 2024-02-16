@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RSYNC_CMD='rsync -avpzh kaja9241@openproduct.fr'
-DB_BACKUP_PATH="../around"
+DB_BACKUP_PATH="../../openproduct-db/db/data"
 
 
 $RSYNC_CMD:~/public_html/wiki/LocalSettings.php ../private/
