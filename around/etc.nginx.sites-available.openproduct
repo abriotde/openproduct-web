@@ -2,7 +2,7 @@ server {
 
   server_name   openproduct.freeboxos.fr;
   root          /var/www/openproduct;
-  index         index.html;
+  index         index2.html;
 
   # pass PHP scripts on Nginx to FastCGI (PHP-FPM) server
   location ~ ^/wiki/.*\.php$ {
