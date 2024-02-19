@@ -1,14 +1,17 @@
 var map;
 var areas;
+const DEBUG = false;
 const MAP_MIN_ZOOM = 10;
 const MAP_MAX_ZOOM = 19;
 const MAP_DEFAULT_ZOOM = 12;
+const FILTER_CODE_NOT = '_';
 
 var loadedAreas = []; // List of producers loaded on map.
 var loadingAreas = []; // List of producers wich load is running on map.
 var areasToCheck = null; // List of neighbouring area not loaded.
-const DEBUG = false;
+
 const LOCALSTORAGE_MAPCENTER_KEY = "mapCenter";
+
 
 function isInArea(area, point) {
 	return area.min[0]<point.lat && area.max[0]>point.lat
@@ -187,51 +190,70 @@ function centerMap (latitude, longitude) {
 	initProducers();
 }
 function initMap (latitude, longitude) {
-	if(DEBUG) console.log("initMap(",[latitude, longitude],")");
-    map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
-    map.on('moveend zoomend', function() {
-		// console.log("Map move detected : ", map.getCenter());
-		checkNeighbouring();
-		storePosition();
-    });
-    // Get areas locations (to manage witch producers's area to GET)
-	const request = new XMLHttpRequest();
-	request.responseType = "json";
-	request.onload = function() {
-		areas = request.response;
-		initProducers();
+	if (!mapInitialized) {
+		if(DEBUG) console.log("initMap(",[latitude, longitude],")");
+		map = L.map('map').setView([latitude, longitude], MAP_DEFAULT_ZOOM);
+		map.on('moveend zoomend', function() {
+			// console.log("Map move detected : ", map.getCenter());
+			checkNeighbouring();
+			storePosition();
+		});
+		// Get areas locations (to manage witch producers's area to GET)
+		const request = new XMLHttpRequest();
+		request.responseType = "json";
+		request.onload = function() {
+			areas = request.response;
+			initProducers();
+		}
+		request.open("GET", "data/departements.json");
+		request.send();
+		// Get background layer
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: MAP_MAX_ZOOM,
+			minZoom: MAP_MIN_ZOOM,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
+		}).addTo(map);
+		mapInitialized = true;
+	} else {
+		centerMap (latitude, longitude);
 	}
-	request.open("GET", "data/departements.json");
-	request.send();
-	// Get background layer
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: MAP_MAX_ZOOM,
-        minZoom: MAP_MIN_ZOOM,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
-    }).addTo(map);
-	mapInitialized = true;
 }
 var noFilter = function (producer) {return true;}
-var filterChar = "a";
+var filterChar = "";
 var charFilter = function (producer) {
+	var inverse = false;
+	var filter = filterChar;
+	if(filterChar.charAt(0)==FILTER_CODE_NOT) {
+		filter = filterChar.substring(1);
+		inverse = true;
+	}
 	if(producer && producer.cat!=null) {
-		return producer.cat.charAt(0)==filterChar;
+		const is = producer.cat.charAt(0)==filter;
+		retVal = inverse ? !is : is;
+		console.log("charFilter(",producer.cat,") (",filter,") => yes = ",(retVal));
+		return retVal;
 	} else {
 		return false;
 	}
 }
 var twoCharFilter = function (producer) {
+	var inverse = false;
+	var filter = filterChar;
+	if(filterChar.charAt(0)==FILTER_CODE_NOT) {
+		filter = filterChar.substring(1);
+		inverse = true;
+	}
 	if(producer && producer.cat!=null && producer.cat.charAt(0)==filterChar.charAt(0)) {
-		var subfilter = filterChar.charAt(1);
+		var subfilter = filter.charAt(1);
 		for (var i=1; i<producer.cat.length; i++) {
 			 if (producer.cat.charAt(1)==subfilter) {
-				console.log("twoCharFilter(",producer.cat,") (",filterChar,") => true");
-			 	return true;
+				if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => yes = ",(!inverse));
+			 	return !inverse;
 			 }
 		}
 	}
-	console.log("twoCharFilter(",producer.cat,") (",filterChar,") => false");
-	return false;
+	if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => no = ",inverse);
+	return inverse;
 }
 var myfilter = noFilter;
 var markers = {};
@@ -252,9 +274,49 @@ function formatTel(tel) {
 	// console.log("formatTel("+tel+") : ",output);
 	return output;
 }
+function getIcon(myCustomColour) {
+	const markerHtmlStyles = `
+		background-color: ${myCustomColour};
+		width: 2rem;
+		height: 2rem;
+		display: block;
+		left: -1rem;
+		top: -1rem;
+		position: relative;
+		border-radius: 2rem 2rem 0;
+		transform: rotate(45deg);
+		border: 1px solid #FFFFFF`;
+	return L.divIcon({
+		className: "openproduct-pin",
+		html: `<span style="${markerHtmlStyles}" />`
+	});
+}
+function getMarkerPin(producer) {
+	// console.log("getMarkerColor(",producer,", ",mapIcons,")")
+	var cat = producer.cat;
+	if (cat==null) {
+		return mapIcons.black;
+	}
+	if (cat[0]=="H") { // Habillement
+		return mapIcons.yellow;
+	}
+	if (cat[0]=="P") { // Poterie
+		return mapIcons.red;
+	}
+	if (cat[0]=="J") { // Jeux/Jouets
+		return mapIcons.green;
+	}
+	if (cat[0]=="O") { // Objets
+		return mapIcons.blue;
+	}
+	return mapIcons.black;
+}
 function newMarker(producer) {
 	// console.log(producer);
-    var marker = L.marker([producer.lat,producer.lng]);
+    var marker = L.marker(
+		[producer.lat,producer.lng]
+		, {icon: getMarkerPin(producer)}
+	);
     var text = "<h3>"+producer.name+"</h3>";
     if (producer.web) {
 		text = "<a href='"+producer.web+"' target='_blank'>"+text+"</a>"
@@ -327,12 +389,13 @@ function displayProducers(producers) {
     }
 }
 function filterProducers(filter) {
-	if (DEBUG) console.log("filterProducers(",filter,")");
+	// if (DEBUG) 
+	console.log("filterProducers(",filter,")");
     if (filter=="") {
         myfilter = noFilter;
     } else {
         filterChar = filter;
-        if (filter.length==1) {
+        if ((filter.charAt(0)!=FILTER_CODE_NOT ? filter.length==1 : filter.length==2)) {
 	        myfilter = charFilter;
 		    var divsToHide = document.getElementsByClassName("subCategoryFilter"); //divsToHide is an array
 			for(divToHide of divsToHide) {
@@ -344,7 +407,7 @@ function filterProducers(filter) {
 					divToHide.style.display = "none";
 				}
 			}
-        } else if(filter.length==2) {
+        } else {
         	myfilter = twoCharFilter;
         }
 
@@ -451,6 +514,15 @@ function geoOk(position)
     longitude = position.coords.longitude;
     initMap(latitude, longitude);
 }
+
+
+const mapIcons = {
+	black:getIcon("#000000"),
+	yellow:getIcon("#fcba03"),
+	red:getIcon("#fcba03"),
+	green:getIcon("#0a6b1d"),
+	blue:getIcon("#0a106b")
+};
 if (navigator.geolocation) {
 	if(DEBUG) console.log("Try get position");
 	navigator.geolocation.getCurrentPosition(geoOk,geoNotOk,{timeout:1000});
