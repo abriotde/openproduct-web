@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://openproduct.fr/</loc>
+  <lastmod>2024-02-17T13:16:39+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://openproduct.fr/map.html</loc>
+  <lastmod>2024-02-12T13:55:51+00:00</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://openproduct.fr/wiki/index.php</loc>
+  <lastmod>2024-02-12T13:55:51+00:00</lastmod>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://openproduct.fr/data/flyer.pdf</loc>
+  <lastmod>2024-02-16T22:39:07+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+<url>
+  <loc>https://openproduct.fr/documents.html</loc>
+  <lastmod>2024-02-12T13:55:50+00:00</lastmod>
+  <priority>0.60</priority>
+</url>
+
+
+</urlset>
