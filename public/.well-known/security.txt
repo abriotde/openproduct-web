@@ -1,0 +1,8 @@
+Contact: openproduct.fr@gmail.com
+Preferred-Languages: fr, en
+Canonical: https://openproduct.fr/.well-known/security.txt
+# Encryption:
+# Acknowledgments: https://openproduct.fr/hall-of-fame.html
+# Policy: https://openproduct.fr/security-policy.html
+# Hiring:
+

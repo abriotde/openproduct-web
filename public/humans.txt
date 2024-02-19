@@ -1,0 +1,17 @@
+/* TEAM */
+	Main developer:Albéric de la Crochais
+	Contact: alberic.delacrochais [at] protonmail.com
+	Matrix: @alberic.delacrochais:matrix.org
+	From:Plélan-le-Petit, France
+	Company : Association OpenProduct
+
+/* THANKS */
+
+
+/* SITE */
+	Last update:2012/02/04
+	Language: French
+	Doctype:HTML5
+	IDE: Vim, VSCodium
+	Soft: DBeaver
+

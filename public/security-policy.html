@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><!-- base href="https://vdp.edf.fr/static/front/" --><title>OpenProduct : security policy</title><meta charset="utf-8"><meta name="description" content="Vulnerability Disclosure Policy"><meta name="format-detection" content="telephone=no"><meta name="msapplication-tap-highlight" content="no"><meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"><style>:root {
+        --loader-url: url("data:image/svg+xml,%3C!-- By Sam Herbert (@sherb), for everyone. More @ http://goo.gl/7AJzbL --%3E%3Csvg width='38' height='38' viewBox='0 0 38 38' xmlns='http://www.w3.org/2000/svg' stroke='rgba(255,255,255,.3)'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(1 1)' stroke-width='2'%3E%3Ccircle stroke-opacity='.5' cx='18' cy='18' r='18'/%3E%3Cpath d='M36 18c0-9.94-8.06-18-18-18'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 18 18' to='360 18 18' dur='1.5s' repeatCount='indefinite'/%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      #loadingscreen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transition: none ;
+      }
+
+      #loadingscreen.fadeout {
+        transform: translateY(100vh);
+        transition: transform  ease-out .5s .2s ;
+        pointer-events: none;
+      }
+
+      #loadingscreen:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+      #loadingscreen::before {
+        background-image: var(--loader-url);
+        background-size: 270px;
+        background-position: calc(50% - 10px) calc(30%);
+        background-repeat: no-repeat;
+        background-color: #333;
+      }</style><script defer="defer" src="security-policy_fichiers/vendor.a9493bc2.js"></script><script defer="defer" src="security-policy_fichiers/app.13e16211.js"></script><link href="security-policy_fichiers/vendor.550666b6.css" rel="stylesheet"><link href="security-policy_fichiers/app.ba19114a.css" rel="stylesheet"></head><body class="desktop no-touch body--light"><div id="q-app" data-v-app=""><div class="q-layout q-layout--standard main-layout" style="min-height: 907px; --linkColor: hsl(28, 100%, 56%); --formCheckboxActiveBg: hsl(28, 100%, 56%); --formCheckboxHoverBg: hsl(28, 100%, 56%); --formSubmitBg: hsl(28, 100%, 56%); --formSubmitHoverBg: hsl(28, 100%, 56%); --backgroundColor: #fff; --formCheckboxActiveFg: #fff; --formCheckboxHoverFg: #fff; --formSubmitHoverFg: #fff; --formSubmitFg: #fff; --textColor: #000; --borderRadius: 15px; --padding: 100px; --fontSize: 20px; --fontFamily: &quot;Roboto Condensed&quot;; --borderColor: #00000000; --bodyBackgroundColor: hsl(226, 100%, 22%);"><!----><!---->
+      <header class="q-header q-layout__section--marginal fixed-top nav-header zd-block header" style="--backgroundColor: #000; --headingsFontSize: 14px; --headingsFontFamily: &quot;Roboto&quot;; --textColor: hsl(28, 100%, 56%); --borderRadius: 0; --HbackgroundColor: hsl(226, 100%, 22%); --3763d5c7: 0; --a83e1430: 65px; --c9f4a636: undefined; --6c0c46f0: contain;" block-id="yiRQ32s3eGe--F-f2XEh4" add-block-below-btn="true" data-v-3d985edd=""><div class="justify-center row q-pa-none gt-sm" data-v-3d985edd=""><div class="col col-auto logo" data-v-3d985edd=""><img crossorigin="anonymous" src="security-policy_fichiers/0.png" fit="contain" loading="eager" alt="logo" data-v-3d985edd=""></div></div><div class="link-toolbar" data-v-3d985edd=""><div class="row left-buttons" data-v-3d985edd=""><div class="row lt-md q-pa-sm" data-v-3d985edd=""><div class="q-img q-img--menu" style="height: 30px;" role="img" aria-label="logo" data-v-3d985edd=""><div style="padding-bottom: 58%;"></div><div class="q-img__container absolute-full"><img class="q-img__image q-img__image--with-transition q-img__image--loaded" style="object-fit: scale-down; object-position: 0px 0px;" height="0" loading="eager" aria-hidden="true" draggable="false" src="security-policy_fichiers/0.png"></div><div class="q-img__content absolute-full q-anchor--skip"></div></div></div><!----></div><div class="menu gt-sm" data-v-3d985edd=""><div class="q-tabs row no-wrap items-center q-tabs--not-scrollable q-tabs--horizontal q-tabs__arrows--inside q-tabs--dense col-shrink self-stretch" role="tablist" data-v-3d985edd="">
+</div>
+<div class="row justify-end" data-v-3d985edd=""><label class="q-field row no-wrap items-start q-field--borderless q-select q-field--auto-height q-select--without-input q-select--without-chips q-select--single q-field--float q-field--dense select-language gt-sm" for="f_69b1090f-3cfc-4402-88f4-99faaffc94ae" data-v-3d985edd=""><!----><div class="q-field__inner relative-position col self-stretch"><div class="q-field__control relative-position row no-wrap" tabindex="-1"><div class="q-field__control-container col relative-position row no-wrap q-anchor--skip"><div class="q-field__native row items-center">🇫🇷<div class="q-select__focus-target" id="f_69b1090f-3cfc-4402-88f4-99faaffc94ae" tabindex="0" role="combobox" aria-autocomplete="none" aria-expanded="false" aria-owns="f_69b1090f-3cfc-4402-88f4-99faaffc94ae_lb" aria-controls="f_69b1090f-3cfc-4402-88f4-99faaffc94ae_lb"></div></div><!----></div></div><!----></div><!----></label></div></div><!----><!----></header>
+<div class="q-page-container" style="padding-top: 0px;" data-v-a580e3ec=""><main class="q-page" style="min-height: 861px;" id="page" data-v-a580e3ec=""><div class="block-list q-py-md" data-v-a580e3ec=""><div class="zd-block-wrapper" data-v-a580e3ec=""><div class="text-block zd-block zd-block" style="--backgroundColor: rgba(253, 252, 246, 1); --formCheckboxActiveFg: rgba(253, 252, 246, 1); --formCheckboxHoverFg: rgba(253, 252, 246, 1); --formSubmitHoverFg: rgba(253, 252, 246, 1); --formSubmitFg: rgba(253, 252, 246, 1);"><h1>Politique de divulgation de vulnérabilités vers OpenProduct</h1>
+<p>Nous considérons que la sûreté et la sécurité des données de nos 
+clients est l’une de nos principales priorités. C’est pourquoi nous 
+concevons et fabriquons des produits et services et employons des 
+systèmes de la meilleure qualité et fiabilité possible. Malgré nos 
+efforts pour mettre en œuvre les meilleures mesures de sécurité 
+possibles, des vulnérabilités peuvent encore être présentes dans nos 
+produits, services et systèmes. OpenProduct est conscient du rôle essentiel 
+de ses clients/utilisateurs, de ses partenaires et des chercheurs en 
+sécurité en matière de sûreté de ses produits, services et systèmes et 
+les encourage à un signalement responsable des vulnérabilités qu’ils 
+pourraient rencontrer en respectant donc les principes décrits dans la 
+présente politique.</p>
+<p>&nbsp;</p>
+<h2>Qui ?</h2>
+<p>Chacun est encouragé à signaler les vulnérabilités identifiées, quel 
+que soit le type de service, de produit ou de système d’information. 
+Chercheurs, partenaires, CSIRT/CERT, clients ou toute autre source sont 
+les bienvenus pour signaler les vulnérabilités.</p>
+<p>&nbsp;</p>
+<h2>Comment ?</h2>
+<p>La méthode préférée pour contacter OpenProduct au sujet de ces vulnérabilités est d’utiliser le mail openproduct.fr@gmail.com.</p>
+<p>&nbsp;</p>
+<h2>Données à caractère personnel</h2>
+<p>Veuillez noter que :</p>
+<ul>
+<li>La communication de vos coordonnées avec votre rapport est entièrement volontaire et à votre discrétion ;</li>
+<li>OpenProduct pourra utiliser, aux fins décrites ci-dessous, tous les 
+rapports soumis, qu’ils soient anonymes ou qu’ils contiennent des 
+coordonnées ;</li>
+<li>Si vous choisissez de fournir vos coordonnées, OpenProduct les utilisera 
+uniquement pour communiquer avec vous afin de clarifier les détails de 
+votre rapport<!-- , le cas échéant ;</li>
+<li>Veuillez consulter la <a href="https://vdp.edf.fr/p/Donnees-personnelles?lang=fr">politique générale de confidentialité d’OpenProduct</a> pour savoir comment nous respectons la confidentialité de vos données personnelles. --></li>
+</ul>
+<p>&nbsp;</p>
+<h2>En cas de divulgation d’une vulnérabilité à OpenProduct</h2>
+<p>En divulguant une erreur ou vulnérabilité à OpenProduct, vous confirmez 
+que vous agissez de manière responsable en ne profitant pas de l’erreur 
+ou de la vulnérabilité, notamment que :</p>
+<ul>
+<li>Vous n’avez pas exploité ou utilisé de quelque manière que ce soit, 
+et n’exploiterez pas ou n’utiliserez pas de quelque manière que ce soit 
+(autrement qu’aux fins de signaler à OpenProduct), les vulnérabilités et/ou 
+erreurs découvertes ;</li>
+<li>Vous ne vous êtes pas engagé, et ne vous engagerez pas, dans des 
+tests/recherches de vulnérabilités et/ou erreurs avec l’intention de 
+nuire à OpenProduct, ses clients, employés, partenaires ou fournisseurs ;</li>
+<li>Vous n’avez pas utilisé, collecté, supprimé, altéré ou détruit, et 
+n’utiliserez, ne collecterez, ne supprimerez, n’altérerez et ne 
+détruirez pas les données auxquelles vous avez eu accès ou pourriez 
+avoir accès en relation avec la vulnérabilité et/ou l’erreur découverte ;</li>
+<li>Vous n’avez pas mené, et ne mènerez pas, d’attaques d’ingénierie 
+sociale, de spamming, de phishing, de déni de service ou d’épuisement 
+des ressources ;</li>
+<li>Vous n’avez pas enfreint et n’enfreindrez pas les lois applicables 
+en ce qui concerne votre rapport et votre interaction avec les produits,
+ les services ou systèmes d’information d’OpenProduct qui a mené à votre 
+rapport&nbsp;;</li>
+<li>Vous n’avez pas divulgué et vous engagez à ne pas divulguer à un 
+tiers les informations relatives à votre rapport, aux vulnérabilités 
+et/ou aux erreurs signalées, ni le fait qu’une vulnérabilité et/ou une 
+erreur a été signalée à OpenProduct. Cet engagement de non divulgation 
+s’applique indépendamment du fait qu’OpenProduct ait eu connaissance ou non 
+de l’information préalablement.</li>
+</ul>
+<p>Si, au travers de votre rapport, OpenProduct apprécie votre contribution à
+ l’amélioration de ses produits, services et systèmes d’information, OpenProduct ne garantit pas que vous receviez une réponse de sa part relative à 
+votre rapport. OpenProduct ne communiquera avec vous au sujet de votre 
+rapport que s’il le juge nécessaire. Vous convenez par ailleurs que vous
+ faites votre signalement sans vous attendre à une récompense ou à un 
+autre avantage, financier ou autre, pour avoir fait ce signalement.</p>
+<p>En faisant un rapport à OpenProduct à l’aide du formulaire de la présente 
+page, ou en communiquant autrement un rapport à OpenProduct, concernant des 
+vulnérabilités et des erreurs de ses produits, services ou systèmes, 
+vous acceptez que :</p>
+<ul>
+<li>OpenProduct puisse utiliser votre rapport à toute fin jugée pertinente 
+par OpenProduct, notamment pour corriger les vulnérabilités et les erreurs 
+qui sont signalées et dont OpenProduct juge qu’elles existent et qu’elles 
+doivent être corrigées&nbsp;;</li>
+<li>Dans la mesure où vous proposez des changements et/ou des 
+améliorations à un produit, service ou système d’OpenProduct dans votre 
+rapport, vous autorisez OpenProduct, par lui-même ou par le recours à un 
+tiers, à utiliser, mettre en œuvre, modifier (notamment pour adapter), 
+diffuser et distribuer ces propositions et toutes implémentations qui en
+ résultent. Cette autorisation est donnée sans contrepartie et pour le 
+monde entier.</li>
+</ul>
+<p>&nbsp;</p>
+<h2>Notre engagement</h2>
+<p>Afin d’encourager une divulgation responsable, OpenProduct s’efforcera de 
+n’engager aucune action à l’encontre d’une personne soumettant des 
+rapports en conformité avec la présente politique et :</p>
+<ul>
+<li>Effectuant des essais/recherches sur les produits, services ou 
+systèmes sans nuire à OpenProduct, à ses clients, à ses employés ou à des 
+tiers ;</li>
+<li>N’utilisant, ni ne modifiant aucune donnée à laquelle elle pourrait accéder à l’occasion de sa découverte ;</li>
+<li>N’effectuant pas d’ingénierie sociale, de spam ou d’attaques de phishing ;</li>
+<li>Ne testant pas la sécurité physique des biens et sites d‘OpenProduct ou de tiers ;</li>
+<li>N’effectuant pas d’attaques par déni de service ou par épuisement des ressources ;</li>
+<li>Se conformant aux lois applicables notamment pénales.</li>
+</ul>
+<p>Si une action en justice était engagée par un tiers à votre encontre 
+alors que vous vous êtes conformé à cette politique, nous prendrons les 
+mesures nécessaires pour faire savoir aux autorités que vos actions ont 
+été menées en conformité avec cette politique. Tous les aspects de ce 
+processus sont sujets à changement sans préavis, ainsi qu’à des 
+exceptions au cas par cas. Aucun niveau particulier de réponse n’est 
+garanti pour une question ou une catégorie de questions particulières.</p>
+<p>&nbsp;</p>
+<h2>Merci</h2>
+<p>OpenProduct apprécie les efforts déployés par l’auteur du rapport pour 
+identifier la vulnérabilité ou l’erreur. Nous vous remercions de faire 
+tout votre possible pour améliorer la sécurité de nos produits, services
+ et systèmes d’information et de la communauté Internet dans son 
+ensemble.</p></div></div></div></main></div></div></div><div id="q-notify" data-v-app=""><div class="q-notifications"><div class="q-notifications__list q-notifications__list--top fixed column no-wrap items-start"></div><div class="q-notifications__list q-notifications__list--top fixed column no-wrap items-end"></div><div class="q-notifications__list q-notifications__list--bottom fixed column no-wrap items-start"></div><div class="q-notifications__list q-notifications__list--bottom fixed column no-wrap items-end"></div><div class="q-notifications__list q-notifications__list--top fixed column no-wrap items-center"></div><div class="q-notifications__list q-notifications__list--bottom fixed column no-wrap items-center"></div><div class="q-notifications__list q-notifications__list--center fixed column no-wrap items-start justify-center"></div><div class="q-notifications__list q-notifications__list--center fixed column no-wrap items-end justify-center"></div><div class="q-notifications__list q-notifications__list--center fixed column no-wrap flex-center"></div></div></div></body></html>
