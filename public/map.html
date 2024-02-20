@@ -29,47 +29,10 @@
           <option value="_A">Non allimentaire (Tout sauf allimentaire)</option>
           <option value="H">Habillement</option>
           <option value="P">Produits de beauté/plantes (Fleurs, arbres, savon, parfums)</option>
-          <option value="J">Jeux/Jouets</option>
-          <option value="O">Outils (Couteaux, Céramiques, Meubles, et autres artistes)</option>
+          <option value="O">Artisans / Artistes</option>
+          <option value="I">Petites et moyennes entrepries (PME)</option>
       </select>
-      <select id="categoryFilter_A" class="subCategoryFilter" style="display:none" onchange="javascript:filterProducers(this.value);">
-          <option value="A">Toutes sous catégorie</option>
-          <option value="AA">Apiculteurs (Miel)</option>
-          <option value="AV">Eleveurs (Viande, ou oeufs)</option>
-          <option value="AC">Céréaliers (Céréales, pain, pomme de terre...)</option>
-          <option value="AM">Maraichers</option>
-          <option value="AL">Fromagers (Ou lait)</option>
-          <option value="AP">Poisson</option>
-          <option value="AF">Fruit (Jus, Confitures)</option>
-          <option value="AB">Boissons avec ou sans alcool</option>
-          <option value="AG">Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)</option>
-          <option value="AO">Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)</option>
-      </select>
-      <select id="categoryFilter_O" class="subCategoryFilter" style="display:none" onchange="javascript:filterProducers(this.value);">
-          <option value="O">Toutes sous catégorie</option>
-          <option value="OP">Céramique/Potiers/Emailleur</option>
-          <option value="OC">Couteliers/Armuriers</option>
-          <option value="OI">Vittre/vitraux</option>
-          <option value="OF">Métal (Bronzier, Forgerons, Ferronerie)</option>
-          <option value="OL">Luthier/Instruments de musique</option>
-          <option value="OT">Cuir (Tanneur, Taxidermiste, Sellier)</option>
-          <option value="OR">Verre (Verrier)</option>
-          <option value="OO">Bois/Vannerie</option>
-          <option value="OZ">Pierre (Sculpteur, Tailleur)</option>
-          <option value="OB">Bijouterie/Dorure/Horlogerie</option>
-          <option value="OM">Métiers liés à l'architecture, Maison/Véhicules</option>
-          <option value="OE">Autres (Tapis, Cire, Orfèvre...)</option>
-          <option value="OD">Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur)</option>
-      </select>
-      <select id="categoryFilter_H" class="subCategoryFilter" style="display:none" onchange="javascript:filterProducers(this.value);">
-          <option value="H">Toutes sous catégorie</option>
-          <option value="HI">Tisserand industriel</option>
-          <option value="HC">Chappelier</option>
-          <option value="HB">Bottier/Chaussure</option>
-          <option value="HA">Autres accessoire (Canne, Pipe)</option>
-          <option value="HT">Artisants (Costumie, Couture)</option>
-          <option value="HD">Décoration (Dentelle, Broderie)</option>
-      </select>
+	  <div id="subfilter"></div>
       
       <label for="geoSearch">Adresse :</label>
       <input name="geoSearch" type="text" id="geoSearch"/>

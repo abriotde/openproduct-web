@@ -9,6 +9,7 @@ const FILTER_CODE_NOT = '_';
 var loadedAreas = []; // List of producers loaded on map.
 var loadingAreas = []; // List of producers wich load is running on map.
 var areasToCheck = null; // List of neighbouring area not loaded.
+var categoriesFilters = null;
 
 const LOCALSTORAGE_MAPCENTER_KEY = "mapCenter";
 
@@ -230,7 +231,7 @@ var charFilter = function (producer) {
 	if(producer && producer.cat!=null) {
 		const is = producer.cat.charAt(0)==filter;
 		retVal = inverse ? !is : is;
-		console.log("charFilter(",producer.cat,") (",filter,") => yes = ",(retVal));
+		// if(DEBUG) console.log("charFilter(",producer.cat,") (",filter,") => yes = ",(retVal));
 		return retVal;
 	} else {
 		return false;
@@ -247,12 +248,12 @@ var twoCharFilter = function (producer) {
 		var subfilter = filter.charAt(1);
 		for (var i=1; i<producer.cat.length; i++) {
 			 if (producer.cat.charAt(1)==subfilter) {
-				if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => yes = ",(!inverse));
+				// if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => yes = ",(!inverse));
 			 	return !inverse;
 			 }
 		}
 	}
-	if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => no = ",inverse);
+	// if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => no = ",inverse);
 	return inverse;
 }
 var myfilter = noFilter;
@@ -300,14 +301,17 @@ function getMarkerPin(producer) {
 	if (cat[0]=="H") { // Habillement
 		return mapIcons.yellow;
 	}
-	if (cat[0]=="P") { // Poterie
-		return mapIcons.red;
-	}
-	if (cat[0]=="J") { // Jeux/Jouets
+	if (cat[0]=="A") { // Alimentaire
 		return mapIcons.green;
 	}
-	if (cat[0]=="O") { // Objets
+	if (cat[0]=="P") { // Alimentaire
+		return mapIcons.red;
+	}
+	if (cat[0]=="O") { // Artisans / Artistes
 		return mapIcons.blue;
+	}
+	if (cat[0]=="I") { // Petites et moyennes entrepries (PME)
+		return mapIcons.cyan;
 	}
 	return mapIcons.black;
 }
@@ -388,7 +392,57 @@ function displayProducers(producers) {
 		}
     }
 }
-function filterProducers(filter) {
+/**
+ * Ajax call to get categories filters configurations;
+ * 
+ * @returns categories.json as object
+ */
+async function getCategoriesFilters(callback) {
+	if(DEBUG) console.log("getCategoriesFilters()");
+	if (categoriesFilters===null) {
+		const response = await fetch("data/categories.json");
+		if(response.ok){
+			categoriesFilters = await response.json();
+			// console.log("getCategoriesFilters() => ",categoriesFilters);
+		}
+	}
+	return categoriesFilters;
+}
+/**
+ * Get categories filter where filter value == filter params;
+ * 
+ * @returns categories.json as object
+ */
+async function getFilterObject(myfilter, filters=null) {
+	// if(DEBUG) 
+	// console.log("getFilterObject(",myfilter,", ",filters,")");
+	if (filters===null) {
+		const catFilters = await getCategoriesFilters();
+		filters = catFilters.filters;
+		// console.log("getFilterObject(",myfilter,", ",filters,")");
+	}
+	for (cat in filters) {
+		filter = filters[cat];
+		if (filter.val==myfilter) {
+			// console.log("getFilterObject() => ",filter);
+			return filter;
+		}
+		if (filter.hasOwnProperty('subcategories')) {
+			const sfilter = await getFilterObject(myfilter, filter.subcategories);
+			if (sfilter!==null) {
+				// console.log("getFilterObject() => ",sfilter);
+				return sfilter;
+			}
+		}
+	}
+	return null;
+}
+/**
+ * Filter producers on map after user change select's categories filter
+ * 
+ * @param {*} filter 
+ */
+async function filterProducers(filter) {
 	// if (DEBUG) 
 	console.log("filterProducers(",filter,")");
     if (filter=="") {
@@ -397,20 +451,32 @@ function filterProducers(filter) {
         filterChar = filter;
         if ((filter.charAt(0)!=FILTER_CODE_NOT ? filter.length==1 : filter.length==2)) {
 	        myfilter = charFilter;
-		    var divsToHide = document.getElementsByClassName("subCategoryFilter"); //divsToHide is an array
-			for(divToHide of divsToHide) {
-				if (divToHide.id == "categoryFilter_"+filter) {
-					divToHide.style.visibility = "visible";
-					divToHide.style.display = "inline";
-				} else {
-					divToHide.style.visibility = "hidden";
-					divToHide.style.display = "none";
+			var subfilterDiv = document.getElementById("subfilter");
+			subfilterDiv.innerHTML = '';
+			const subfilter = await getFilterObject(filter);
+			console.log("filterProducers(",filter,") : filter =",subfilter);
+			if (subfilter!==null && subfilter.hasOwnProperty('subcategories')) {
+				var subfilterSelect = document.createElement("select");
+				subfilterSelect.onchange = (async (elem) => {
+					await filterProducers(elem.target.value);
+				});
+				var option = document.createElement("option");
+				option.value = filter;
+				option.text = " - ";
+				subfilterSelect.appendChild(option);
+				for(var i in subfilter.subcategories) {
+					const sfilter = subfilter.subcategories[i];
+					// console.log("filterProducers(",filter,") => ",sfilter);
+					var option = document.createElement("option");
+					option.value = sfilter.val;
+					option.text = sfilter.text;
+					subfilterSelect.appendChild(option);
 				}
+				subfilterDiv.appendChild(subfilterSelect);
 			}
         } else {
         	myfilter = twoCharFilter;
         }
-
     }
     displayProducers(producers);
 }
@@ -496,7 +562,7 @@ function geoNotOk(error)
 	);
 	if (!mapInitialized) {
 		var position = window.localStorage.getItem(LOCALSTORAGE_MAPCENTER_KEY);
-		console.log("localStorage(LOCALSTORAGE_MAPCENTER_KEY) => ",position);
+		if(DEBUG) console.log("localStorage(LOCALSTORAGE_MAPCENTER_KEY) => ",position);
 		if (position === null) {
 			position = [48.430738, -2.214463]
 		} else  {
@@ -521,7 +587,8 @@ const mapIcons = {
 	yellow:getIcon("#fcba03"),
 	red:getIcon("#fcba03"),
 	green:getIcon("#0a6b1d"),
-	blue:getIcon("#0a106b")
+	blue:getIcon("#0a106b"),
+	cyan:getIcon("#359396")
 };
 if (navigator.geolocation) {
 	if(DEBUG) console.log("Try get position");
