@@ -166,8 +166,8 @@ function initProducers() {
 
 	// Remove all previous markers
 	for (key in markers) {
-		// console.log("Remove marker")
-		map.removeLayer(markers[key]);
+		// console.log("Remove marker(",markers[key],")")
+		map.removeLayer(markers[key][1]);
 	}
 	markers = {};
 	producers = [];
@@ -366,25 +366,22 @@ function displayProducers(producers) {
 		    var markerManager = markers[key];
 		    if (myfilter(producer)) {
 		        if (markerManager!==undefined) {
-		        	// console.log("display");
 		            if(!markerManager[0]) {
+						// console.log("Display marker(",markerManager,")");
 		                markerManager[0] = true;
 		                markerManager[1].addTo(map);
 		            }
 		        } else {
-		        	// console.log("create");
 		            var marker = newMarker(producer);
 		            marker.addTo(map);
 		            markers[key] = [true, marker];
+		        	// console.log("Create marker (",markers[key],")");
 		        }
 		    } else {
-		        // console.log("hide");
 		        if (markerManager!==undefined && markerManager[0]==true) {
-		        	// console.log("removeLayer : ",markerManager);
+					// console.log("Hide marker (",markerManager,")");
 		            map.removeLayer(markerManager[1]);
 		            markerManager[0] = false;
-		        } else {
-		        	// console.log("no marker to hide : ",markerManager);
 		        }
 		    }
 		} else {
@@ -443,8 +440,7 @@ async function getFilterObject(myfilter, filters=null) {
  * @param {*} filter 
  */
 async function filterProducers(filter) {
-	// if (DEBUG) 
-	console.log("filterProducers(",filter,")");
+	if (DEBUG) console.log("filterProducers(",filter,")");
     if (filter=="") {
         myfilter = noFilter;
     } else {
@@ -454,7 +450,7 @@ async function filterProducers(filter) {
 			var subfilterDiv = document.getElementById("subfilter");
 			subfilterDiv.innerHTML = '';
 			const subfilter = await getFilterObject(filter);
-			console.log("filterProducers(",filter,") : filter =",subfilter);
+			// console.log("filterProducers(",filter,") : filter =",subfilter);
 			if (subfilter!==null && subfilter.hasOwnProperty('subcategories')) {
 				var subfilterSelect = document.createElement("select");
 				subfilterSelect.onchange = (async (elem) => {
