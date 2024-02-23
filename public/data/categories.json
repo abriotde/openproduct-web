@@ -2,45 +2,45 @@
 	"filters":[
 		{"val":"H", "text":"Habillement", "subcategories":[
 				{"val":"HI", "text":"Tisserand industriel"},
-				{"val":"HC", "text":"Chappelier"},
-				{"val":"HK", "text":"Bottier/Chaussure"},
-				{"val":"HA", "text":"Autres accessoire (Canne, Pipe"},
-				{"val":"HT", "text":"Artisants (Costume, Couture"},
-				{"val":"HD", "text":"Décoration (Dentelle, Broderie)"}
+				{"val":"C", "text":"Chappelier"},
+				{"val":"K", "text":"Bottier/Chaussure"},
+				{"val":"A", "text":"Autres accessoire (Canne, Pipe"},
+				{"val":"T", "text":"Artisants (Costume, Couture"},
+				{"val":"D", "text":"Décoration (Dentelle, Broderie)"}
 			]
 		},
 		{"val":"A", "text":"Alimentaire", "subcategories":[
-				{"val":"AN", "text":"Apiculteurs (Miel)"},
-				{"val":"AV", "text":"Eleveurs (Viande, ou oeufs)"},
-				{"val":"AC", "text":"Céréaliers (Céréales, pain, pomme de terre."},
-				{"val":"AM", "text":"Maraichers"},
-				{"val":"AL", "text":"Fromagers (Ou lait)"},
-				{"val":"AP", "text":"Poisson"},
-				{"val":"AF", "text":"Fruit (Jus, Confitures), Boissons avec ou sans alcool"},
-				{"val":"AG", "text":"Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)"},
-				{"val":"AX", "text":"Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)"}
+				{"val":"N", "text":"Apiculteurs (Miel)"},
+				{"val":"V", "text":"Eleveurs (Viande, ou oeufs)"},
+				{"val":"C", "text":"Céréaliers (Céréales, pain, pomme de terre."},
+				{"val":"M", "text":"Maraichers"},
+				{"val":"L", "text":"Fromagers (Ou lait)"},
+				{"val":"P", "text":"Poisson"},
+				{"val":"F", "text":"Fruit (Jus, Confitures), Boissons avec ou sans alcool"},
+				{"val":"G", "text":"Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)"},
+				{"val":"X", "text":"Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)"}
 			]
 		},
 		{"val":"P", "text":"Produits de beauté/plantes (Fleurs, arbres, savon, parfums)"},
 		{"val":"O", "text":"Artisans / Artistes", "subcategories":[
-				{"val":"OQ", "text":"Céramique/Potiers/Emailleur"},
-				{"val":"OR", "text":"Couteliers/Armuriers"},
-				{"val":"OV", "text":"Verre (Vittre, vitraux, Verrier)"},
-				{"val":"OF", "text":"Métal (Bronzier, Forgerons, Ferronerie"},
-				{"val":"OL", "text":"Luthier/Instruments de musique"},
-				{"val":"OT", "text":"Cuir (Tanneur, Taxidermiste, Sellier)"},
-				{"val":"OO", "text":"Bois/Vannerie"},
-				{"val":"OZ", "text":"Pierre (Sculpteur, Tailleur)"},
-				{"val":"OB", "text":"Bijouterie/Dorure/Horlogerie"},
-				{"val":"OU", "text":"Métiers liés à l'architecture, Maison/Véhicules"},
-				{"val":"OE", "text":"Autres (Tapis, Cire, Orfèvre)"},
-				{"val":"OS", "text":"Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur)"}
+				{"val":"Q", "text":"Céramique/Potiers/Emailleur"},
+				{"val":"R", "text":"Couteliers/Armuriers"},
+				{"val":"V", "text":"Verre (Vittre, vitraux, Verrier)"},
+				{"val":"F", "text":"Métal (Bronzier, Forgerons, Ferronerie"},
+				{"val":"L", "text":"Luthier/Instruments de musique"},
+				{"val":"T", "text":"Cuir (Tanneur, Taxidermiste, Sellier)"},
+				{"val":"0", "text":"Bois/Vannerie"},
+				{"val":"Z", "text":"Pierre (Sculpteur, Tailleur)"},
+				{"val":"B", "text":"Bijouterie/Dorure/Horlogerie"},
+				{"val":"U", "text":"Métiers liés à l'architecture, Maison/Véhicules"},
+				{"val":"E", "text":"Autres (Tapis, Cire, Orfèvre)"},
+				{"val":"S", "text":"Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur)"}
 			]
 		},
 		{"val":"I", "text":"Petites et moyennes entrepries (PME)", "subcategories":[
 				{"val":"IH", "text":"Habillement"},
-				{"val":"IY", "text":"Electronique/Electromenager"},
-				{"val":"IJ", "text":"Autres Jeux/Objets"}
+				{"val":"Y", "text":"Electronique/Electromenager"},
+				{"val":"J", "text":"Autres Jeux/Objets"}
 			]
 		}
 	],
@@ -70,7 +70,7 @@
 		"_X": "Alimentaire Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)",
 		"_Y": "Electronique/Electromenager",
 		"_Z": "Pierre (Sculpteur, Tailleur)",
-		"_0": "Industrie Jeux/Objets",
+		"_0": "Bois/Vannerie",
 		"_1": "",
 		"_3": "",
 		"_4": "",

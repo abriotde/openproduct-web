@@ -13,6 +13,11 @@ var categoriesFilters = null;
 
 const LOCALSTORAGE_MAPCENTER_KEY = "mapCenter";
 
+var noFilter = function (producer) {return true;}
+var myfilter = noFilter;
+var markers = {};
+var producers = [];
+var produces = [];
 
 function isInArea(area, point) {
 	return area.min[0]<point.lat && area.max[0]>point.lat
@@ -219,8 +224,20 @@ function initMap (latitude, longitude) {
 		centerMap (latitude, longitude);
 	}
 }
-var noFilter = function (producer) {return true;}
+function str_contains(str, niddle)
+{
+	const len = str.length;
+	for(var i=0; i<length; i++) {
+		if (str.charAt(i)==niddle) {
+			return true
+		}
+	}
+	return false;
+}
 var filterChar = "";
+/**
+ * 
+ */
 var charFilter = function (producer) {
 	var inverse = false;
 	var filter = filterChar;
@@ -229,14 +246,20 @@ var charFilter = function (producer) {
 		inverse = true;
 	}
 	if(producer && producer.cat!=null) {
-		const is = producer.cat.charAt(0)==filter;
-		retVal = inverse ? !is : is;
+		const is = str_contains(producer.cat, filter);
+		const retVal = inverse ? !is : is;
 		// if(DEBUG) console.log("charFilter(",producer.cat,") (",filter,") => yes = ",(retVal));
 		return retVal;
 	} else {
 		return false;
 	}
 }
+/**
+ * Filter : Return true if all char of filterChar are in producer.cat : AND
+ *  if FILTER_CODE_NOT return false if at least one char of filterChar is in producer.cat : OR
+ * @param {*} producer 
+ * @returns 
+ */
 var twoCharFilter = function (producer) {
 	var inverse = false;
 	var filter = filterChar;
@@ -244,21 +267,19 @@ var twoCharFilter = function (producer) {
 		filter = filterChar.substring(1);
 		inverse = true;
 	}
-	if(producer && producer.cat!=null && producer.cat.charAt(0)==filterChar.charAt(0)) {
-		var subfilter = filter.charAt(1);
-		for (var i=1; i<producer.cat.length; i++) {
-			 if (producer.cat.charAt(1)==subfilter) {
-				// if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => yes = ",(!inverse));
-			 	return !inverse;
+	if(producer && producer.cat!=null) {
+		for (var i=0; i<filter.length; i++) {
+			const is = str_contains(producer.cat, filter.charAt(i));
+			 if (inverse) {
+				if(!is) return true;
+			 } else {
+				if(!is) return false;
 			 }
 		}
 	}
 	// if(DEBUG) console.log("twoCharFilter(",producer.cat,") (",filter,") => no = ",inverse);
-	return inverse;
+	return !inverse;
 }
-var myfilter = noFilter;
-var markers = {};
-var producers = [];
 /**
 	Format phone number to be display
 */
@@ -382,12 +403,12 @@ function displayProducers(producers) {
 					// console.log("Hide marker (",markerManager,")");
 		            map.removeLayer(markerManager[1]);
 		            markerManager[0] = false;
-		        }
-		    }
+				}
+			}
 		} else {
 			console.log("Error : displayProducers() : producer==undefined.");
 		}
-    }
+	}
 }
 /**
  * Ajax call to get categories filters configurations;
@@ -398,7 +419,7 @@ async function getCategoriesFilters(callback) {
 	if(DEBUG) console.log("getCategoriesFilters()");
 	if (categoriesFilters===null) {
 		const response = await fetch("data/categories.json");
-		if(response.ok){
+		if(response.ok) {
 			categoriesFilters = await response.json();
 			// console.log("getCategoriesFilters() => ",categoriesFilters);
 		}
@@ -407,7 +428,9 @@ async function getCategoriesFilters(callback) {
 }
 /**
  * Get categories filter where filter value == filter params;
- * 
+ * @param myfilter : char representing the category
+ * @param filters : Optionaly explore just a branch of the categories filters. Default is all the configuration
+ *
  * @returns categories.json as object
  */
 async function getFilterObject(myfilter, filters=null) {
@@ -443,6 +466,8 @@ async function filterProducers(filter) {
 	if (DEBUG) console.log("filterProducers(",filter,")");
     if (filter=="") {
         myfilter = noFilter;
+		var subfilterDiv = document.getElementById("subfilter");
+		subfilterDiv.innerHTML = '';
     } else {
         filterChar = filter;
         if ((filter.charAt(0)!=FILTER_CODE_NOT ? filter.length==1 : filter.length==2)) {
@@ -475,6 +500,7 @@ async function filterProducers(filter) {
         }
     }
     displayProducers(producers);
+	filterProduces(filter);
 }
 function getAllProducers(areas) {
 	if(DEBUG) console.log("getAllProducers(",areas,")");
@@ -586,14 +612,91 @@ const mapIcons = {
 	blue:getIcon("#0a106b"),
 	cyan:getIcon("#359396")
 };
-if (navigator.geolocation) {
-	if(DEBUG) console.log("Try get position");
-	navigator.geolocation.getCurrentPosition(geoOk,geoNotOk,{timeout:1000});
-} else {
-	geoNotOk();
+function htmlMapReady()
+{
+	if (navigator.geolocation) {
+		if(DEBUG) console.log("Try get position");
+		navigator.geolocation.getCurrentPosition(geoOk,geoNotOk,{timeout:1000});
+	} else {
+		geoNotOk();
+	}
+	loadProduceFilter();
 }
 function geoSearch()
 {
 	search = document.getElementById("geoSearch").value;
 	getCoordinateFromAddress(search, centerMap);
+}
+
+/**
+ * Call on click to filter producers on a product
+ */
+function onProduceFilter(elem)
+{
+	// console.log("onProduceFilter(",elem,")");
+	const value = elem.value;
+	for(produce of produces) {
+		if (produce.name==value) {
+			console.log("FilterProducers(",produce,")...");
+			return;
+		}
+	}
+}
+/**
+ * 
+ * @param {string} filter 
+ */
+function filterProduces(filter)
+{
+	if (filter=="") {
+		filterFunc = ((produce) => false);
+	} else if (filter[0]==FILTER_CODE_NOT) {
+		// TODO
+		filterFunc = ((produce) => false);
+	} else {
+		const filterLen = filter.len;
+		filterFunc = ((produce) => {
+			for (var i=0; i<filterLen; i++) {
+				if (produce.cat==filter[i]){
+					return false;
+				}
+			}
+			return true;
+		});
+	}
+	displayProduces(filterFunc);
+}
+/**
+ * Filter produces list available according to the select categories filter.
+ */
+function displayProduces(filterFunc)
+{
+	console.log("produceFilterList(",filter,")");
+	listHtml = document.getElementById("produceFilterList");
+	listHtml.innerHTML = "";
+	for(produce of produces) {
+		// console.log("produce:",produce);
+		if(!filterFunc(produce)) {
+			option = document.createElement("option");
+			option.value = produce.name;
+			listHtml.appendChild(option);
+		}
+	}
+}
+/**
+ * Init produces list
+ */
+function loadProduceFilter()
+{
+	console.log("loadProduceFilter()");
+	const request = new XMLHttpRequest();
+	request.responseType = "json";
+	request.onload = function() {
+		produces = request.response.produces;
+		displayProduces("");
+	}
+	request.open("GET", "data/produces_fr.json");
+	// request.setRequestHeader('Cache-Control', 'max-age=86400');
+	request.setRequestHeader('Cache-Control', 'max-age=100');
+	request.send();
 }

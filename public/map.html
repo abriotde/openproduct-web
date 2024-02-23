@@ -19,10 +19,10 @@
         crossorigin=""></script>
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".side-menu">
+<body id="page-top" data-spy="scroll" data-target=".side-menu" onload="htmlMapReady()">
   <div>
   	<div id="geoMsg"></div>
-      <label for="categoryFilter">Catégories :</label>
+      <label for="categoryFilter">Filtre :</label>
       <select id="categoryFilter" onchange="javascript:filterProducers(this.value);">
           <option value="" selected="selected">Toutes</option>
           <option value="A">Allimentaire</option>
@@ -32,11 +32,16 @@
           <option value="O">Artisans / Artistes</option>
           <option value="I">Petites et moyennes entrepries (PME)</option>
       </select>
-	  <div id="subfilter"></div>
-      
-      <label for="geoSearch">Adresse :</label>
-      <input name="geoSearch" type="text" id="geoSearch"/>
-      <img src="img/openproduct/search.jpg" onclick="javascript:geoSearch()" width="25" height="25" id="geoSearchImg" />
+	  <span id="subfilter"></span>
+		<input id="produceFilter" list="produceFilterList" oninput="javascript:onProduceFilter(this)">
+		<datalist id="produceFilterList">
+		</datalist>  
+		  <img src="img/openproduct/search.jpg" onclick="javascript:filter()" width="25" height="25" id="geoSearchImg" />
+      <div>
+		  <label for="geoSearch">Aller à :</label>
+		  <input name="geoSearch" type="text" id="geoSearch"/>
+		  <img src="img/openproduct/search.jpg" onclick="javascript:geoSearch()" width="25" height="25" id="geoSearchImg" />
+	</div>
   </div>
   <div class="container-fluid">
     <div class="row hero-header" id="map">
