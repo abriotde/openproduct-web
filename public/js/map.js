@@ -1,6 +1,6 @@
 var map;
 var areas;
-const DEBUG = false;
+const DEBUG = true;
 const MAP_MIN_ZOOM = 10;
 const MAP_MAX_ZOOM = 19;
 const MAP_DEFAULT_ZOOM = 12;
@@ -13,11 +13,14 @@ var categoriesFilters = null;
 
 const LOCALSTORAGE_MAPCENTER_KEY = "mapCenter";
 
-var noFilter = function (producer) {return true;}
-var myfilter = noFilter;
-var markers = {};
-var producers = [];
-var produces = [];
+var filterChar = ""; // Parameter of filter function for select category filter
+var filterProduce = {}; // Parameter of filter function for produce filter : Object with the producer list
+var filterProducesLoaded = {}; // All produces loaded for filterProduce (cache)
+var noFilter = function (producer) {return true;} // Default filter function
+var myfilter = noFilter; // Current filter function apply on map's markers
+var markers = {}; // List of all loaded markers
+var producersLoaded = []; // List of all loaded producers
+var producesList = []; // List of all available produces
 
 function isInArea(area, point) {
 	return area.min[0]<point.lat && area.max[0]>point.lat
@@ -175,7 +178,7 @@ function initProducers() {
 		map.removeLayer(markers[key][1]);
 	}
 	markers = {};
-	producers = [];
+	producersLoaded = [];
 
 	areasToCheck = null;
 	areaNumber = getMainArea();
@@ -234,7 +237,6 @@ function str_contains(str, niddle)
 	}
 	return false;
 }
-var filterChar = "";
 /**
  * 
  */
@@ -380,15 +382,19 @@ function newMarker(producer) {
     marker.bindPopup(text);
     return marker;
 }
+function getProducerKey(producer)
+{
+	return "m"+producer.id;
+}
 function displayProducers(producers) {
     for (const producer of producers) {
     	if (producer!=undefined) {
-		    var key = "m"+producer.lat+"_"+producer.lng;
+		    var key = getProducerKey(producer);
 		    var markerManager = markers[key];
 		    if (myfilter(producer)) {
 		        if (markerManager!==undefined) {
 		            if(!markerManager[0]) {
-						// console.log("Display marker(",markerManager,")");
+						if (DEBUG) console.log("Display marker(",markerManager,")");
 		                markerManager[0] = true;
 		                markerManager[1].addTo(map);
 		            }
@@ -396,13 +402,15 @@ function displayProducers(producers) {
 		            var marker = newMarker(producer);
 		            marker.addTo(map);
 		            markers[key] = [true, marker];
-		        	// console.log("Create marker (",markers[key],")");
+		        	if (DEBUG) console.log("Create marker (",markers[key],")");
 		        }
 		    } else {
 		        if (markerManager!==undefined && markerManager[0]==true) {
-					// console.log("Hide marker (",markerManager,")");
+					if (DEBUG) console.log("Hide marker (",markerManager,")");
 		            map.removeLayer(markerManager[1]);
 		            markerManager[0] = false;
+				} else if (DEBUG) {
+					if (DEBUG) console.log("Ever hide marker (",markerManager,")");
 				}
 			}
 		} else {
@@ -459,17 +467,16 @@ async function getFilterObject(myfilter, filters=null) {
 }
 /**
  * Filter producers on map after user change select's categories filter
- * 
- * @param {*} filter 
+ * @param {string} filter 
  */
 async function filterProducers(filter) {
 	if (DEBUG) console.log("filterProducers(",filter,")");
+	filterChar = filter;
     if (filter=="") {
         myfilter = noFilter;
 		var subfilterDiv = document.getElementById("subfilter");
 		subfilterDiv.innerHTML = '';
     } else {
-        filterChar = filter;
         if ((filter.charAt(0)!=FILTER_CODE_NOT ? filter.length==1 : filter.length==2)) {
 	        myfilter = charFilter;
 			var subfilterDiv = document.getElementById("subfilter");
@@ -499,9 +506,13 @@ async function filterProducers(filter) {
         	myfilter = twoCharFilter;
         }
     }
-    displayProducers(producers);
-	filterProduces(filter);
+    displayProducers(producersLoaded);
+	filterProducesList(filter);
 }
+/**
+ * Load producers from areas and display them on map according to current filter
+ * @param areas {List[int]} : List of areas's id to load
+ */
 function getAllProducers(areas) {
 	if(DEBUG) console.log("getAllProducers(",areas,")");
 	if (loadedAreas.length + areas.length + loadingAreas.length>10) {
@@ -514,8 +525,8 @@ function getAllProducers(areas) {
 			const request = new XMLHttpRequest();
 			request.responseType = "json";
 			request.onload = function() {
-				producers = producers.concat(request.response.producers);
-				displayProducers(producers);
+				displayProducers(request.response.producers);
+				producersLoaded = producersLoaded.concat(request.response.producers);
 				area = request.response.id
 				if (area!=undefined) {
 					loadingAreas = loadingAreas.filter(a => a!=area);
@@ -555,7 +566,10 @@ function updatePos()
     }
 }
 // https://apicarto.ign.fr/api/codes-postaux/communes/44110
-// 
+/**
+ * Function call on geo localization fail.
+ * @param {*} error 
+ */
 function geoNotOk(error)
 {
 	if(DEBUG) console.log("geoNotOk(",error,")")
@@ -593,6 +607,10 @@ function geoNotOk(error)
 		initMap(position[0], position[1]);
 	}
 }
+/**
+ * Function call on geo localization success.
+ * @param {*} position 
+ */
 function geoOk(position)
 {
 	if(DEBUG) console.log("geoOk(",position,")");
@@ -612,6 +630,9 @@ const mapIcons = {
 	blue:getIcon("#0a106b"),
 	cyan:getIcon("#359396")
 };
+/**
+ * Function call on <body> ready : Init the map and filters
+ */
 function htmlMapReady()
 {
 	if (navigator.geolocation) {
@@ -627,34 +648,63 @@ function geoSearch()
 	search = document.getElementById("geoSearch").value;
 	getCoordinateFromAddress(search, centerMap);
 }
-
 /**
- * Call on click to filter producers on a product
+ * myfilter function to filter on a specific product
+ * @param {*} producer 
+ * @returns 
+ */
+function produceFilter(producer)
+{
+	const key = getProducerKey(producer);
+	return filterProduce.hasOwnProperty(key);
+}
+/**
+ * Call on click to a produce name to filter producers on a product
+ * @param elem : input clicked
  */
 function onProduceFilter(elem)
 {
 	// console.log("onProduceFilter(",elem,")");
 	const value = elem.value;
-	for(produce of produces) {
-		if (produce.name==value) {
-			console.log("FilterProducers(",produce,")...");
-			return;
+	if (value=="") { // Re-init select category filter
+		filterProducers(filterChar);
+	} else {
+		for (produce of producesList) {
+			if (produce.name==value) { // Init produce filter
+				console.log("filterProducers(",produce,")...");
+				key = "p"
+				if (filterProducesLoaded[""]) { // Not in cache
+					fetch("data/productLink_"+produce.id+".json")
+					.then((reponse) => {
+						filterProduce = reponse.json();
+						myfilter = produceFilter;
+						console.log(filterProduce);
+						filterProducesLoaded[key] = filterProduce;
+						displayProducers(producersLoaded);
+					});
+				} else {
+					filterProduce = filterProducesLoaded[key];
+					myfilter = produceFilter;
+					displayProducers(producersLoaded);
+				}
+				return;
+			}
 		}
 	}
 }
 /**
- * 
- * @param {string} filter 
+ * Filter produces list available according to the select categories filter.
+ * @param {string} filter
  */
-function filterProduces(filter)
+function filterProducesList(filter)
 {
-	if (filter=="") {
+	const filterLen = filter.len;
+	if (filterLen==0) {
 		filterFunc = ((produce) => false);
 	} else if (filter[0]==FILTER_CODE_NOT) {
 		// TODO
 		filterFunc = ((produce) => false);
 	} else {
-		const filterLen = filter.len;
 		filterFunc = ((produce) => {
 			for (var i=0; i<filterLen; i++) {
 				if (produce.cat==filter[i]){
@@ -664,19 +714,20 @@ function filterProduces(filter)
 			return true;
 		});
 	}
-	displayProduces(filterFunc);
+	displayProducesList(filterFunc);
 }
 /**
- * Filter produces list available according to the select categories filter.
+ * Filter produces list available using filterFunc.
+ * @param {function} filterFunc
  */
-function displayProduces(filterFunc)
+function displayProducesList(filterFunc)
 {
-	console.log("produceFilterList(",filter,")");
+	console.log("produceFilterList(",filterFunc,")");
 	listHtml = document.getElementById("produceFilterList");
 	listHtml.innerHTML = "";
-	for(produce of produces) {
+	for(produce of producesList) {
 		// console.log("produce:",produce);
-		if(!filterFunc(produce)) {
+		if (!filterFunc(produce)) {
 			option = document.createElement("option");
 			option.value = produce.name;
 			listHtml.appendChild(option);
@@ -692,8 +743,8 @@ function loadProduceFilter()
 	const request = new XMLHttpRequest();
 	request.responseType = "json";
 	request.onload = function() {
-		produces = request.response.produces;
-		displayProduces("");
+		producesList = request.response.produces;
+		filterProducesList("");
 	}
 	request.open("GET", "data/produces_fr.json");
 	// request.setRequestHeader('Cache-Control', 'max-age=86400');

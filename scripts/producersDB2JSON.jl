@@ -14,7 +14,7 @@ cnx = DBInterface.connect(MySQL.Connection, "Localhost", "root", "osiris")
 function loadArea(departement::Int64)
 	println("loadArea(",departement,")")
 	departementStr = string(departement)
-	sql = "Select latitude lat, longitude lng, name,
+	sql = "Select id, latitude lat, longitude lng, name,
 			COALESCE (shortDescription, `text`) txt, wikiTitle wiki,
 			postCode, city, address addr, categories cat,
 			phoneNumber tel,
