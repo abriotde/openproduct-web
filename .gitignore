@@ -56,6 +56,8 @@ db/*.sqlite
 public/data/flyer.pdf
 public/data/flyer_4A6.pdf
 public/data/producers_*.json
+public/data/productLink_*.json
+public/data/produces_*.json
 
 # secret files
 private/*
