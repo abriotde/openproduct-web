@@ -56,12 +56,10 @@ db/*.sqlite
 public/data/flyer.pdf
 public/data/flyer_4A6.pdf
 public/data/producers_*.json
-<<<<<<< Updated upstream
-=======
 public/data/productLink_*.json
 public/data/produces_*.json
 public/assets
->>>>>>> Stashed changes
+public/pixelhuman/*
 
 # secret files
 private/*

@@ -212,7 +212,7 @@ function initMap (latitude, longitude) {
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: MAP_MAX_ZOOM,
 			minZoom: MAP_MIN_ZOOM,
-			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenProduct</a>'
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		}).addTo(map);
 		mapInitialized = true;
 	} else {
