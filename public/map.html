@@ -26,14 +26,14 @@
       <select id="categoryFilter" onchange="javascript:filterProducers(this.value);">
           <option value="" selected="selected">Toutes</option>
           <option value="A">Allimentaire</option>
-          <option value="_A">Non allimentaire (Tout sauf allimentaire)</option>
+          <option value="_A">Tout sauf allimentaire</option>
           <option value="H">Habillement</option>
           <option value="P">Produits de beauté/plantes (Fleurs, arbres, savon, parfums)</option>
           <option value="O">Artisans / Artistes</option>
           <option value="I">Petites et moyennes entrepries (PME)</option>
       </select>
 	  <span id="subfilter"></span>
-		<input id="produceFilter" list="produceFilterList" oninput="javascript:onProduceFilter(this)">
+		<input id="produceFilter" list="produceFilterList" oninput="javascript:onProduceFilter(this)" placeholder="Saisissez un produit précis">
 		<datalist id="produceFilterList">
 		</datalist>  
       <div>

@@ -241,7 +241,7 @@ function str_contains(str, niddle)
  * 
  */
 var charFilter = function (producer) {
-	console.log("charfilter");
+	// if(DEBUG) console.log("charfilter");
 	var inverse = false;
 	var filter = filterChar;
 	if(filterChar.charAt(0)==FILTER_CODE_NOT) {
@@ -265,7 +265,7 @@ var charFilter = function (producer) {
  * @returns 
  */
 var twoCharFilter = function (producer) {
-	console.log("twoCharFilter");
+	// if(DEBUG) console.log("twoCharFilter()");
 	var inverse = false;
 	var filter = filterChar;
 	if(filterChar.charAt(0)==FILTER_CODE_NOT) {
@@ -394,33 +394,30 @@ function displayProducers(producers) {
     for (const producer of producers) {
     	if (producer!=undefined) {
 		    var key = getProducerKey(producer);
-			// if (DEBUG) 
-			console.log("producer=",producer.id,"; key=",key);
+			// if (DEBUG) console.log("producer=",producer.id,"; key=",key);
 		    var markerManager = markersLoaded[key];
 		    if (myfilter(producer)) {
-				if (DEBUG) console.log("Check display marker(",markerManager,")");
+				// if (DEBUG) console.log("Check display marker(",markerManager,")");
 		        if (markerManager!==undefined) {
 		            if(!markerManager[0]) {
-						if (DEBUG) console.log("Display marker(",markerManager,")");
+						// if (DEBUG) console.log("Display marker(",markerManager,")");
 		                markerManager[0] = true;
 		                markerManager[1].addTo(map);
-		            } else if (DEBUG) {
-						console.log("Ever display marker (",markerManager,")");
-					}
+		            } 
+					// else if (DEBUG) console.log("Ever display marker (",markerManager,")");
 		        } else {
 		            var marker = newMarker(producer);
 		            marker.addTo(map);
 		            markersLoaded[key] = [true, marker];
-		        	if (DEBUG) console.log("Create marker (",markersLoaded[key],")");
+		        	// if (DEBUG) console.log("Create marker (",markersLoaded[key],")");
 		        }
 		    } else {
 		        if (markerManager!==undefined && markerManager[0]==true) {
 					if (DEBUG) console.log("Hide marker (",markerManager,")");
 		            map.removeLayer(markerManager[1]);
 		            markerManager[0] = false;
-				} else if (DEBUG) {
-					console.log("Ever hide marker (",markerManager,")");
-				}
+				} 
+				// else if (DEBUG) console.log("Ever hide marker (",markerManager,")");
 			}
 		} else {
 			console.log("Error : displayProducers() : producer==undefined.");
@@ -462,12 +459,14 @@ async function getFilterObject(myfilter, filters=null) {
 		filter = filters[cat];
 		if (filter.val==myfilter) {
 			// console.log("getFilterObject() => ",filter);
+			filter.level = 0;
 			return filter;
 		}
 		if (filter.hasOwnProperty('subcategories')) {
 			const sfilter = await getFilterObject(myfilter, filter.subcategories);
 			if (sfilter!==null) {
 				// console.log("getFilterObject() => ",sfilter);
+				sfilter.level += 1;
 				return sfilter;
 			}
 		}
@@ -483,6 +482,7 @@ async function filterProducers(filter) {
 	filterChar = filter;
 	document.getElementById("produceFilter").value = "";
     if (filter=="") {
+		console.log("filterProducers(",filter,") : no category filter");
         myfilter = noFilter;
 		var subfilterDiv = document.getElementById("subfilter");
 		subfilterDiv.innerHTML = '';
@@ -490,10 +490,10 @@ async function filterProducers(filter) {
         if ((filter.charAt(0)!=FILTER_CODE_NOT ? filter.length==1 : filter.length==2)) {
 	        myfilter = charFilter;
 			var subfilterDiv = document.getElementById("subfilter");
-			subfilterDiv.innerHTML = '';
 			const subfilter = await getFilterObject(filter);
-			// console.log("filterProducers(",filter,") : filter =",subfilter);
+			console.log("filterProducers(",filter,") : filter =",subfilter);
 			if (subfilter!==null && subfilter.hasOwnProperty('subcategories')) {
+				subfilterDiv.innerHTML = '';
 				var subfilterSelect = document.createElement("select");
 				subfilterSelect.onchange = (async (elem) => {
 					await filterProducers(elem.target.value);
@@ -511,8 +511,12 @@ async function filterProducers(filter) {
 					subfilterSelect.appendChild(option);
 				}
 				subfilterDiv.appendChild(subfilterSelect);
+			} else if(subfilter.level==0) {
+				subfilterDiv.innerHTML = '';
 			}
+			console.log("subfilter.level:", subfilter.level);
         } else {
+			console.log("filterProducers(",filter,") : twoCharFilter");
         	myfilter = twoCharFilter;
         }
     }
@@ -739,7 +743,7 @@ function filterProducesList(filter)
  */
 function displayProducesList(filterFunc)
 {
-	console.log("produceFilterList(",filterFunc,")");
+	console.log("displayProducesList(",filterFunc,")");
 	listHtml = document.getElementById("produceFilterList");
 	listHtml.innerHTML = "";
 	for(produce of producesList) {
