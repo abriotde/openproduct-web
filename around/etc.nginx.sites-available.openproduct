@@ -13,9 +13,10 @@ server {
     # Nginx php-cgi config :
     # Nginx PHP fastcgi_pass 127.0.0.1:9000;
   }
-  # location ~ ^/wiki {
-	  # index   index.php
-  # }
+  location ~ ^/ph {
+    include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php-fpm.sock;
+  }
 
   # deny access to Apache .htaccess on Nginx with PHP,
   # if Apache and Nginx document roots concur

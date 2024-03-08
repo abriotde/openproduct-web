@@ -2,49 +2,50 @@
 <html lang="fr">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OpenProduct : carte des producteurs</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap-grid.min.css" rel="stylesheet"
-        crossorigin="anonymous">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/genie/prism.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-    <link rel="stylesheet" href="css/map.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>OpenProduct : carte des producteurs</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap-grid.min.css" rel="stylesheet"
+		crossorigin="anonymous">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/genie/prism.css" rel="stylesheet" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+		integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+		crossorigin=""/>
+	<link rel="stylesheet" href="css/map.css" />
+	<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+		integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+		crossorigin=""></script>
 </head>
 
 <body id="page-top" data-spy="scroll" data-target=".side-menu" onload="htmlMapReady()">
-  <div>
+  <div id="mapMenu">
   	<div id="geoMsg"></div>
-      <label for="categoryFilter">Filtre :</label>
-      <select id="categoryFilter" onchange="javascript:filterProducers(this.value);">
-          <option value="" selected="selected">Toutes</option>
-          <option value="A">Allimentaire</option>
-          <option value="_A">Tout sauf allimentaire</option>
-          <option value="H">Habillement</option>
-          <option value="P">Produits de beauté/plantes (Fleurs, arbres, savon, parfums)</option>
-          <option value="O">Artisans / Artistes</option>
-          <option value="I">Petites et moyennes entrepries (PME)</option>
-      </select>
-	  <span id="subfilter"></span>
-		<input id="produceFilter" list="produceFilterList" oninput="javascript:onProduceFilter(this)" placeholder="Saisissez un produit précis">
-		<datalist id="produceFilterList">
-		</datalist>  
-      <div>
-		  <label for="geoSearch">Aller à :</label>
-		  <input name="geoSearch" type="text" id="geoSearch"/>
-		  <img src="img/openproduct/search.jpg" onclick="javascript:geoSearch()" width="25" height="25" id="geoSearchImg" />
+	<span id="filterMenu">
+		<label for="categoryFilter">Filtre :</label>
+		<select id="categoryFilter" onchange="javascript:filterProducers(this.value);">
+		  <option value="" selected="selected">Toutes</option>
+		  <option value="A">Allimentaire</option>
+		  <option value="_A">Tout sauf allimentaire</option>
+		  <option value="H">Habillement</option>
+		  <option value="3">Produits ménagers / de beauté / médicinal</option>
+		  <option value="4">Plantes (Fleurs, arbustes)</option>
+		  <option value="O">Artisans / Artistes</option>
+		  <option value="I">Petites et moyennes entrepries (PME)</option>
+		</select>
+		<span id="subfilter"></span>
+		<input id="produceFilter" list="produceFilterList" oninput="javascript:onProduceFilter(this)" placeholder="Saisissez un produit précis" style="display:none">
+		<datalist id="produceFilterList"></datalist>
+	</span>
+	<div id="searchMenu">
+		<label for="geoSearch">Aller à :</label>
+		<input name="geoSearch" type="text" id="geoSearch"/>
+		<img src="img/openproduct/search.jpg" onclick="javascript:geoSearch()" width="25" height="25" id="geoSearchImg" />
 	</div>
   </div>
   <div class="container-fluid">
-    <div class="row hero-header" id="map">
-    </div>
+	<div class="row hero-header" id="map"></div>
   </div>
 
   <script src="js/openproduct.js"></script>
