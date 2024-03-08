@@ -9,7 +9,7 @@ $token = $_GET['token'];
 if (!preg_match('/^[\w\.-]+@([\w-]+\.)+[\w-]{2,4}$/', $mail)) {
 	exitError("Wrong mail ($mail)");
 }
-if (!preg_match('/^[a-zA-Z-0-9]{64}$/', $token)) {
+if (!preg_match('/^[a-zA-Z0-9]{64}$/', $token)) {
 	exitError("Wrong token ($token)");
 }
 

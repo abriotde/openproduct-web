@@ -58,6 +58,8 @@ public/data/flyer_4A6.pdf
 public/data/producers_*.json
 public/data/productLink_*.json
 public/data/produces_*.json
+public/assets
+public/pixelhuman/*
 
 # secret files
 private/*
