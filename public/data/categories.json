@@ -11,13 +11,14 @@
 		},
 		{"val":"A", "text":"Alimentaire", "subcategories":[
 				{"val":"N", "text":"Apiculteurs (Miel)"},
+				{"val":"N", "text":"Apiculteurs (Miel)"},
 				{"val":"2", "text":"Eleveurs (Viande, ou oeufs)"},
 				{"val":"C", "text":"Céréaliers (Céréales, pain, pomme de terre."},
 				{"val":"M", "text":"Maraichers"},
 				{"val":"L", "text":"Fromagers (Ou lait)"},
 				{"val":"P", "text":"Poisson / Fruits de mer"},
 				{"val":"F", "text":"Fruit (Jus, Confitures), Boissons avec ou sans alcool"},
-				{"val":"G", "text":"Grossiste/Epicerie/Restaurant (Ne produit pas, mais vends du local)"},
+				{"val":"G", "text":"AMAP / Grossiste / Epicerie / Restaurant"},
 				{"val":"X", "text":"Autres (Champignons, boulangers/patissier/charcutier, produits de beauté, Spiruline, Huiles, safran)"}
 			]
 		},

@@ -639,7 +639,7 @@ function geoOk(position)
 const mapIcons = {
 	black:getIcon("#000000"),
 	yellow:getIcon("#fcba03"),
-	red:getIcon("#fcba03"),
+	red:getIcon("#990000"),
 	green:getIcon("#0a6b1d"),
 	blue:getIcon("#0a106b"),
 	cyan:getIcon("#359396")

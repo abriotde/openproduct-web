@@ -5,3 +5,15 @@
 #geoSearchImg {
 	cursor: pointer;
 }
+#mapEdit {
+	float: right;
+	position: relative;
+	background-color:#f57761;
+	border-radius: 3px;
+}
+#mapEdit a {
+	margin: 1em;
+	line-height:2rem;
+	color:#fff;
+	text-align:center;
+}
