@@ -14,8 +14,13 @@ end
 # cd(SRCPATH)
 for document in documentsList
 	filetype = document["type"]
-	filename = SRCPATH*"/"*document["doc"]*"."*filetype
+	path = SRCPATH
+	if haskey(document, "dir")
+		path *= "/"*document["dir"]
+	end
+	filename = path*"/"*document["doc"]*"."*filetype
 	fileid = document["id"]
+	
 	println(filename)
 	# cmd = `soffice --headless --convert-to htm:HTML --outdir $OUTPATH -outputfile $fileid $filename`
 	cmd = `soffice --headless --convert-to htm:HTML --outdir $OUTPATH $filename`

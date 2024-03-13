@@ -44,8 +44,10 @@
 					var liElement = document.createElement("li");
 					liElement.appendChild(aElement);
 					aElement = document.createElement("a");
-					var downloadText = document.createTextNode("Télécharger");
-					aElement.appendChild(downloadText);
+					let img = document.createElement('img');
+					img.src = "/img/icon_download.png";
+					img.alt = "Télécharger";
+					aElement.appendChild(img);
 					aElement.setAttribute("href", "docs/"+doc.id+"."+doc.type);
 					liElement.appendChild(aElement);
 					console.log(doc);
