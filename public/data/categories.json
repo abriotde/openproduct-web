@@ -5,15 +5,14 @@
 				{"val":"C", "text":"Chappelier"},
 				{"val":"K", "text":"Bottier/Chaussure"},
 				{"val":"1", "text":"Accessoire d'habillement (Canne, Pipe)"},
-				{"val":"T", "text":"Artisants (Costume, Couture"},
+				{"val":"T", "text":"Artisants (Costume, Couture)"},
 				{"val":"D", "text":"Décoration (Dentelle, Broderie)"}
 			]
 		},
 		{"val":"A", "text":"Alimentaire", "subcategories":[
 				{"val":"N", "text":"Apiculteurs (Miel)"},
-				{"val":"N", "text":"Apiculteurs (Miel)"},
 				{"val":"2", "text":"Eleveurs (Viande, ou oeufs)"},
-				{"val":"C", "text":"Céréaliers (Céréales, pain, pomme de terre."},
+				{"val":"C", "text":"Céréaliers (Céréales, pain, pomme de terre)"},
 				{"val":"M", "text":"Maraichers"},
 				{"val":"L", "text":"Fromagers (Ou lait)"},
 				{"val":"P", "text":"Poisson / Fruits de mer"},
@@ -28,7 +27,7 @@
 				{"val":"Q", "text":"Céramique/Potiers/Emailleur"},
 				{"val":"R", "text":"Couteliers/Armuriers"},
 				{"val":"V", "text":"Verre (Vittre, vitraux, Verrier)"},
-				{"val":"F", "text":"Métal (Bronzier, Forgerons, Ferronerie"},
+				{"val":"F", "text":"Métal (Bronzier, Forgerons, Ferronerie)"},
 				{"val":"5", "text":"Luthier/Instruments de musique"},
 				{"val":"T", "text":"Cuir (Tanneur, Taxidermiste, Sellier)"},
 				{"val":"0", "text":"Bois/Vannerie"},

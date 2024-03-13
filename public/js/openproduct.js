@@ -1,3 +1,9 @@
+/**
+ * 
+ * @param {*} address 
+ * @param {*} functionCB 
+ * @param {*} onErrorCB 
+ */
 function getCoordinateFromAddress(address, functionCB, onErrorCB) {
 	if(address!="") {
 		search = encodeURI(address);
@@ -18,3 +24,14 @@ function getCoordinateFromAddress(address, functionCB, onErrorCB) {
 		request.send();
 	}
 }
+/**
+ * TODO : Redirect to https if https://openproduct.fr/true return true
+ */
+function checkHttps() {
+	if (window.location.protocol != "https:") {
+		console.log(window.location.protocol);
+		window.location.protocol = "https:";
+		// window.location.reload();
+	}
+}
+checkHttps();
