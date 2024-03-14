@@ -14,6 +14,12 @@
   <priority>1.00</priority>
 </url>
 <url>
+  <loc>https://openproduct.fr/producers/index.php</loc>
+  <lastmod>2024-02-12T13:55:51+00:00</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
   <loc>https://openproduct.fr/map.html</loc>
   <lastmod>2024-02-12T13:55:51+00:00</lastmod>
   <changefreq>weekly</changefreq>
