@@ -6,8 +6,8 @@ echo "Deploy on prod"
 
 # ./departements.jl
 # ./docsToWeb.jl
-# ./generateStaticProducerHTML.jl
-./producersDB2JSON.jl
+./generateStaticProducerHTML.jl
+./generateStaticProducerJSON.jl
 
 $RSYNC_CMD ../private/LocalSettings.php $REMOTE_HOST:~/public_html/wiki/LocalSettings.php
 $RSYNC_CMD ../public/ --files-from=./backup_file.lst $REMOTE_HOST:~/public_html/

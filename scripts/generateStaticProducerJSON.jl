@@ -1,6 +1,7 @@
 #!/bin/env julia
-
-######### https://cotesdarmor.fr/actualites/une-carte-pour-consommer-local #############
+#=
+	Script for regenerate static JSON data for producers : public/data/producers_AREA.json
+=#
 
 # import Pkg; Pkg.add("JSON")
 # import Pkg; Pkg.add("MySQL")
