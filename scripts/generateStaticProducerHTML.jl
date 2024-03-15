@@ -68,7 +68,7 @@ function generateStaticProducerPages(webrootpath::String, webpath::String; useCa
 	println(string(nb)*" producers in file '"*filepath*"' writed (",string(nbDone),").")
 end
 
-generateStaticProducerPages("../public","/producers", useCache=false)
+generateStaticProducerPages("../public","/producers", useCache=true)
 
 op_stop(ok)
 
