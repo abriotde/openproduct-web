@@ -8,7 +8,7 @@
 using ArgParse
 import JSON, MySQL, DBInterface
 
-include("../../openproduct-docs/sources/OpenProductProducer.jl")
+include("connect.jl")
 
 
 function loadArea(departement::Int64)

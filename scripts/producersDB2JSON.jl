@@ -7,7 +7,7 @@
 using ArgParse
 import JSON, MySQL, DBInterface
 
-include("../../openproduct-docs/sources/OpenProductProducer.jl")
+include("connect.jl")
 
 
 function producersExportJSON(filepath::String, area::Int64=0)

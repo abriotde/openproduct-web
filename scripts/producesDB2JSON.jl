@@ -7,9 +7,7 @@
 using ArgParse
 import JSON, MySQL, DBInterface
 
-
-include("../../openproduct-docs/sources/OpenProductProducer.jl")
-
+include("connect.jl")
 
 function exportProduces2JSON(lang::String)
 	println("exportProduces2JSON(",lang,")")

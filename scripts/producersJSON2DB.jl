@@ -7,8 +7,7 @@
 import JSON, MySQL, DBInterface
 
 
-conn = DBInterface.connect(MySQL.Connection, "Localhost", "root", "osiris")
-sqlInsert = DBInterface.prepare(conn, "Insert ignore into openproduct.producer
+sqlInsert = DBInterface.prepare(dbConnection, "Insert ignore into openproduct.producer
  (latitude, longitude, name, website, `shortDescription`, wikiTitle, categories)
  values (?,?,?,?,?,?, ?)")
 
@@ -53,4 +52,4 @@ for producer in producers
 
 end
 
-DBInterface.close!(conn)
+OpenProduct.op_stop(OpenProduct.ok ,dbConnection)

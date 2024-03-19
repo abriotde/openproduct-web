@@ -1,10 +1,9 @@
 #!/usr/local/bin/julia --startup=no
 
-import JSON, OteraEngine, MySQL
-SCRIPT_NAME = "generateStaticProducerHTML"
+import JSON, OteraEngine, MySQL, Dates, DBInterface
 DEBUG=true
 
-include("../../openproduct-docs/sources/OpenProductProducer.jl")
+include("connect.jl")
 
 TemplateProducerPage = missing
 
@@ -23,7 +22,10 @@ function generateStaticProducerPages(webrootpath::String, webpath::String; useCa
 	if DEBUG; println("generateStaticProducerPages(",webrootpath,",",webpath,")"); end
 	mindate = "2000-01-01 00:00:00"
 	if useCache
-		mindate = Dates.format(op_getPreviousScriptTime(start), DATEFORMAT_MYSQL)
+		mindate = Dates.format(
+			OpenProduct.getPreviousScriptTime(OpenProduct.start, dbConnection),
+			OpenProduct.mysql_get_dateformat()
+		)
 	end
 	sql = "Select if(lastUpdateDate>='"*mindate*"', 0, 1) ok, id, latitude lat, longitude lng, name,
 			COALESCE(`text`, shortDescription) text, wikiTitle wiki,
@@ -70,5 +72,5 @@ end
 
 generateStaticProducerPages("../public","/producers", useCache=true)
 
-op_stop(ok)
+OpenProduct.op_stop(OpenProduct.ok, dbConnection)
 
