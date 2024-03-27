@@ -43,7 +43,8 @@
 	</span>
 	<div id="searchMenu">
 		<label for="geoSearch">Aller à :</label>
-		<input name="geoSearch" type="text" id="geoSearch"/>
+		<input name="geoSearch" list="geoSearchList" size="50" oninput="javascript:onGeoSearch(this)" placeholder="Saisissez une adresse" type="text" id="geoSearch"/>
+		<datalist id="geoSearchList"></datalist>
 		<img src="img/openproduct/search.jpg" onclick="javascript:geoSearch()" width="25" height="25" id="geoSearchImg" />
 	</div>
   </div>

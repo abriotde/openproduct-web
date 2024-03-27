@@ -634,7 +634,47 @@ function geoOk(position)
     longitude = position.coords.longitude;
     initMap(latitude, longitude);
 }
+geoSearchLoaded = {};
 
+/**
+ * Call on user fill in the geoSeach input
+ * @param elem : input clicked
+ * 
+ * Access-Control-Allow-Origin: https://api-adresse.data.gouv.fr
+ */
+function onGeoSearch(elem)
+{
+	// console.log("onGeoSearch(",elem,")");
+	const value = elem.value;
+	if (value=="") { // Re-init select category filter
+		listHtml = document.getElementById("geoSearchList");
+		listHtml.innerHTML = "";
+	} else {
+		url = "https://api-adresse.data.gouv.fr/search/?q="+encodeURI(value);
+		fetch(url)
+			.then((reponse) => reponse.json())
+			.then((data) => {
+				listHtml = document.getElementById("geoSearchList");
+				listHtml.innerHTML = "";
+				if(data.features.length>1) {
+					for(address of data.features) {
+						// console.log("produce:",produce);
+						option = document.createElement("option");
+						option.value = address.properties.label;
+						listHtml.appendChild(option);
+					}
+				} else if(data.features.length==1) {
+					elem.value = data.features[0].properties.label
+					geoSearch()
+				} else {
+					console.log("No results for api-adresse.data.gouv.fr.");
+				}
+			})
+			.catch(()=>{
+				console.log("Fail get results for api-adresse.data.gouv.fr.");
+			});
+	}
+}
 
 const mapIcons = {
 	black:getIcon("#000000"),
@@ -674,7 +714,7 @@ function produceFilter(producer)
 	return filterProduce.hasOwnProperty(key);
 }
 /**
- * Call on click to a produce name to filter producers on a product
+ * Call when user fill in a produce name to filter producers on a product
  * @param elem : input clicked
  */
 function onProduceFilter(elem)
