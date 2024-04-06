@@ -38,7 +38,7 @@
 				{"val":"S", "text":"Arts graphiques (Dessinateur/Enlumineur/Calligraphe/Graveur/Graphiste/Imprimeur/Relieur)"}
 			]
 		},
-		{"val":"I", "text":"Petites et moyennes entrepries (PME)", "subcategories":[
+		{"val":"I", "text":"Petites et moyennes entreprises (PME)", "subcategories":[
 				{"val":"IH", "text":"Habillement"},
 				{"val":"Y", "text":"Electronique/Electromenager"},
 				{"val":"J", "text":"Autres Jeux/Objets"}

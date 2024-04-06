@@ -26,6 +26,7 @@ server {
 
   location / {
 	  expires 1d;
+	  add_header Access-Control-Allow-Origin api-adresse.data.gouv.fr;
 	  # proxy_pass http://localhost:8080/;
   }
 
