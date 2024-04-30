@@ -10,7 +10,7 @@ cp /etc/nginx/sites-available/openproduct ../around/etc.nginx.sites-available.op
 # mysqldump -uroot -posiris openproduct_wiki > $DB_BACKUP_PATH/openproduct_wiki.dump.sql
 for table in producer produce product_link; do
 	echo "Table:$table"
-	$MYSQLDUMP_CMD --no-data openproduct $table > $DB_BACKUP_PATH/openproduct.$table.schema.sql
-	$MYSQLDUMP_CMD --no-create-info --complete-insert openproduct $table > $DB_BACKUP_PATH/openproduct.$table.data.sql
+	$MYSQLDUMP_CMD --no-data openproduct $table | head -n -1 > $DB_BACKUP_PATH/openproduct.$table.schema.sql
+	$MYSQLDUMP_CMD --no-create-info --complete-insert openproduct $table | head -n -1 > $DB_BACKUP_PATH/openproduct.$table.data.sql
 done
 

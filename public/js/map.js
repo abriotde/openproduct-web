@@ -511,10 +511,10 @@ async function filterProducers(filter) {
 					subfilterSelect.appendChild(option);
 				}
 				subfilterDiv.appendChild(subfilterSelect);
-			} else if(subfilter.level==0) {
+			} else if(subfilter===null || subfilter.level==0) {
 				subfilterDiv.innerHTML = '';
 			}
-			console.log("subfilter.level:", subfilter.level);
+			// console.log("subfilter.level:", subfilter.level);
         } else {
 			console.log("filterProducers(",filter,") : twoCharFilter");
         	myfilter = twoCharFilter;

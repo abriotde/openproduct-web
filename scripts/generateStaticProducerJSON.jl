@@ -15,7 +15,7 @@ function loadArea(departement::Int64)
 	println("loadArea(",departement,")")
 	departementStr = string(departement)
 	sql = "Select id, latitude lat, longitude lng, name,
-			COALESCE (shortDescription, `text`) txt, wikiTitle wiki,
+			COALESCE(`text`, shortDescription) txt, wikiTitle wiki,
 			postCode, city, address addr, categories cat,
 			phoneNumber tel,
 			if(sendEmail is NULL or sendEmail!='wrongEmail',email,'') as email,
