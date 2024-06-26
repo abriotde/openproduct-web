@@ -10,7 +10,9 @@ import JSON, MySQL, DBInterface
 
 include("connect.jl")
 
-
+#=
+		Load all producer from an area.
+=#
 function loadArea(departement::Int64)
 	println("loadArea(",departement,")")
 	departementStr = string(departement)

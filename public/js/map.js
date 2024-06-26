@@ -363,7 +363,8 @@ function newMarker(producer) {
     		.replace(/[îï]/i, "i")
     		.replace(/[öô]/i, "o")
     		.replace("à", "a")
-    		.replace("ù", "u");
+    		.replace("ù", "u")
+    		.replace("'", "%27");
         text += "<a href='/wiki/index.php?title="+wikiName+"' target='wiki'>+ d'infos</a><br>";
     }
     if (producer.email) {
