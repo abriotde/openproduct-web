@@ -4,7 +4,7 @@
 				{"val":"HI", "text":"Tisserand industriel"},
 				{"val":"C", "text":"Chappelier"},
 				{"val":"K", "text":"Bottier/Chaussure"},
-				{"val":"1", "text":"Accessoire d'habillement (Canne, Pipe)"},
+				{"val":"1", "text":"Accessoire d'habillement (Canne, Pipe, Lunettes)"},
 				{"val":"T", "text":"Artisants (Costume, Couture)"},
 				{"val":"D", "text":"Décoration (Dentelle, Broderie)"}
 			]
@@ -30,7 +30,7 @@
 				{"val":"F", "text":"Métal (Bronzier, Forgerons, Ferronerie)"},
 				{"val":"5", "text":"Luthier/Instruments de musique"},
 				{"val":"T", "text":"Cuir (Tanneur, Taxidermiste, Sellier)"},
-				{"val":"0", "text":"Bois/Vannerie"},
+				{"val":"0", "text":"Bois/Ebénisterie/Vannerie"},
 				{"val":"Z", "text":"Pierre (Sculpteur, Tailleur)"},
 				{"val":"B", "text":"Bijouterie/Dorure/Horlogerie"},
 				{"val":"U", "text":"Métiers liés à l'architecture, Maison/Véhicules"},

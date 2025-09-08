@@ -208,14 +208,11 @@ function initMap (latitude, longitude) {
 			storePosition();
 		});
 		// Get areas locations (to manage witch producers's area to GET)
-		const request = new XMLHttpRequest();
-		request.responseType = "json";
-		request.onload = function() {
-			areas = request.response;
+		onload = function(response) {
+			areas = response;
 			initProducers();
 		}
-		request.open("GET", "data/departements.json");
-		request.send();
+		getFile(onload, "data/departements.json");
 		// Get background layer
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: MAP_MAX_ZOOM,
@@ -537,12 +534,10 @@ function getAllProducers(areas) {
 		if ((!loadingAreas.includes(area)) && (!loadedAreas.includes(area))) {
 			if(DEBUG) console.log("getProducers(",area,")");
 			loadingAreas.push(area);
-			const request = new XMLHttpRequest();
-			request.responseType = "json";
-			request.onload = function() {
-				displayProducers(request.response.producers);
-				producersLoaded = producersLoaded.concat(request.response.producers);
-				area = request.response.id
+			onload = function(response) {
+				displayProducers(response.producers);
+				producersLoaded = producersLoaded.concat(response.producers);
+				area = response.id
 				if (area!=undefined) {
 					loadingAreas = loadingAreas.filter(a => a!=area);
 					loadedAreas.push(area);
@@ -555,10 +550,7 @@ function getAllProducers(areas) {
 					console.log("Error : area==undefined")
 				}
 			}
-			request.open("GET", "data/producers_"+area+".json");
-			// request.setRequestHeader('Cache-Control', 'max-age=86400');
-			request.setRequestHeader('Cache-Control', 'max-age=100');
-			request.send();
+			getFile(onload, "data/producers_"+area+".json");
 		}
 	}
 }
@@ -796,20 +788,39 @@ function displayProducesList(filterFunc)
 		// }
 	}
 }
+function getFile(onload, fileName) {
+	if (window.location.hostname == "localhost" || window.location.hostname.trim() == "") {
+		console.log("open(",fileName,")");
+		fetch(fileName)
+			.then((res) => res.json())
+			.then((text) => {
+				console.log("getFile(",fileName,") => '", text,"'");
+				if (onload) {
+					onload(text);
+				}
+			})
+			.catch((e) => console.error(e));
+	} else  {
+		console.log("getFile(",fileName,") from '", window.location.hostname,"'");
+		const request = new XMLHttpRequest();
+		request.responseType = "json";
+		request.onload = function() {
+			onload(request.response);
+		}
+		request.open("GET", fileName);
+		// request.setRequestHeader('Cache-Control', 'max-age=86400');
+		request.setRequestHeader('Cache-Control', 'max-age=100');
+		request.send();
+	}
+}
 /**
  * Init produces list
  */
 function loadProduceFilter()
 {
 	console.log("loadProduceFilter()");
-	const request = new XMLHttpRequest();
-	request.responseType = "json";
-	request.onload = function() {
-		producesList = request.response.produces;
+	getFile((response) => {
+		producesList = response.produces;
 		filterProducesList("");
-	}
-	request.open("GET", "data/produces_fr.json");
-	// request.setRequestHeader('Cache-Control', 'max-age=86400');
-	request.setRequestHeader('Cache-Control', 'max-age=100');
-	request.send();
+	}, "data/produces_fr.json");
 }

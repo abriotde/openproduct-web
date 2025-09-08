@@ -30,7 +30,7 @@ $wgMetaNamespace = "OpenProduct_wiki";
 $wgScriptPath = "/wiki";
 
 ## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://openproduct.freeboxos.fr";
+$wgServer = "http://openproduct.fr";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -57,9 +57,9 @@ $wgEmailAuthentication = true;
 ## Database settings
 $wgDBtype = "mysql";
 $wgDBserver = "localhost";
-$wgDBname = "openproduct_wiki";
-$wgDBuser = "root";
-$wgDBpassword = "osiris";
+$wgDBname = "kaja9241_openproduct_wiki";
+$wgDBuser = "kaja9241_wiki";
+$wgDBpassword = "aUZ1NTLpvUC6Rd7Z";
 
 # MySQL specific settings
 $wgDBprefix = "";
@@ -77,9 +77,13 @@ $wgMemCachedServers = [];
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
-$wgEnableUploads = false;
+$wgEnableUploads = true;
 $wgUseImageMagick = true;
 $wgImageMagickConvertCommand = "/usr/bin/convert";
+$wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'svg',
+	'mpp', 'pdf', 'ppt', 'tiff', 'bmp', 'ps', 'odt', 'ods', 'odp', 'odg'
+];
+$wgStrictFileExtensions = true;
 
 # InstantCommons allows wiki to use images from https://commons.wikimedia.org
 $wgUseInstantCommons = false;
@@ -121,8 +125,25 @@ $wgRightsIcon = "$wgResourceBasePath/resources/assets/licenses/cc-by.png";
 $wgDiff3 = "/usr/bin/diff3";
 
 # The following permissions were set based on your choice in the installer
-$wgGroupPermissions['*']['createaccount'] = true;
+$wgGroupPermissions['*']['createaccount'] = false;
+$wgGroupPermissions['*']['createpage'] = false;
 $wgGroupPermissions['*']['edit'] = false;
+$wgGroupPermissions['*']['upload'] = false;
+
+$wgGroupPermissions['user']['createaccount'] = false;
+$wgGroupPermissions['user']['createpage'] = false;
+$wgGroupPermissions['user']['edit'] = false;
+$wgGroupPermissions['user']['upload'] = false;
+
+$wgAutopromote['emailconfirmed'] = APCOND_EMAILCONFIRMED;
+$wgImplicitGroups[] = 'emailconfirmed'; # https://www.mediawiki.org/wiki/Manual:User_rights
+$wgGroupPermissions['emailconfirmed']['edit'] = true;
+$wgGroupPermissions['emailconfirmed']['upload'] = false;
+
+$wgGroupPermissions['interface-admin']['createaccount'] = true;
+$wgGroupPermissions['interface-admin']['createpage'] = true;
+$wgGroupPermissions['interface-admin']['edit'] = true;
+$wgGroupPermissions['interface-admin']['upload'] = true;
 
 ## Default skin: you can change the default skin. Use the internal symbolic
 ## names, e.g. 'vector' or 'monobook':
@@ -152,3 +173,7 @@ wfLoadExtension( 'TemplateStyles' );
 # Add more configuration options below.
 
 // $wgShowExceptionDetails = true;
+
+// Redirect to https://openproduct.fr/ on click on logo
+// $wgMainPageIsDomainRoot = true;
+
