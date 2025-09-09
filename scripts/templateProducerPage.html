@@ -43,15 +43,26 @@
           <h3>Description</h3>
           <p>{{job}}</p>
           <p>{{text}}</p>
+          <p><a href='/wiki/index.php?title={{wiki}}' target='wiki'>+ d'infos</a></p>
         </div>
         <div class="col-md-4 feature">
           <h3>Coordonn&eacute;es</h3>
           <p><label for="address">Addresse:</label> <span id="address">{{address}}</span></p>
-		  <p><label for="gps">coordonn&eacute;es GPS:</label> <span id="gps">{{lat}}, {{lng}}</span></p>
-          <p><label for="website">Site web:</label> <span id="website">{{website}}</span></p>
-          <p></p><label for="email">E-Mail:</label> <span id="email">{{email}}</span></p>
-          <p></p><label for="phoneNumber">T&eacute;l&eacute;phone:</label> <span id="phoneNumber">{{phoneNumber}}</span></p>
-          <p></p><label for="phoneNumber2">2nd T&eacute;l&eacute;phone:</label> <span id="phoneNumber2">{{phoneNumber2}}</span></p>
+		  <p><label for="gps">coordonn&eacute;es GPS:</label>
+			<span id="gps"><a href="geo:{{lat}},{{lng}}" target="_blank">{{lat}}, {{lng}}</a></span>
+		  </p>
+          <p><label for="website">Site web:</label>
+			<span id="website"><a href="{{website}}">{{website}}</a></span>
+		  </p>
+          <p></p><label for="email">E-Mail:</label>
+		  	<span id="email"><a href="mailto:{{email}}">{{email}}</a></span>
+		  </p>
+          <p></p><label for="phoneNumber">T&eacute;l&eacute;phone:</label>
+		  	<span id="phoneNumber"><a href="tel:{{phoneNumber}}">{{phoneNumber}}</a></span>
+		  </p>
+          <p></p><label for="phoneNumber2">2nd T&eacute;l&eacute;phone:</label>
+		    <span id="phoneNumber2"><a href="tel:{{phoneNumber2}}">{{phoneNumber2}}</a></span>
+		  </p>
           <p></p><label for="siret">Siret:</label> <span id="siret">{{siret}}</span></p>
         </div>
       </div>

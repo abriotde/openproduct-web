@@ -352,18 +352,7 @@ function newMarker(producer) {
 		text += "<span style='color:red'>⚠ Ce producteur semble ne plus exister. Contactez-nous si vous avez des informations.</span>"
 	}
 	text += "<p>"+producer.txt+"</p>";
-    if (producer.wiki) {
-        text += "<a href='/wiki/index.php?title="+producer.wiki+"' target='wiki'>+ d'infos</a><br>";
-    } else {
-    	wikiName = producer.name.toLowerCase().replace(" - ", "-").replace(" ", "_")
-    		.replace(/[éèê]/i, "e")
-    		.replace(/[îï]/i, "i")
-    		.replace(/[öô]/i, "o")
-    		.replace("à", "a")
-    		.replace("ù", "u")
-    		.replace("'", "%27");
-        text += "<a href='/wiki/index.php?title="+wikiName+"' target='wiki'>+ d'infos</a><br>";
-    }
+    text += "<a href='/producers/producer_"+producer.id+".html' target='producer'>+ d'infos</a><br>";
     if (producer.email) {
     	text += "EMail:<a href='mailto:"+producer.email+"'>"+producer.email+"</a><br>"
     }

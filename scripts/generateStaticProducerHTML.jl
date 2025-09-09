@@ -8,6 +8,8 @@ include("connect.jl")
 TemplateProducerPage = missing
 
 function generateStaticProducerPage(filepath::String, producer::MySQL.TextRow)
+	# println("generateStaticProducerPage(",filepath,",",producer,")")
+	print(".")
 	if ismissing(TemplateProducerPage)
 		global TemplateProducerPage = OteraEngine.Template("./templateProducerPage.html")
 	end
@@ -15,6 +17,13 @@ function generateStaticProducerPage(filepath::String, producer::MySQL.TextRow)
 		dictionary = Dict{String, String}(
 			string(key) => string(producer[key]) for key in propertynames(producer)
 		)
+		wikiName = producer[:wiki]
+		if ismissing(wikiName) || isempty(wikiName)
+			# On génère le nom wiki à partir du nom producteur
+    		wikiName = replace(lowercase(producer[:name]), " "=>"_", "é"=>"e", "è"=>"e", "ê"=>"e"
+				,"î"=>"i", "ï"=>"i", "ö"=>"o", "ô"=>"o", "à"=>"a", "ù"=>"u", "'"=>"%27")
+		end
+		dictionary["wiki"] = wikiName;
 		write(file, TemplateProducerPage(init=dictionary))
 	end
 end
@@ -47,7 +56,7 @@ function generateStaticProducerPages(webrootpath::String, webpath::String; useCa
 	nbDone::Int = 0
 	producers2 = Dict{Int, String}()
 	for producer in producers
-		if producer[:ok]==0
+		if producer[:ok]==0 || true
 			producerFilepath = webrootpath*replace(weburl, "%d"=>string(producer[:id]))
 			generateStaticProducerPage(producerFilepath, producer)
 			nbDone += 1
