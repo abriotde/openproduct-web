@@ -43,7 +43,9 @@
 						var fileName = document.createTextNode(doc.doc);
 						var aElement = document.createElement("a");
 						aElement.appendChild(fileName);
-						aElement.setAttribute("href", encodeURI("docs/"+doc.doc+".html"));
+						if (doc.link) {
+							aElement.setAttribute("href", encodeURI("docs/"+doc.doc+"."+doc.link));
+						}
 						var liElement = document.createElement("li");
 						liElement.appendChild(aElement);
 						aElement = document.createElement("a");

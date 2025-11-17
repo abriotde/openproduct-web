@@ -1,6 +1,8 @@
 [
-{"id":"PV_AG_constitutive", "doc":"Proces-verbal de l'assemblee constitutive", "type":"fodt"},
-{"id":"statuts", "doc":"Statuts de l'association OpenProduct", "type":"fodt"},
-{"id":"statistics", "dir":"stats", "doc":"Stats accès web", "type":"fods"},
-{"id":"comptes", "dir":"banque", "doc":"comptes", "type":"fods"}
+{"id":"PV_AG_constitutive", "doc":"Proces-verbal de l'assemblee constitutive", "type":"fodt", "link":"html"},
+{"id":"statuts", "doc":"Statuts de l'association OpenProduct", "type":"fodt", "link":"html"},
+{"ok": false, "id":"statistics", "dir":"stats", "doc":"Stats accès web", "type":"fods", "link":"html"},
+{"id":"comptes", "dir":"banque", "doc":"comptes", "type":"fods", "link": "html"},
+{"id":"flyer", "doc":"Flyer editable", "type":"fodg"},
+{"id":"flyer_A4", "doc":"Flyer imprimable en A4", "type":"pdf"}
 ]
