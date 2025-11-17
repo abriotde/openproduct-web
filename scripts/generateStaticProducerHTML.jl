@@ -56,7 +56,7 @@ function generateStaticProducerPages(webrootpath::String, webpath::String; useCa
 	nbDone::Int = 0
 	producers2 = Dict{Int, String}()
 	for producer in producers
-		if producer[:ok]==0 || true
+		if producer[:ok]==0
 			producerFilepath = webrootpath*replace(weburl, "%d"=>string(producer[:id]))
 			generateStaticProducerPage(producerFilepath, producer)
 			nbDone += 1
